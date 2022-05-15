@@ -9,7 +9,7 @@ const handler = nc();
 handler.post(async (req, res) => {
   const { name, email, password } = req.body;
   await db.connect();
-  User.find({ email }).exec(async (error, user) => {
+  User.findOne({ email }).exec(async (error, user) => {
     if (user) {
       res.status(400).json({
         success: false,
