@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const ownerShchema = new mongoose.Schema(
+const shopShchema = new mongoose.Schema(
   {
     ownerName: { 
         type: String, 
@@ -77,5 +77,5 @@ const ownerShchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.models.Owner || mongoose.model('Owner', ownerShchema);
+export default mongoose.models.Shop || mongoose.model('Shop', shopShchema);
 
