@@ -15,6 +15,15 @@ const ownerShchema = new mongoose.Schema(
         type: String, 
         required: true 
     },
+    _email: { 
+        type: String, 
+        required: true 
+    },
+    _cell: { 
+        type: String, 
+        required: true, 
+        unique: true 
+    },
     localTime: { 
         type: String, 
         required: true 
@@ -29,7 +38,28 @@ const ownerShchema = new mongoose.Schema(
     },
     adress: {
         city: {
-            
+            type: String, 
+            required: true  
+        },
+        state: {
+            type: String, 
+            required: true 
+        },
+        zipCode: {
+            type: String, 
+            required: true 
+        },
+        lat: {
+            type: String, 
+            required: true 
+        },
+        long: {
+            type: String, 
+            required: true 
+        },
+        timeZone: {
+            type: String, 
+            required: true  
         }
     },
     pickUpTime: { 
