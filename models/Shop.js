@@ -2,16 +2,37 @@ import mongoose from 'mongoose';
 
 const ownerShchema = new mongoose.Schema(
   {
-    name: { 
+    ownerName: { 
         type: String, 
         required: true 
     },
-    email: { 
+    ownerCell: { 
         type: String, 
         required: true, 
         unique: true 
     },
-    password: { 
+    ownerEmail: { 
+        type: String, 
+        required: true 
+    },
+    localTime: { 
+        type: String, 
+        required: true 
+    },
+    _phone: { 
+        type: String, 
+        required: true 
+    },
+    deliveryTime: { 
+        type: String, 
+        required: true 
+    },
+    adress: {
+        city: {
+            
+        }
+    },
+    pickUpTime: { 
         type: String, 
         required: true 
     },
