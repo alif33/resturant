@@ -13,9 +13,9 @@ const attendanceSchema = new mongoose.Schema(
                 required: true
             }
         ],
-        _owner: {
+        _shop: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'admin',
+            ref: 'Shop',
             required: true
         }
     },

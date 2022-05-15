@@ -15,6 +15,10 @@ const ownerShchema = new mongoose.Schema(
       type: String, 
       required: true 
     },
+    _shop: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Shop'
+  }
   },
   {
     timestamps: true,
