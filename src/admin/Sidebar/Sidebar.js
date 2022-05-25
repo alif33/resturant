@@ -13,28 +13,33 @@ const Sidebar = () => {
               </a>
             </li>
             <li>
+              <a href="#Settings">
+                <i className="iconsminds-digital-drawing"></i> Settings
+              </a>
+            </li>
+            <li>
               <a href="#layouts">
-                <i className="iconsminds-digital-drawing"></i> Pages
+                <i className="iconsminds-digital-drawing"></i> Payments
               </a>
             </li>
             <li>
               <a href="#applications">
-                <i className="iconsminds-air-balloon-1"></i> Applications
+                <i className="iconsminds-air-balloon-1"></i> Seo Settings
               </a>
             </li>
             <li>
               <a href="#ui">
-                <i className="iconsminds-pantone"></i> UI
+                <i className="iconsminds-pantone"></i> Locations
               </a>
             </li>
             <li>
               <a href="#menu">
-                <i className="iconsminds-three-arrow-fork"></i> Menu
+                <i className="iconsminds-three-arrow-fork"></i> Contact
               </a>
             </li>
             <li>
               <a href="Blank.Page.html">
-                <i className="iconsminds-bucket"></i> Blank Page
+                <i className="iconsminds-bucket"></i> Ordering
               </a>
             </li>
             <li>
@@ -42,7 +47,7 @@ const Sidebar = () => {
                 href="https://dore-jquery-docs.coloredstrategies.com"
                 target="_blank" rel="noreferrer"
               >
-                <i className="iconsminds-library"></i> Docs
+                <i className="iconsminds-library"></i> Statements
               </a>
             </li>
           </ul>
