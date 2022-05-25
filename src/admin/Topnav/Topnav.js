@@ -8,6 +8,8 @@ import {
   DropdownMenu,
   Input,
 } from "reactstrap";
+import TopnavEasyAccess from "./TopnavEasyAccess";
+import TopnavNotifications from "./TopnavNotifications";
 
 const Topnav = ({
   intl,
@@ -220,7 +222,7 @@ const Topnav = ({
               size="sm"
               className="language-button"
             >
-              <span className="name">{locale}</span>
+              <span className="name">{locale}EN</span>
             </DropdownToggle>
 
             <DropdownMenu className="mt-3" right>
@@ -235,7 +237,9 @@ const Topnav = ({
                 );
               })} */}
 
-              <DropdownItem>yeaisn</DropdownItem>
+              <DropdownItem>English - LTR</DropdownItem>
+              <DropdownItem>Español</DropdownItem>
+              <DropdownItem>English - RTL</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </div>
@@ -250,8 +254,8 @@ const Topnav = ({
       <div className="navbar-right">
         {/* {isDarkSwitchActive && <TopnavDarkSwitch />} */}
         <div className="header-icons d-inline-block align-middle">
-          {/* <TopnavEasyAccess />
-          <TopnavNotifications /> */}
+          <TopnavEasyAccess />
+          <TopnavNotifications />
           <button
             className="header-icon btn btn-empty d-none d-sm-inline-block"
             type="button"

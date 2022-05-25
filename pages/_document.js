@@ -27,7 +27,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
 
-          <link rel="stylesheet" href="font/iconsmind-s/css/iconsminds.css" />
+          <link rel="stylesheet" href="font/font/iconsmind-s/css/iconsminds.css" />
 
           <link
             rel="stylesheet"
