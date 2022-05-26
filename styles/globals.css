@@ -1,44 +1,133 @@
-/* * {
-  margin: 0;
-  padding: 0;
+.header-menu {
+}
+.header-menu ul {
+  border-bottom: 1px dashed;
+  display: flex;
+  justify-content: space-between;
+}
+.header-menu ul li {
+  display: inline-block;
+}
+.header-menu ul li a {
+  padding: 9px 24px;
+  font-size: 18px;
 }
 
-body {
-  box-sizing: border-box;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  font-family: Arial, sans-serif;
+.header-menu ul li.active a {
+  border-bottom: 2px solid #ad0000;
 }
-:root,
-body,
-html {
-  background: #fafafa;
-  box-sizing: border-box;
+
+.header-menu ul li a:hover {
+  border-bottom: 2px solid #ad0000;
 }
-div,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-header,
-html,
-i,
-img,
-label,
-li,
-nav,
-p,
-small,
-span,
-ul {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: none;
-  font-size: 100%;
-  vertical-align: baseline;
+.info-menu {
+  margin-top: 10px;
+}
+.info-menu ul li {
+  font-size: 15px;
+  font-weight: 500;
+  color: #8b8b8b;
+  margin-bottom: 0px;
+}
+.info-menu ul li b {
+  color: #111;
+}
+.info-menu ul li span.button {
+  color: #fff;
+  background: rgb(37 113 225);
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-left: 5px;
+}
+button.transparent {
+  color: rgb(199, 55, 55) !important;
+  border: 1px solid rgb(199, 55, 55);
   background: transparent;
-  box-sizing: border-box;
-} */
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+.text-red {
+  color: rgb(199, 55, 55) !important;
+}
+.card {
+  height: 100%;
+}
+
+.form-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.form-group input {
+  width: 60%;
+  padding: 2px 10px;
+  margin-left: 20px;
+  font-size: 16px;
+}
+.form-group select {
+  width: 60%;
+  padding: 2px 10px;
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+.form-group span {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  color: rgb(5, 108, 126);
+  transform: translateY(-50%);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-group textarea {
+  width: 60%;
+  padding: 2px 10px;
+  margin-left: 20px;
+  font-size: 16px;
+}
+.form-group .form-check {
+  width: 60%;
+}
+.form-group .form-check input {
+  width: 14px;
+  margin-left: 0;
+  margin-top: -10px;
+}
+.form-group label {
+  font-size: 16px;
+  text-transform: capitalize;
+  width: 36%;
+  text-align: right;
+}
+
+.ml-142px {
+  margin-left: 142px !important ;
+}
+
+.banner-text {
+  margin-left: 20px;
+  width: 60%;
+}
+.banner-text textarea {
+  width: 100%;
+  margin-left: 0;
+}
+.banner-text input {
+  width: 100%;
+  margin-left: 0;
+}
+
+.banner-text p {
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.form-group button.transparent {
+  color: #8b8b8b !important;
+  border-color: #8b8b8b;
+  margin-left: 5px;
+}

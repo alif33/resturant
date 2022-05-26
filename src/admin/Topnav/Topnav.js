@@ -216,6 +216,7 @@ const Topnav = ({
 
         <div className="d-inline-block">
           <UncontrolledDropdown className="ml-2">
+
             <DropdownToggle
               caret
               color="light"
@@ -226,6 +227,7 @@ const Topnav = ({
             </DropdownToggle>
 
             <DropdownMenu className="mt-3" right>
+              
               {/* {localeOptions.map((l) => {
                 return (
                   <DropdownItem
@@ -241,6 +243,7 @@ const Topnav = ({
               <DropdownItem>Español</DropdownItem>
               <DropdownItem>English - RTL</DropdownItem>
             </DropdownMenu>
+            
           </UncontrolledDropdown>
         </div>
       </div>

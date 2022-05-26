@@ -1,12 +1,11 @@
-import Layout from "../src/admin/layout/Layout";
-import Topnav from "../src/admin/Topnav/Topnav";
+import React from 'react';
 
-const Home = () => {
-  return (
-    <Layout>
-     <div> <h1>ready for sale</h1></div>
-    </Layout>
-  );
+const index = () => {
+    return (
+        <div>
+            <h1>manin pages</h1>
+        </div>
+    );
 };
 
-export default Home;
+export default index;
