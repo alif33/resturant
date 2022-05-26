@@ -1,6 +1,6 @@
 import nc from 'next-connect';
 import bcrypt from 'bcryptjs';
-import Admin from '../../../models/Admin';
+import Owner from '../../../models/Owner';
 import db from '../../../utils/db';
 import { signToken } from '../../../utils/auth';
 
@@ -8,14 +8,14 @@ const handler = nc();
 
 handler.post(async (req, res) => {
   await db.connect();
-  const admin = await Admin.findOne({ email: req.body.email });
+  const owner = await Owner.findOne({ email: req.body.email });
   await db.disconnect();
-  if (admin && bcrypt.compareSync(req.body.password, admin.password)) {
-    const token = signToken(admin);
+  if (owner && bcrypt.compareSync(req.body.password, owner.password)) {
+    const token = signToken(owner);
     res.send({
       success: true,
       token,
-      admin
+      owner
     });
   } else {
     res.status(401).send({ message: 'Invalid Credentials' });
