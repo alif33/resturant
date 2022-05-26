@@ -176,7 +176,7 @@ const Topnav = ({
 
   return (
     <nav className="navbar fixed-top">
-      <div className="d-flex align-items-center navbar-left">
+      <div className="top-navbar-left">
         <Link href="/">
           <a
             className="menu-button d-none d-md-block"
@@ -196,65 +196,52 @@ const Topnav = ({
             <MobileMenuIcon />
           </a>
         </Link>
-
-        <div className="search">
-          <Input
-            name="searchKeyword"
-            id="searchKeyword"
-            placeholder="search.."
-            value={searchKeyword}
-            onChange={(e) => setSearchKeyword(e.target.value)}
-            onKeyPress={(e) => handleSearchInputKeyPress(e)}
-          />
-          <span
-            className="search-icon"
-            onClick={(e) => handleSearchIconClick(e)}
-          >
-            <i className="simple-icon-magnifier" />
-          </span>
-        </div>
-
-        <div className="d-inline-block">
-          <UncontrolledDropdown className="ml-2">
-
-            <DropdownToggle
-              caret
-              color="light"
-              size="sm"
-              className="language-button"
-            >
-              <span className="name">{locale}EN</span>
-            </DropdownToggle>
-
-            <DropdownMenu className="mt-3" right>
-              
-              {/* {localeOptions.map((l) => {
-                return (
-                  <DropdownItem
-                    onClick={() => handleChangeLocale(l.id, l.direction)}
-                    key={l.id}
-                  >
-                    {l.name}
-                  </DropdownItem>
-                );
-              })} */}
-
-              <DropdownItem>English - LTR</DropdownItem>
-              <DropdownItem>Español</DropdownItem>
-              <DropdownItem>English - RTL</DropdownItem>
-            </DropdownMenu>
-            
-          </UncontrolledDropdown>
-        </div>
       </div>
-      <Link href="/">
-        <a className="navbar-logo">
-          <span className="logo d-none d-xs-block" />
-          <span className="logo-mobile d-block d-xs-none" />
-        </a>
-      </Link>
 
-      <div className="navbar-right">
+      <ul className="navbar-nav">
+        <li className="nav-item">
+          <Link href="#">
+            <a className="nav-link active">Dashboard</a>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link href="#">
+            <a className="nav-link">Support</a>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link href="#">
+            <a className="nav-link">Custom SMS</a>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link href="#">
+            <a className="nav-link">Coupons</a>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link href="/restaurants">
+            <a className="nav-link">Restaurants</a>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link href="#">
+            <a className="nav-link">Orders</a>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link href="#">
+            <a className="nav-link">Users</a>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link href="#">
+            <a className="nav-link">Report</a>
+          </Link>
+        </li>
+      </ul>
+
+      <div className="top-navbar-right">
         {/* {isDarkSwitchActive && <TopnavDarkSwitch />} */}
         <div className="header-icons d-inline-block align-middle">
           <TopnavEasyAccess />
