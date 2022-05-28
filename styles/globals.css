@@ -131,3 +131,44 @@ button.transparent {
   border-color: #8b8b8b;
   margin-left: 5px;
 }
+
+ul.navbar-nav {
+  flex-direction: row;
+  margin-right: auto;
+}
+ul.navbar-nav li a {
+  padding: 0px 8px !important;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+}
+span.open {
+  height: 20px;
+  width: 20px;
+  background: rgb(65 207 148);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+span.close-icon{
+  height: 20px;
+  width: 20px;
+  background: rgb(207, 65, 65);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.badge-success {
+  background-color: #41cf94;
+}
+.badge-info {
+  background-color: #20cde9;
+  color: #111 !important;
+}
+td span.badge.badge-success svg {
+  font-size: 12px;
+}
+td span.badge.badge-info svg {
+  font-size: 12px;
+}

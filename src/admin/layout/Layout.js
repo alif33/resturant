@@ -2,9 +2,9 @@ import Footer from "../Footer/Footer";
 import Sidebar from "../Sidebar/Sidebar";
 import Topnav from "../Topnav/Topnav";
 
-const Layout = ({ containerClassnames, children, history }) => {
+const Layout = ({children, history }) => {
   return (
-    <div id="app-container" className={containerClassnames}>
+    <div id="app-container">
       <Topnav history={history} />
       <Sidebar />
       <main>
