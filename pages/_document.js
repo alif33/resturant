@@ -27,14 +27,17 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
 
-          <link rel="stylesheet" href="font/font/iconsmind-s/css/iconsminds.css" />
+          {/* <link
+            rel="stylesheet"
+            href="font/font/iconsmind-s/css/iconsminds.css"
+          />
 
           <link
             rel="stylesheet"
             href="font/font/simple-line-icons/css/simple-line-icons.css"
-          />
+          /> */}
 
-          <link rel="stylesheet" href="css/vendor/bootstrap.min.css" />
+          {/* 
           <link rel="stylesheet" href="css/vendor/bootstrap.rtl.only.min.css" />
           <link rel="stylesheet" href="css/vendor/fullcalendar.min.css" />
           <link
@@ -57,7 +60,8 @@ class MyDocument extends Document {
           <link
             rel="stylesheet"
             href="css/vendor/component-custom-switch.min.css"
-          />
+          /> */}
+          <link rel="stylesheet" href="css/vendor/bootstrap.min.css" />
           <link rel="stylesheet" href="css/dore.light.blueolympic.css" />
           <link rel="stylesheet" href="css/main.css" />
         </Head>
@@ -67,11 +71,12 @@ class MyDocument extends Document {
         >
           <Main />
           <NextScript />
-          <script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+          {/* <script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script> */}
         </body>
       </Html>
     );
   }
 }
+
 
 export default MyDocument;

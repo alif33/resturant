@@ -200,7 +200,7 @@ const Topnav = ({
 
       <ul className="navbar-nav">
         <li className="nav-item">
-          <Link href="#">
+          <Link href="/dashboard">
             <a className="nav-link active">Dashboard</a>
           </Link>
         </li>

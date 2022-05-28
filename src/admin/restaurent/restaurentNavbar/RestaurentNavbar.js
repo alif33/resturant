@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const RestaurentNavbar = () => {
   const newData = [
-    { item: `Search Shop&apos;s`, link: "#" },
+    { item: `Search Shop's`, link: "#" },
     { item: "Add New shop ", link: "#" },
     { item: "Live Shops", link: "#" },
     { item: "Disabled Shops", link: "#" },
