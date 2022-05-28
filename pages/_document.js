@@ -17,6 +17,7 @@ class MyDocument extends Document {
             href="/images/logo.png"
           />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
+
           <link
             rel="preconnect"
             href="https://fonts.gstatic.com"
@@ -61,9 +62,9 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="css/vendor/component-custom-switch.min.css"
           /> */}
-          <link rel="stylesheet" href="css/vendor/bootstrap.min.css" />
-          <link rel="stylesheet" href="css/dore.light.blueolympic.css" />
-          <link rel="stylesheet" href="css/main.css" />
+          {/* <link rel="stylesheet" href="css/vendor/bootstrap.min.css" /> */}
+          {/* <link rel="stylesheet" href="css/dore.light.blueolympic.css" /> */}
+          {/* <link rel="stylesheet" href="css/main.css" /> */}
         </Head>
         <body
           id="app-container"
