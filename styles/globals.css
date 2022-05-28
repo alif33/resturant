@@ -150,7 +150,7 @@ span.open {
   display: inline-block;
   margin-right: 6px;
 }
-span.close-icon{
+span.close-icon {
   height: 20px;
   width: 20px;
   background: rgb(207, 65, 65);
@@ -171,4 +171,70 @@ td span.badge.badge-success svg {
 }
 td span.badge.badge-info svg {
   font-size: 12px;
+}
+.schedule-card-page {
+  background: #fff;
+  box-shadow: 0 0 4px -2px #111;
+}
+.schedule-card-page .s-card-header {
+  background: #f5f5f5;
+  padding: 12px 18px;
+  border-bottom: 1px solid #d5d5d5;
+}
+.schedule-card-page .s-card-bottom {
+  background: #f5f5f5;
+  padding: 12px 18px;
+  border-top: 1px solid #d5d5d5;
+}
+
+button.btn.btn-outline-danger {
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 4px 9px;
+}
+
+.s-card-bottom button.btn {
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 2px 10px;
+}
+
+.card-open-button button.btn {
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 0 4px;
+  font-weight: 700;
+  margin-left: 44px;
+}
+
+.schedule-card-page button.btn.btn-danger {
+  padding: 6px 10px;
+  border-radius: 2px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.schedule-card-page span.card-day {
+  padding: 5px 9px;
+  border-radius: 1px;
+  box-shadow: 0 0 2px 0px #11111196;
+  background: #ededed;
+  font-size: 16px;
+  font-weight: 700;
+  padding-right: 30px;
+}
+.schedule-card-page span.card-time {
+  padding: 5px 9px;
+  border-radius: 1px;
+  box-shadow: 0 0 2px 0px #11111196;
+  background: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  padding-right: 30px;
+  margin: 0 10px;
+}
+.schedule-card-page span.from-to {
+  padding: 5px 9px;
+  font-size: 16px;
 }

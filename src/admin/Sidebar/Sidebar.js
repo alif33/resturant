@@ -1,4 +1,4 @@
-import React from "react";
+import Link from "next/link";
 
 const Sidebar = () => {
   return (
@@ -7,20 +7,27 @@ const Sidebar = () => {
         <div className="scroll">
           <ul className="list-unstyled">
             <li className="active">
-              <a href="#dashboard">
-                <i className="iconsminds-shop-4"></i>
-                <span>Dashboards</span>
-              </a>
+              <Link href="/dashboard">
+                <a>
+                  {" "}
+                  <i className="iconsminds-shop-4"></i>
+                  <span>Menu</span>
+                </a>
+              </Link>
             </li>
             <li>
-              <a href="#Settings">
-                <i className="iconsminds-digital-drawing"></i> Settings
-              </a>
+              <Link href="/dashboard/schedule">
+                <a>
+                  <i className="iconsminds-digital-drawing"></i> Schedule
+                </a>
+              </Link>
             </li>
             <li>
-              <a href="#layouts">
-                <i className="iconsminds-digital-drawing"></i> Payments
-              </a>
+              <Link href="/dashboard/delivery-zones">
+                <a>
+                  <i className="iconsminds-digital-drawing"></i> Delivery Zones
+                </a>
+              </Link>
             </li>
             <li>
               <a href="#applications">
@@ -45,7 +52,8 @@ const Sidebar = () => {
             <li>
               <a
                 href="https://dore-jquery-docs.coloredstrategies.com"
-                target="_blank" rel="noreferrer"
+                target="_blank"
+                rel="noreferrer"
               >
                 <i className="iconsminds-library"></i> Statements
               </a>
