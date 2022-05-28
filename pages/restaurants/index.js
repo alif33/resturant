@@ -1,6 +1,8 @@
 import Layout from "../../src/admin/layout/Layout";
-import RestaurentNavbar from "../../src/admin/restaurent/restaurentNavbar/restaurentNavbar";
 import RestaurentTable from "../../src/admin/restaurent/restaurentTable/RestaurentTable";
+import RestaurentNavbar from "../../src/admin/restaurent/restaurentNavbar/RestaurentNavbar";
+
+
 
 const Restaurants = () => {
   return (
