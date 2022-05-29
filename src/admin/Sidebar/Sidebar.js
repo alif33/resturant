@@ -30,14 +30,25 @@ const Sidebar = () => {
               </Link>
             </li>
             <li>
-              <a href="#applications">
-                <i className="iconsminds-air-balloon-1"></i> Seo Settings
-              </a>
+              <Link href="/dashboard/orders">
+                <a>
+                  <i className="iconsminds-air-balloon-1"></i> Orders
+                </a>
+              </Link>
             </li>
             <li>
-              <a href="#ui">
-                <i className="iconsminds-pantone"></i> Locations
-              </a>
+              <Link href="/dashboard/coupons">
+                <a>
+                  <i className="iconsminds-pantone"></i> Coupons
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/dashboard/bannger">
+                <a>
+                  <i className="iconsminds-pantone"></i> Bannger
+                </a>
+              </Link>
             </li>
             <li>
               <a href="#menu">
