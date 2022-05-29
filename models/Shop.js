@@ -1,81 +1,242 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const shopShchema = new mongoose.Schema(
+const shopSchema = new mongoose.Schema(
   {
-    ownerName: { 
+    shopStatus: {
+      type: String,
+      required: false,
+      enum: ["onboarding", ""],
+      default: ""    
+    },
+    shopPaid: {
+      type: String,
+      required: false,
+      enum: ["Shop Paid", "Shop Unpaid", ""],
+      default: ""
+    },
+    contactEmail: {
+      type: String,
+      required: false,
+      default: ""
+    },
+    res_name: {
+      type: String,
+      required: false,
+      default: ""
+    },
+    chain: {
+      type: String,
+      required: false,
+      default: ""
+    },
+    description: {
+      type: String,
+      required: false,
+      default: ""
+    },
+    sign_date: {
+      type: String,
+      required: false,
+      default: ""
+    },
+    res_logo: {
+      type: String,
+      required: false,
+      default: ""
+    },
+    landingLogo: {
+      type: String,
+      default: ""
+    },
+    resMobileImage: {
+      type: String,
+      default: ""
+    },
+    resDesctopImage: {
+      type: String,
+      default: ""
+    },
+    bannerText: {
         type: String, 
-        required: true 
+        default: ""
     },
-    ownerCell: { 
+    accountManager: {
         type: String, 
-        required: true, 
-        unique: true 
+        default: ""
     },
-    ownerEmail: { 
+    salesRepre: {
         type: String, 
-        required: true 
+        default: ""
     },
-    _email: { 
+    menuRepre: {
         type: String, 
-        required: true 
+        default: ""
     },
-    _cell: { 
+    ownerEmail: {
         type: String, 
-        required: true, 
-        unique: true 
+        default: ""
     },
-    localTime: { 
+    paymentFrequency: {
+      type: String,
+      enum: ["Weekly", "Biweekly", "Monthly", ""],
+      default: ""
+    },
+    mealNow: {
+      type: Number,
+    },
+    endTrial: {
         type: String, 
-        required: true 
+        default: ""
     },
-    _phone: { 
+    processingFee: {
         type: String, 
-        required: true 
+        default: ""
     },
-    deliveryTime: { 
+    contactMethod: {
+      type: String,
+      enum: ["Phone", "Sms", "Email", "Tablet", ""],
+      default: ""
+    },
+    gmbDomain: {
+      type: String,
+      default: ""
+    },
+    ownWebsite: {
+      type: String,
+      default: ""
+    },
+    priceRange: {
+      type: String,
+      default: ""
+    },
+    gmbStatus: {
+      type: String,
+      enum: ["primary Owner", "Manager", "Owner", "Not Verified", "Suspended", ""],
+      default: ""
+    },
+    gmbRole: {
+      type: String,
+      default: ""
+    },
+    gmbEmail: {
+      type: String,
+      default: ""
+    },
+    gmbPassword: {
+      type: String,
+      default: ""
+    },
+    appleEmail: {
+      type: String,
+      default: ""
+    },
+    applePassword: {
+      type: String,
+      default: ""
+    },
+    appleStatus: {
+      type: String,
+      enum: ["Not Verified", "Suspended", ""],
+      default: ""
+    },
+    appleOwner: {
+      type: String,
+      enum: ["Competitor", "Meal Now", ""],
+      default: ""
+    },
+    address: {
+      shopsAddress: {
+        type: String,
+        default: ""
+      },
+
+      city: {
+        type: String,
+        required: false,
+        default: ""
+      },
+      state: {
+        type: String,
+        required: false,
+        default: ""
+      },
+      zipCode: {
+        type: String,
+        required: false,
+        default: ""
+      },
+      lat: {
+        type: String,
+        required: false,
+        default: ""
+      },
+      long: {
+        type: String,
+        required: false,
+        default: ""
+      },
+      timeZone: {
+        type: String,
+        required: false,
+        default: ""
+      },
+    },
+    ownerEmail: {
+      type: String,
+      default: ""
+    },
+    ownerPhone: {
+      type: String,
+      default: ""
+    },
+    ownerName: {
+      type: String,
+      default: ""
+    },
+    sContactName: {
+      type: String,
+      default: ""
+    },
+    sContactPhone: {
+      type: String,
+      default: ""
+    },
+    sContactEmail: {
+      type: String,
+      default: ""
+    },
+    resPhone: {
+      type: String,
+      default: ""
+    },
+    minimumPickUpOrder: {
+      type: Number,
+      default: ""
+    },
+    pickUpEstimate: {
+      type: String,
+      default: ""
+    },
+    deliveryEstimate: {
+      type: String,
+      default: ""
+    },
+    onlineDiscount: {
+      type: Number,
+      default: ""
+    },
+    pauseDeliveryToday: {
         type: String, 
-        required: true 
+        default: ""
     },
-    adress: {
-        city: {
-            type: String, 
-            required: true  
-        },
-        state: {
-            type: String, 
-            required: true 
-        },
-        zipCode: {
-            type: String, 
-            required: true 
-        },
-        lat: {
-            type: String, 
-            required: true 
-        },
-        long: {
-            type: String, 
-            required: true 
-        },
-        timeZone: {
-            type: String, 
-            required: true  
-        }
-    },
-    pickUpTime: { 
+    noScheduledOrder: {
         type: String, 
-        required: true 
+        default: ""
     },
-    _owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Owner',
-        required: true
-    }
   },
   {
     timestamps: true,
   }
 );
 
-export default mongoose.models.Shop || mongoose.model('Shop', shopShchema);
-
+export default mongoose.models.Shop || mongoose.model("Shop", shopSchema);
