@@ -66,14 +66,23 @@ const CouponsPage = () => {
                   </button>
                 </div>
               </div>
+              <div className="row">
+                <div className="col-4 m-auto">
+                  <div className="input-group delivery-zone-input-group">
+                    <select className="w-100 ">
+                      <option value=""></option>
+                    </select>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div className="row mt-3">
-            <div className="col-12 text-right">
-                <span className="btn-span">Cancel</span>
-                <span className="btn btn-info ml-4">save</span>
-            </div>
+          <div className="col-12 text-right">
+            <span className="btn-span">Cancel</span>
+            <span className="btn btn-info ml-4">save</span>
+          </div>
         </div>
       </div>
     </div>
