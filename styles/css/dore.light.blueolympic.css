@@ -4152,7 +4152,7 @@ div.error::after {
   top: -10px;
 }
 
-.form-group.is-invalid .invalid-tooltip {
+.form-group-two.is-invalid .invalid-tooltip {
   display: block;
 }
 

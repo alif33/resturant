@@ -5,7 +5,7 @@ const OrderingFrom = () => {
         <form>
           <div className="row mt-4">
             <div className="col-md-8">
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Delivery Description </label>
                 <textarea type="text" />
               </div>
@@ -14,15 +14,15 @@ const OrderingFrom = () => {
           <div className="border-bottom"></div>
           <div className="row mt-4">
             <div className="col-md-8">
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Delivery estimate </label>
                 <input type="text" placeholder="45 - 60 min" />
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Pickup estimate </label>
                 <input type="text" placeholder="15-30 min" />
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Minimum Pickup Order </label>
                 <div className="banner-text">
                   <input type="text" placeholder="15-30 min" />

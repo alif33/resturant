@@ -7,7 +7,7 @@ const PaymentForm = () => {
         <form>
           <div className="row mt-4">
             <div className="col-md-8">
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Email Statements To </label>
                 <input type="text" placeholder="Agnelo's Stuffed Pizza" />
               </div>
@@ -27,14 +27,14 @@ const PaymentForm = () => {
               </div>
             </div>
             <div className="col-md-8">
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Statement type </label>
                 <select aria-label="Disabled input example" disabled>
                   <option value="">simple</option>
                   <option value=""></option>
                 </select>
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Payout frequency </label>
                 <select aria-label="Disabled input example" disabled>
                   <option value="">monthly</option>
@@ -48,7 +48,7 @@ const PaymentForm = () => {
               <h4>MealNow Fees</h4>
             </div>
             <div className="col-md-8">
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Flat Amount </label>
                 <input
                   type="text"
@@ -56,7 +56,7 @@ const PaymentForm = () => {
                   disabled
                 />
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Percentage Amount </label>
                 <input
                   type="text"
@@ -72,22 +72,22 @@ const PaymentForm = () => {
               <h4>Transmission Method</h4>
             </div>
             <div className="col-md-8">
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Fax </label>
                 <input type="text" />
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Default fax provider </label>
                 <select>
                   <option value="">default</option>
                   <option value=""></option>
                 </select>
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Cc order emails </label>
                 <input type="text" />
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Transimission method </label>
                 <select>
                   <option value="">phone</option>

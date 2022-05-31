@@ -100,7 +100,7 @@
 
 
 
-.form-group.has-top-label .form-control, .form-group.has-top-label .bootstrap-tagsinput {
+.form-group-two.has-top-label .form-control, .form-group-two.has-top-label .bootstrap-tagsinput {
   padding: 1.7rem 0.75rem 0.5rem 0.75rem;
 }
 
@@ -195,16 +195,16 @@
   border-top-left-radius: 0;
 }
 
-.form-group.has-top-label .form-control, .form-group.has-top-label .bootstrap-tagsinput {
+.form-group-two.has-top-label .form-control, .form-group-two.has-top-label .bootstrap-tagsinput {
   height: calc(3.3rem + 2px);
 }
 
-.form-group.has-top-label textarea.form-control {
+.form-group-two.has-top-label textarea.form-control {
   min-height: calc(3.3rem + 2px);
   height: initial;
 }
 
-.form-group.has-top-label select.form-control:not([size]):not([multiple]) {
+.form-group-two.has-top-label select.form-control:not([size]):not([multiple]) {
   height: calc(3.3rem + 2px);
   padding: 1.7rem 0.75rem 0.5rem 0.5rem;
 }

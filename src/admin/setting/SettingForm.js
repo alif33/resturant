@@ -5,7 +5,7 @@ const SettingForm = () => {
         <form>
           <div className="row">
             <div className="col-md-5">
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Shop Status: </label>
                 <select>
                   <option value="Onboarding">Onboarding</option>
@@ -14,7 +14,7 @@ const SettingForm = () => {
               </div>
             </div>
             <div className="col-md-5">
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Shop Type: </label>
                 <select>
                   <option value="Onboarding">Shop Paid</option>
@@ -26,22 +26,22 @@ const SettingForm = () => {
           <div className="border-bottom"></div>
           <div className="row mt-4">
             <div className="col-md-6 ml-142px">
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Name </label>
                 <input type="text" placeholder="Agnelo's Stuffed Pizza" />
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">chain </label>
                 <select>
                   <option value=""></option>
                   <option value=""></option>
                 </select>
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Description </label>
                 <textarea></textarea>
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Agreement Signed Date </label>
                 <input
                   type="text"
@@ -131,7 +131,7 @@ const SettingForm = () => {
           <div className="border-bottom"></div>
           <div className="row mt-4">
             <div className="col-md-6 ml-142px">
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Banner Text </label>
                 <div className="banner-text">
                   <textarea
@@ -148,7 +148,7 @@ const SettingForm = () => {
           <div className="border-bottom"></div>
           <div className="row mt-4">
             <div className="col-md-6 ml-142px">
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Account Manager: </label>
                 <select>
                   <option value="">Mia tv</option>
@@ -156,7 +156,7 @@ const SettingForm = () => {
                 </select>
                 <button className="transparent">Claim</button>
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Sales Representive: </label>
                 <select>
                   <option value="">Antony Pollotta</option>
@@ -164,7 +164,7 @@ const SettingForm = () => {
                 </select>
                 <button className="transparent">Claim</button>
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Menu Representive: </label>
                 <select>
                   <option value="">Mjelima Borova</option>

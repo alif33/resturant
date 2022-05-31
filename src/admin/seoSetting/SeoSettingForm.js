@@ -9,19 +9,19 @@ const SeoSettingForm = () => {
         <form>
           <div className="row mt-4">
             <div className="col-md-8">
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Official Domain </label>
                 <input type="text" />
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Google My Business Domain </label>
                 <input type="text" />
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Own website </label>
                 <input type="text" />
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="LockedDomain">Locked domain </label>
                 <div className="form-check">
                   <input
@@ -37,20 +37,20 @@ const SeoSettingForm = () => {
           <div className="border-bottom"></div>
           <div className="row mt-4">
             <div className="col-md-8">
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">* Price range </label>
                 <select>
                   <option value="">$$</option>
                   <option value=""></option>
                 </select>
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">
                   <b>MealNow </b>Issued email
                 </label>
                 <input type="text" />
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Google password </label>
                 <input type={googlePasswordShow ? "password" : "text"} />
                 {googlePasswordShow ? (
@@ -67,14 +67,14 @@ const SeoSettingForm = () => {
                   </span>
                 )}
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Google status</label>
                 <select>
                   <option value=""></option>
                   <option value=""></option>
                 </select>
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Google owner</label>
                 <select>
                   <option value=""></option>
@@ -86,11 +86,11 @@ const SeoSettingForm = () => {
           <div className="border-bottom"></div>
           <div className="row mt-4">
             <div className="col-md-8">
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Apple email</label>
                 <input type="text" />
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Apple password </label>
                 <input type={applePasswordShow ? "password" : "text"} />
                 {applePasswordShow ? (
@@ -107,14 +107,14 @@ const SeoSettingForm = () => {
                   </span>
                 )}
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Apple maps status</label>
                 <select>
                   <option value=""></option>
                   <option value=""></option>
                 </select>
               </div>
-              <div className="form-group">
+              <div className="form-group-two">
                 <label htmlFor="">Apple maps owner</label>
                 <select>
                   <option value=""></option>
