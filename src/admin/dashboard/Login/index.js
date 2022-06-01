@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { adminLogin } from "../../../../store/admins/actions";
+import { setSessionStorage } from "../../../../utils/setSession";
 
 const LoginFrom = () => {
   const {
@@ -10,15 +11,38 @@ const LoginFrom = () => {
     watch,
     formState: { errors },
   } = useForm();
-  
-  const dispatch = useDispatch()
+
+  const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    console.log(data)
-    dispatch(adminLogin({token: "", admin:data }))
+    // console.log(data);
+    var myHeaders = new Headers();
+
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      email: data.dashboardEmail,
+      password: data.dashboardPassword,
+    });
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("http://localhost:3000/api/admin/login", requestOptions)
+      .then((res) => res.json())
+      .then((res) => {
+        if (rss.success) {
+          setSessionStorage(JSON.stringify(res.token));
+          dispatch(adminLogin({ token: res.token, admin: res }));
+        }
+      })
+      .catch((error) => console.log("error", error));
   };
-  const {admins} = useSelector(state => state)
-  console.log(admins)
+  const { admins } = useSelector((state) => state);
 
   return (
     <div className="card mb-4">
@@ -35,7 +59,7 @@ const LoginFrom = () => {
               placeholder="Enter email"
               {...register("dashboardEmail", { required: true })}
             />
-             {errors.dashboardEmail && <span>This field is required</span>}
+            {errors.dashboardEmail && <span>This field is required</span>}
             <small id="emailHelp" className="form-text text-muted">
               We&apos;ll never share your email with anyone else.
             </small>
@@ -49,9 +73,9 @@ const LoginFrom = () => {
               placeholder="Password"
               {...register("dashboardPassword", { required: true })}
             />
-             {errors.dashboardPassword && <span>This field is required</span>}
+            {errors.dashboardPassword && <span>This field is required</span>}
           </div>
-
+          {/* 
           <div className="custom-control custom-checkbox mb-3 mt-3">
             <input
               type="checkbox"
@@ -61,9 +85,9 @@ const LoginFrom = () => {
             <label className="custom-control-label" htmlFor="customCheck1">
               Check this custom checkbox
             </label>
-          </div>
+          </div> */}
 
-          <div className="text-center">
+          <div className="text-center mt-4">
             <button type="submit" className="btn btn-primary mb-0 m-auto">
               Log in
             </button>
