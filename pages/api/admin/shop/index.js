@@ -4,7 +4,6 @@ import db from '../../../../utils/db';
 
 
 const handler = nc();
-
 handler.post(async (req, res) => {
     await db.connect();
     const shop = new Shop({});

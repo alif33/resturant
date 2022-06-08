@@ -4,16 +4,21 @@ import "../styles/css/dore.light.blueolympic.css";
 import "../styles/css/main.css";
 import "../styles/font/iconsmind-s/css/iconsminds.css";
 import "../styles/font/simple-line-icons/css/simple-line-icons.css";
-import { Provider } from "react-redux";
-import { store } from "../store";
+import { createWrapper } from 'next-redux-wrapper';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor, store } from '../store';
 
 function MyApp({ Component, pageProps }) {
   
   return (
     <Provider store={store}>
-      <Component {...pageProps} />;
-    </Provider>
+    <PersistGate loading={null} persistor={persistor}>
+      <Component {...pageProps} />
+    </PersistGate>
+  </Provider>
   );
 }
-
-export default MyApp;
+const makestore = () => store;
+const wrapper = createWrapper(makestore);
+export default wrapper.withRedux(MyApp);
