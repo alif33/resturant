@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +12,7 @@ const LoginFrom = () => {
     watch,
     formState: { errors },
   } = useForm();
-
+  const router = useRouter();
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
@@ -35,9 +36,10 @@ const LoginFrom = () => {
     fetch("http://localhost:3000/api/admin/login", requestOptions)
       .then((res) => res.json())
       .then((res) => {
-        if (rss.success) {
+        if (res.success) {
           setSessionStorage(JSON.stringify(res.token));
           dispatch(adminLogin({ token: res.token, admin: res }));
+          router.push("/dashboard");
         }
       })
       .catch((error) => console.log("error", error));

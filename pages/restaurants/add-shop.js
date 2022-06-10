@@ -1,21 +1,18 @@
 import Layout from "../../src/admin/layout/Layout";
-import RestaurentTable from "../../src/admin/restaurent/restaurentTable/RestaurentTable";
 import RestaurentNavbar from "../../src/admin/restaurent/restaurentNavbar/RestaurentNavbar";
+import AppShopTable from "../../src/admin/restaurent/appShopTable/AppShopTable";
 
-
-
-const Restaurants = () => {
-  
+const AddShopPage = () => {
   return (
     <Layout>
-      <RestaurentNavbar />
+      <RestaurentNavbar status="addshop" />
       <div className="row">
         <div className="col-12 mt-4">
-          <RestaurentTable />
+          <AppShopTable />
         </div>
       </div>
     </Layout>
   );
 };
 
-export default Restaurants;
+export default AddShopPage;
