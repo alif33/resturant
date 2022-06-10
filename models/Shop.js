@@ -72,6 +72,7 @@ const shopSchema = new mongoose.Schema(
         type: String, 
         default: ""
     },
+
     ownerEmail: {
         type: String, 
         default: ""
@@ -144,6 +145,7 @@ const shopSchema = new mongoose.Schema(
       enum: ["Competitor", "Meal Now", ""],
       default: ""
     },
+    
     address: {
       shopsAddress: {
         type: String,
