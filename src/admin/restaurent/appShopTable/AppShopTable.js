@@ -16,7 +16,7 @@ const AppShopTable = () => {
     <div className="card">
       <div className="card-body">
         <form onSubmit={handleSubmit(onSubmit)}>
-
+           
         <div className="row">
             <div className="col-md-5">
               <div className="form-group-two">
@@ -47,7 +47,7 @@ const AppShopTable = () => {
                 <input
                   {...register("contactEmail", { required: true })}
                   id="contactEmail"
-                  type="email"
+                 
                   placeholder="Example@gmail.com"
                 />
               </div>
@@ -188,31 +188,31 @@ const AppShopTable = () => {
               <div className="form-group-two">
                 <label htmlFor="">Account Manager: </label>
                 <select {...register("accountManager", { required: true })}>
-                  <option value="">Mia tv</option>
-                  <option value="">Mia tv</option>
+                  <option value="1">Mia tv</option>
+                  <option value="2">Mia tv</option>
                 </select>
                 <button className="transparent">Claim</button>
               </div>
               <div className="form-group-two">
                 <label htmlFor="">Sales Representive: </label>
                 <select {...register("salesRepre", { required: true })}>
-                  <option value="">Antony Pollotta</option>
-                  <option value="">Antony Pollotta</option>
+                  <option value="1">Antony Pollotta</option>
+                  <option value="2">Antony Pollotta</option>
                 </select>
                 <button className="transparent">Claim</button>
               </div>
               <div className="form-group-two">
                 <label htmlFor="">Menu Representive: </label>
                 <select {...register("menuRepre", { required: true })}>
-                  <option value="">Mjelima Borova</option>
-                  <option value="">Mjelima Borova</option>
+                  <option value="1">Mjelima Borova</option>
+                  <option value="2">Mjelima Borova</option>
                 </select>
                 <button className="transparent">Claim</button>
               </div>
             </div>
           </div>
 
-          <button type="submit" >Submit</button>
+          <button>Submit</button>
         </form>
       </div>
     </div>
