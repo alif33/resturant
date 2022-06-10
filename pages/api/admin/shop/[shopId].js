@@ -1,10 +1,11 @@
 import nc from "next-connect";
 import Shop from "../../../../models/Shop";
 import db from "../../../../utils/db";
-
-import multer from 'multer';
-import { v2 as cloudinary } from 'cloudinary';
-
+import streamifier from "streamifier";
+import multer from "multer";
+import { v2 as cloudinary } from "cloudinary";
+import { isAdmin } from "../../../../utils/auth";
+import reactDom from "react-dom";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -14,46 +15,68 @@ cloudinary.config({
 
 export const config = {
   api: {
-      bodyParser: false,
+    bodyParser: false,
   },
 };
 
 export const handler = nc();
 export const upload = multer();
 
-
-
 handler.get(async (req, res) => {
-    try{
-        await db.connect();
-        const shop = await Shop.findById({_id: req.query.shopId});
-        await db.disconnect();
-        res.status(200).json(shop)
-     }catch(err){
-        res.status(500).json({
-            error: "Server side error"
-        })
-     }
-      
-})
+  try {
+    await db.connect();
+    const shop = await Shop.findById({ _id: req.query.shopId });
+    await db.disconnect();
+    res.status(200).json(shop);
+  } catch (err) {
+    res.status(500).json({
+      error: "Server side error",
+    });
+  }
+});
 
+handler
+  .use(
+    isAdmin,
+    upload.array('image')
+  )
+  .put(async (req, res) => {
+    // const imageArray = [
+    //   req.files.res_logo[0].buffer,
+    //   req.files.landingLogo[0].buffer,
+    //   req.files.resDesctopImage[0].buffer,
+    //   req.files.resMobileImage[0].buffer,
+    // ];
 
-// handler.put(async (req, res) => {
-//   try {
-//     await db.connect();
-//     const shop = await Shop.findByIdAndUpdate(
-//       { _id: req.query.shopId },
-//       { $set: req.body }
-      
-//     );
-//     await db.disconnect();
-//     res.status(200).json(shop);
-//   } catch (err) {
-//     res.status(500).json({
-//       error: "Server side error",
-//     });
-//   }
-// });
+    const streamUpload = (files) => {
+      return new Promise((resolve, reject) => {
+          const stream = cloudinary.uploader.upload_stream((error, result) => {
+              if (result) {
+                  resolve(result);
+              } else {
+                  reject(error);
+              }
+          });
+          console.log(file)
+          streamifier.createReadStream(file.buffer).pipe(stream);
+      });
+  };
+    const streamed = await streamUpload(req.files);
+    // console.log(streamed);
 
+    try {
+      await db.connect();
+      const shop = await Shop.findByIdAndUpdate(
+        { _id: req.query.shopId }
+        // { $set: req.body }
+      );
+      await db.disconnect();
+      res.status(200).json(shop);
+    } catch (err) {
+      res.status(500).json({
+        error: "Server side error",
+      });
+    }
+  });
 
 export default handler;
