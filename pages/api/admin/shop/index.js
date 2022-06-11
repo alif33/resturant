@@ -49,7 +49,8 @@ handler.use(isAdmin).post(async (req, res) => {
     delivery_estimate,
     online_discount,
   } = req.body;
-  const address = { shop_address, city, state, zip_code, lat, long, time_zone };
+  const address = { shop_address: shop_address, city: city, state: state, 
+    zip_code: zip_code, lat: lat, long: long, time_zone: time_zone };
 
   await db.connect();
   const shop = new Shop({
@@ -88,7 +89,7 @@ handler.use(isAdmin).post(async (req, res) => {
     minimum_delivery_order,
     delivery_estimate,
     online_discount,
-    address:{address}
+    address:address
   });
   if (await shop.save()) {
     await db.disconnect();

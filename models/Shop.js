@@ -57,11 +57,11 @@ const shopSchema = new mongoose.Schema(
       reuired: true,
     },
     trial_end: {
-      type: Number,
+      type: String,
       required: true,
     },
     processing_fee: {
-      type: String,
+      type: Number,
       required: true,
     },
     contact_method: {
