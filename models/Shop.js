@@ -2,192 +2,123 @@ import mongoose from "mongoose";
 
 const shopSchema = new mongoose.Schema(
   {
-    shopStatus: {
+    shop_status: {
+      type: String,
+      enum: ["Live", "Temporarily Poused", "M2M", "Disable"], 
+      required: true,
+    },
+    payment_type: {
       type: String,
       required: true,
-      default: ""    
+      enum: ["Direct Deposit"]
     },
-    shopPaid: {
+    shop_name: {
       type: String,
       required: true,
-      default: ""
-    },
-    contactEmail: {
-      type: String,
-      required: true,
-      default: ""
-    },
-    res_name: {
-      type: String,
-      required: true, 
-      default: ""
-    },
-    chain: {
-      type: String,
-      required: true,
-      default: ""
-    },
-    description: {
-      type: String,
-      required: true,
-      default: ""
-    },
-    sign_date: {
-      type: String,
-      required: true,
-      default: ""
-    },
-    res_logo: {
-      type: String,
-      required: true,
-      default: ""
-    },
-    landingLogo: {
-      type: String,
-      required: false,
-      default: ""
-    },
-    resMobileImage: {
-      type: String,
-      required: false,
-      default: ""
-    },
-    resDesctopImage: {
-      type: String,
-      required: false,
-      default: ""
-    },
-    bannerText: {
-        type: String,
-        required: true,
-        default: ""
-    },
-    accountManager: {
-        type: String,
-        required: fasle,
-        default: ""
-    },
-    salesRepre: {
-        type: String,
-        required: true,
-        default: ""
-    },
-    menuRepre: {
-        type: String, 
-        required: true,
-        default: ""
     },
 
-    ownerEmail: {
-        type: String, 
-        required: true,
-        default: ""
-    },
-    paymentFrequency: {
+    shop_logo: {
       type: String,
-      enum: ["Weekly", "Biweekly", "Monthly", ""],
       required: true,
       default: ""
     },
-    mealNow: {
+    web_header: {
+      type: String,
+      required: false,
+    },
+    mobile_header: {
+      type: String,
+      required: false,
+    },
+    account_manager: {
+        type: String,
+        required: fasle,
+    },
+    sales_rep: {
+        type: String,
+        required: true,
+    },
+    menu_rep: {
+        type: String, 
+        required: true,
+    },
+
+    email_statement: {
+        type: String, 
+        required: true,
+    },
+    payment_frequency: {
+      type: String,
+      enum: ["Weekly", "Biweekly", "Monthly"],
+      required: true,
+    },
+    flat_fee: {
       type: Number,
       reuired: true,
     },
-    endTrial: {
+    trial_end: {
+        type: Number, 
+        required: true,
+    },
+    processing_fee: {
         type: String, 
         required: true,
-        default: ""
     },
-    processingFee: {
-        type: String, 
-        required: true,
-        default: ""
-    },
-    contactMethod: {
+    contact_method: {
       type: String,
-      enum: ["Phone", "Sms", "Email", "Tablet", ""],
+      enum: ["Phone", "Sms", "Email", "Tablet"],
       reuired: true,
-      default: ""
     },
-    gmbDomain: {
+    gmb_omain: {
       type: String,
       required: true,
-      default: ""
     },
-    ownWebsite: {
+    own_website: {
       type: String,
       required: true,
-      default: ""
     },
-    priceRange: {
+
+    gmb_status: {
+      type: String,
+      enum: [ "Varified","Not Verified", "Suspended"],
+      required: true,
+    },
+    gmb_role: {
       type: String,
       required: true,
-      default: ""
+    enum: ["Primary Owner", "Manager", "Owner"],
     },
-    gmbStatus: {
-      type: String,
-      enum: ["primary Owner", "Manager", "Owner", "Not Verified", "Suspended", ""],
-      required: true,
-      default: ""
-    },
-    gmbRole: {
+    gmb_email: {
       type: String,
       required: true,
-      default: ""
     },
-    gmbEmail: {
+    gmb_password: {
       type: String,
       required: true,
-      default: ""
     },
-    gmbPassword: {
+    gmb_owner: {
       type: String,
       required: true,
-      default: ""
+      enum: ["Competitor", "Meal Now"],
     },
-    appleEmail: {
-      type: String,
-      required: true,
-      default: ""
-    },
-    applePassword: {
-      type: String,
-      required: true,
-      default: ""
-    },
-    appleStatus: {
-      type: String,
-      enum: ["Not Verified", "Suspended", ""],
-      required: true,
-      default: ""
-    },
-    appleOwner: {
-      type: String,
-      enum: ["Competitor", "Meal Now", ""],
-      required: true,
-      default: ""
-    },
-    
+
     address: {
-      shopsAddress: {
+      shop_address: {
         type: String,
-        default: ""
+        required: true,
       },
 
       city: {
         type: String,
-        required: false,
-        default: ""
+        required: true,
       },
       state: {
         type: String,
-        required: false,
-        default: ""
+        required: true,
       },
       zipCode: {
         type: String,
-        required: false,
-        default: ""
+        required: true,
       },
       lat: {
         type: String,
@@ -205,71 +136,69 @@ const shopSchema = new mongoose.Schema(
         default: ""
       },
     },
-    ownerEmail: {
+    owners_email: {
       type: String,
       required: true,
-      default: ""
     },
-    ownerPhone: {
+    owners_phone: {
       type: String,
       required: true,
-      default: ""
     },
-    ownerName: {
+    owners_name: {
       type: String,
       required: true,
-      default: ""
     },
-    sContactName: {
+    se_contact_name: {
       type: String,
       reuired: true,
-      default: ""
     },
-    sContactPhone: {
+    se_contact_phone: {
       type: String,
       required: true,
-      default: ""
     },
-    sContactEmail: {
+    se_contact_email: {
       type: String,
       required: true,
-      default: ""
     },
-    resPhone: {
+    res_phone: {
       type: String,
       required: true,
-      default: ""
     },
-    minimumPickUpOrder: {
+    minimum_pickUp_order: {
       type: Number,
       required: true,
-      default: ""
     },
-    pickUpEstimate: {
+    pickUp_estimate: {
       type: String,
       required: true,
-      default: ""
     },
-    deliveryEstimate: {
-      type: String,
-      required: true,
-      default: ""
-    },
-    onlineDiscount: {
+    minimum_delivery_order: {
       type: Number,
       required: true,
-      default: ""
     },
-    pauseDeliveryToday: {
+    delivery_estimate: {
+      type: String,
+      required: true,
+    },
+    online_discount: {
+      type: Number,
+      required: true,
+    },
+    pause_delivery_today: {
         type: String, 
         required: true,
-        default: ""
+        enum: ['active', 'inactive']
     },
-    noScheduledOrder: {
+    no_scheduled_order: {
         type: String,
         required: true,
-        default: ""
+        enum: ['active', 'inactive']
     },
+    stop_orders_today: {
+        type: String,
+        required: true,
+        enum: ['active', 'inactive']
+    }, 
   },
   {
     timestamps: true,
