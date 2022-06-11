@@ -69,7 +69,7 @@ const shopSchema = new mongoose.Schema(
       enum: ["Phone", "Sms", "Email", "Tablet"],
       reuired: true,
     },
-    gmb_omain: {
+    gmb_domain: {
       type: String,
       required: true,
     },
@@ -116,7 +116,7 @@ const shopSchema = new mongoose.Schema(
         type: String,
         required: true,
       },
-      zipCode: {
+      zip_code: {
         type: String,
         required: true,
       },
@@ -130,7 +130,7 @@ const shopSchema = new mongoose.Schema(
         required: false,
         default: ""
       },
-      timeZone: {
+      time_zone: {
         type: String,
         required: false,
         default: ""
@@ -187,7 +187,8 @@ const shopSchema = new mongoose.Schema(
     pause_delivery_today: {
         type: String, 
         required: true,
-        enum: ['active', 'inactive']
+        enum: ['active', 'inactive'],
+        default: 'active'
     },
     no_scheduled_order: {
         type: String,
