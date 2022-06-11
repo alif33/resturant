@@ -5,7 +5,6 @@ import streamifier from "streamifier";
 import multer from "multer";
 import { v2 as cloudinary } from "cloudinary";
 import { isAdmin } from "../../../../utils/auth";
-import reactDom from "react-dom";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,

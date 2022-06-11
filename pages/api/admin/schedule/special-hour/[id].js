@@ -1,8 +1,8 @@
 import nc from "next-connect";
-import SpecialHours from "../../../../models/SpecialHours";
-import { isAdmin } from "../../../../utils/auth";
-import db from "../../../../utils/db";
-import { onError } from "../../../../utils/error";
+import SpecialHours from "../../../../../models/SpecialHours";
+import { isAdmin } from "../../../../../utils/auth";
+import db from "../../../../../utils/db";
+import { onError } from "../../../../../utils/error";
 
 const handler = nc({ onError });
 
