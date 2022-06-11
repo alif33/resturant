@@ -4,13 +4,13 @@ const shopSchema = new mongoose.Schema(
   {
     shop_status: {
       type: String,
-      enum: ["Live", "Temporarily Poused", "M2M", "Disable"], 
+      enum: ["Live", "Temporarily Poused", "M2M", "Disable"],
       required: true,
     },
     payment_type: {
       type: String,
       required: true,
-      enum: ["Direct Deposit"]
+      enum: ["Direct Deposit"],
     },
     shop_name: {
       type: String,
@@ -20,32 +20,32 @@ const shopSchema = new mongoose.Schema(
     shop_logo: {
       type: String,
       required: true,
-      default: ""
+      default: "",
     },
     web_header: {
       type: String,
-      required: false,
+      required: true,
     },
     mobile_header: {
       type: String,
-      required: false,
+      required: true,
     },
     account_manager: {
-        type: String,
-        required: fasle,
+      type: String,
+      required: true,
     },
     sales_rep: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     menu_rep: {
-        type: String, 
-        required: true,
+      type: String,
+      required: true,
     },
 
     email_statement: {
-        type: String, 
-        required: true,
+      type: String,
+      required: true,
     },
     payment_frequency: {
       type: String,
@@ -57,12 +57,12 @@ const shopSchema = new mongoose.Schema(
       reuired: true,
     },
     trial_end: {
-        type: Number, 
-        required: true,
+      type: Number,
+      required: true,
     },
     processing_fee: {
-        type: String, 
-        required: true,
+      type: String,
+      required: true,
     },
     contact_method: {
       type: String,
@@ -80,13 +80,17 @@ const shopSchema = new mongoose.Schema(
 
     gmb_status: {
       type: String,
-      enum: [ "Varified","Not Verified", "Suspended"],
+      enum: ["Varified", "Not Verified", "Suspended"],
       required: true,
     },
     gmb_role: {
       type: String,
       required: true,
-    enum: ["Primary Owner", "Manager", "Owner"],
+      enum: ["Primary Owner", "Manager", "Owner"],
+    },
+    meal_now_domain:{
+      type: String,
+      required: true,
     },
     gmb_email: {
       type: String,
@@ -123,17 +127,17 @@ const shopSchema = new mongoose.Schema(
       lat: {
         type: String,
         required: false,
-        default: ""
+        default: "",
       },
       long: {
         type: String,
         required: false,
-        default: ""
+        default: "",
       },
       time_zone: {
         type: String,
         required: false,
-        default: ""
+        default: "",
       },
     },
     owners_email: {
@@ -185,21 +189,23 @@ const shopSchema = new mongoose.Schema(
       required: true,
     },
     pause_delivery_today: {
-        type: String, 
-        required: true,
-        enum: ['active', 'inactive'],
-        default: 'active'
+      type: String,
+      required: true,
+      enum: ["active", "inactive"],
+      default: "active",
     },
     no_scheduled_order: {
-        type: String,
-        required: true,
-        enum: ['active', 'inactive']
+      type: String,
+      required: true,
+      enum: ["active", "inactive"],
+      default: "active",
     },
     stop_orders_today: {
-        type: String,
-        required: true,
-        enum: ['active', 'inactive']
-    }, 
+      type: String,
+      required: true,
+      enum: ["active", "inactive"],
+      default: "active",
+    },
   },
   {
     timestamps: true,
