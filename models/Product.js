@@ -29,6 +29,58 @@ const ProductSchema = new mongoose.Schema(
     },
     options: {
       type: Array
+    },
+    catalog: {
+        product_type: {
+          cata_title: {
+            type: String,
+            required: true
+          },
+          cata_price: {
+            type: String,
+            required: true
+          }
+        },
+
+    },
+    property: {
+      property_name: {
+        type: String,
+        required: false,
+        trim: true,
+        default: ""
+        
+      },
+      limit: {
+        type: Number,
+        required: false,
+        trim: true,
+        default: ""
+      },
+      options: {
+        type: Array
+      },
+      selection: {
+        name: {
+          type: String,
+          required: false,
+          trim: true,
+          default: ""
+        },
+        large_price: {
+          type: Number,
+          trim: true,
+          default: ""
+        },
+        xlarge_price: {
+          type: Number,
+          trim: true,
+          default: ""
+        }
+
+      }
+
+
     }
   },
   { timestamps: true }

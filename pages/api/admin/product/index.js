@@ -22,8 +22,10 @@ const handler = nc();
 const upload = multer();
 
 handler.use(isAdmin, upload.single("image")).post(async (req, res) => {
-  const { product_name, shop, description, category, options } = req.body;
-  console.log(options)
+  const { product_name, shop, description, category, options,
+    cata_title, cata_price, property_name, limit, property_option, sele_name, large_price, xlarge_price
+  } = req.body;
+  console.log(req.body)
   const streamUpload = (req) => {
     return new Promise((resolve, reject) => {
       const stream = cloudinary.uploader.upload_stream((error, result) => {
@@ -47,7 +49,10 @@ handler.use(isAdmin, upload.single("image")).post(async (req, res) => {
       category,
       image: url,
       options,
-      shop
+      shop,
+      catalog: {product_type: {cata_title: cata_title, cata_price: cata_price}},
+      property: {property_name: property_name, limit: limit, property_option: property_option, 
+        selection: {sele_name: sele_name, large_price: large_price, xlarge_price: xlarge_price}}
     });
     if (await product.save()) {
       await db.disconnect();
