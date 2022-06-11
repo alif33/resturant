@@ -2,6 +2,7 @@ import nc from 'next-connect';
 import Category from '../../../../models/Category';
 import { isAdmin } from '../../../../utils/auth';
 import db from '../../../../utils/db';
+import slugify from 'slugify';
 
 const handler = nc();
 
@@ -15,18 +16,22 @@ handler.get(async (req, res) => {
 });
 
 handler.use(isAdmin).put(async (req, res) => {
-  const {categoryName, description, catalog_category} = req.query
+  const {categoryName, description, catalog_category} = req.body
+  console.log(categoryName)
     try {
       await db.connect();
       const category = await Category.findByIdAndUpdate(
-        { _id: req.query.ID }, {$set: {categoryName}})
-   console.log(category)
+        { _id: req.query.ID }, {$set: { 
+         categoryName: categoryName,
+          categorySlug: slugify(`${ categoryName }`, '-'),
+          description: description, catalog_category: catalog_category
+        }})
    
          if (category) {
         await db.disconnect();
         res.send({
           success: true,
-          message: "Category deleted successfully",
+          message: "Category update successfully",
         });
       } else {
         await db.disconnect();
@@ -42,6 +47,8 @@ handler.use(isAdmin).put(async (req, res) => {
       });
     }
   });
+
+
 handler.use(isAdmin).delete(async (req, res) => {
     try {
       await db.connect();
