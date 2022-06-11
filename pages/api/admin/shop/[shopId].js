@@ -37,8 +37,7 @@ handler.get(async (req, res) => {
 
 handler
   .use(
-    isAdmin,
-    upload.array('image')
+    isAdmin
   )
   .put(async (req, res) => {
     // const imageArray = [
@@ -48,30 +47,33 @@ handler
     //   req.files.resMobileImage[0].buffer,
     // ];
 
-    const streamUpload = (files) => {
-      return new Promise((resolve, reject) => {
-          const stream = cloudinary.uploader.upload_stream((error, result) => {
-              if (result) {
-                  resolve(result);
-              } else {
-                  reject(error);
-              }
-          });
-          console.log(file)
-          streamifier.createReadStream(file.buffer).pipe(stream);
-      });
-  };
-    const streamed = await streamUpload(req.files);
+  //   const streamUpload = (files) => {
+  //     return new Promise((resolve, reject) => {
+  //         const stream = cloudinary.uploader.upload_stream((error, result) => {
+  //             if (result) {
+  //                 resolve(result);
+  //             } else {
+  //                 reject(error);
+  //             }
+  //         });
+  //         console.log(file)
+  //         streamifier.createReadStream(file.buffer).pipe(stream);
+  //     });
+  // };
+  //   const streamed = await streamUpload(req.files);
     // console.log(streamed);
 
     try {
       await db.connect();
-      const shop = await Shop.findByIdAndUpdate(
-        { _id: req.query.shopId }
-        // { $set: req.body }
+     await Shop.findByIdAndUpdate(
+        { _id: req.query.shopId },
+        { $set: req.body }
       );
       await db.disconnect();
-      res.status(200).json(shop);
+      res.status(200).json({
+        success: true,
+        message: "Shop update successfully"
+      });
     } catch (err) {
       res.status(500).json({
         error: "Server side error",

@@ -4,7 +4,7 @@ const shopSchema = new mongoose.Schema(
   {
     shop_status: {
       type: String,
-      enum: ["Live", "Temporarily Poused", "M2M", "Disable"],
+      enum: ["Live", "Temporarily Paused", "M2M", "Disabled"],
       required: true,
     },
     payment_type: {

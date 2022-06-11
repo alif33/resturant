@@ -1,19 +1,28 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const categorySchema = new mongoose.Schema(
-    {
-        categoryName: {
-            type: String,
-            required: true,
-            trim: true
-        },
-        categorySlug: {
-            type: String,
-            // required: true,
-            trim: true
-        }
+  {
+    categoryName: {
+      type: String,
+      required: true,
+      trim: true,
     },
-    { timestamps: true }
+    categorySlug: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+    },
+    description: String,
+    catalog_category:{
+        type: String,
+        required: true,
+        time: true,
+    }
+
+  },
+  { timestamps: true }
 );
 
-export default mongoose.models.Category || mongoose.model('Category', categorySchema);
+export default mongoose.models.Category ||
+  mongoose.model("Category", categorySchema);
