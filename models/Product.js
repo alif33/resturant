@@ -7,14 +7,29 @@ const ProductSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-   
-    description: String,
-    catalog_category:{
-        type: String,
-        required: true,
-        time: true,
+    description: {
+      type: String,
+      requries: true,
+      trim: true
+    },
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Category',
+      required: true
+  },
+  shop: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Shop',
+    required: true
+  },
+    image: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    options: {
+      type: Array
     }
-
   },
   { timestamps: true }
 );
