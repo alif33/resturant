@@ -3,7 +3,6 @@ import Admin from "../models/Admin";
 import Owner from "../models/Owner";
 import db from "../utils/db";
 
-
 const signToken = (user) => {
   return jwt.sign(
     {
@@ -20,20 +19,24 @@ const signToken = (user) => {
   );
 };
 
-const adminVerify = async (decode, next) => {
+const adminVerify = async (decode, res, next) => {
   await db.connect();
   const admin = await Admin.find({ _id: decode._id });
   await db.disconnect();
   if (admin.length > 0) {
     next();
+  } else {
+    res.status(401).send({ message: "Access Denied" });
   }
 };
-const userVerify = async (decode, next) => {
+const userVerify = async (decode, res, next) => {
   await db.connect();
   const owner = await Owner.find({ _id: decode._id });
   await db.disconnect();
   if (owner.length > 0) {
     next();
+  } else {
+    res.status(401).send({ message: "Access Denied" });
   }
 };
 
@@ -47,7 +50,7 @@ const isAuth = async (req, res, next) => {
         res.status(401).send({ message: "Access Denied" });
       } else {
         req.user = decode;
-        userVerify(decode, next);
+        userVerify(decode, res, next);
       }
     });
   } else {
@@ -65,7 +68,7 @@ const isAdmin = async (req, res, next) => {
         res.status(401).send({ message: "Access Denied" });
       } else {
         req.user = decode;
-        adminVerify(decode, next);
+        adminVerify(decode, res, next);
       }
     });
   } else {
