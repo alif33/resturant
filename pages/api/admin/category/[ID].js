@@ -16,6 +16,7 @@ handler.get(async (req, res) => {
 });
 
 handler.use(isAdmin).put(async (req, res) => {
+  console.log(req.admin)
   const {categoryName, description, catalog_category} = req.body
   console.log(categoryName)
     try {

@@ -13,7 +13,11 @@ const categorySchema = new mongoose.Schema(
       unique: true,
       trim: true,
     },
-    description: String,
+    description: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     catalog_category:{
         type: String,
         required: true,

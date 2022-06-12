@@ -1,15 +1,15 @@
 import mongoose from 'mongoose';
 
-const couponSchema = new mongoose.Schema(
+const bannerSchema = new mongoose.Schema(
     {
-        name: {
+        customer_name: {
             type: String,
             required: true,
             trim: true
         },
         description: {
             type: String,
-            required: true,
+            required: true, 
             trim: true
         },
         _type: {
@@ -36,4 +36,4 @@ const couponSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-export default mongoose.models.Coupon || mongoose.model('Coupon', couponSchema);
+export default mongoose.models.banner || mongoose.model('banner', bannerSchema);
