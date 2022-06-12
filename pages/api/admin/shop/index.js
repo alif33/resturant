@@ -7,7 +7,7 @@ const handler = nc();
 handler.use(isAdmin).post(async (req, res) => {
   const {
     shop_status,
-    payment_type,
+    shop_pay_type,
     shop_name,
     shop_logo,
     web_header,
@@ -55,7 +55,7 @@ handler.use(isAdmin).post(async (req, res) => {
   await db.connect();
   const shop = new Shop({
     shop_status,
-    payment_type,
+    shop_pay_type,
     shop_name,
     shop_logo,
     web_header,

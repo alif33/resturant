@@ -8,6 +8,7 @@ const shopSchema = new mongoose.Schema(
     },
     shop_pay_type: {
       type: String,
+      enum: ['Direct Deposit'],
       required: true,
     },
 
@@ -30,7 +31,7 @@ const shopSchema = new mongoose.Schema(
     },
     account_manager: {
         type: String,
-        required: fasle,
+        required: false,
     },
     sales_rep: {
         type: String,
@@ -40,7 +41,7 @@ const shopSchema = new mongoose.Schema(
         type: String, 
         required: true,
     },
-    owner_email: {
+    email_statement: {
         type: String, 
         required: true,
     },
@@ -77,12 +78,12 @@ const shopSchema = new mongoose.Schema(
 
     gmb_status: {
       type: String,
-      enum: [ "Verified", "Not Verified", "Suspended"],
+      enum: ["Verified", "Not Verified", "Suspended"],
       required: true,
     },
     gmb_role: {
       type: String,
-      enum: ["Primary Owner", "Manager", "Owner", "Not Verified", "Suspended"],
+      enum: ["Primary Owner", "Manager", "Owner"],
       required: true,
     },
     gmb_email: {
