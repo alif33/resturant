@@ -4,7 +4,6 @@ import RestaurentNavbar from "../../src/admin/restaurent/restaurentNavbar/Restau
 import RestaurentTable from "../../src/admin/restaurent/restaurentTable/RestaurentTable";
 import { useDispatch, useSelector } from "react-redux";
 import { setShop } from "../../store/shop/actions";
-import SearchShop from "../../src/admin/restaurent/searchShop/SearchShop";
 
 const SearchShopPage = () => {
   const dispatch = useDispatch();
@@ -19,11 +18,6 @@ const SearchShopPage = () => {
       <RestaurentNavbar status="searchshop" />
       <div className="row">
         <div className="col-12 mt-4">
-          <div className="row">
-            <div className="col-6 m-auto">
-              <SearchShop />
-            </div>
-          </div>
           <RestaurentTable shops={shop.shopList} />
         </div>
       </div>

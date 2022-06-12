@@ -1,32 +1,40 @@
-import React from "react";
+import React, { useCallback } from "react";
 
-const SearchShop = () => {
+const SearchShop = ({ inputSearch, setInputSearch, changeInput }) => {
+  const debounce = (func) => {
+    let timer;
+    return function (...args) {
+      const context = this;
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        timer = null;
+        func.apply(context, args);
+      }, 300);
+    };
+  };
 
-    
+  const optimisedVersion = useCallback(debounce(changeInput), []);
+
+  const changeHangle = (e) => {
+    optimisedVersion(e);
+    setInputSearch(e.target.value);
+  };
+
   return (
-    <div className="card mb-4">
-      <div className="card-body">
-        <h5 className="mb-4">Basic</h5>
-        <form>
-          <div className="row">
-            <div className="col-10">
-              <div className="form-group">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="search with shop name"
-                />
-              </div>
-            </div>
-            <div className="col-2">
-              <button type="submit" className="btn btn-primary mb-0">
-                Submit
-              </button>
-            </div>
-          </div>
-        </form>
+    <form className="d-flex align-items-center">
+      <div className="form-group ml-4">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="search with shop name"
+          value={inputSearch}
+          onChange={changeHangle}
+        />
       </div>
-    </div>
+      <button type="submit" className="btn btn-primary mb-0 ml-2 ml-4">
+        Submit
+      </button>
+    </form>
   );
 };
 
