@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../src/admin/layout/Layout";
 import RestaurentNavbar from "../../src/admin/restaurent/restaurentNavbar/RestaurentNavbar";
 import RestaurentTable from "../../src/admin/restaurent/restaurentTable/RestaurentTable";
-import { setM2mShop } from "../../store/shop/actions";
+import { setTemporaryPausedShops } from "../../store/shop/actions";
 
 const TemporarilyShopPage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-      dispatch(setM2mShop());
+      dispatch(setTemporaryPausedShops());
     }, [dispatch]);
   
     const { shop } = useSelector((state) => state);
