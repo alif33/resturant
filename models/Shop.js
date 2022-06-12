@@ -30,7 +30,7 @@ const shopSchema = new mongoose.Schema(
     },
     account_manager: {
         type: String,
-        required: fasle,
+        required: false,
     },
     sales_rep: {
         type: String,
