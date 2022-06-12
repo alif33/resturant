@@ -5,14 +5,9 @@ import db from "../../../utils/db";
 const handler = nc();
 
 handler.get(async (req, res) => {
-    console.log(req.query)
  try{
     await db.connect();
-    const shop = await Shop.find({ $or: [
-        {shop_name: new RegExp(req.query.search, "i")},
-        {_id: req.query.search},
-       
-    ] });
+    const shop = await Shop.find({shop_name: new RegExp(req.query.search, "i")} );
     await db.disconnect();
     res.status(200).json(shop)
  }catch(err){
