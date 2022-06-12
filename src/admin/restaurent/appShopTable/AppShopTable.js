@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { authPost, postData } from "../../../../__lib__/helpers/HttpService";
 
 const AppShopTable = () => {
+  const [loading, setLoading] = useState(false);
+  const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjhmMzNmYWZlMGI5YTBhN2I5NzgzZjQiLCJuYW1lIjoiSmFoaWQiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY1NDkyNDMwOSwiZXhwIjoxNjU3NTE2MzA5fQ.pG_hFpwwRUzSjk0wvUHhwMWRPxyLUZNAqhUYSr8loXo`;
   const {
     register,
     handleSubmit,
@@ -9,8 +12,8 @@ const AppShopTable = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log("new");
     console.log(data);
+    authPost(`admin/shop`, data, token).then((res) => console.log(res));
   };
   return (
     <div className="card">
@@ -20,19 +23,21 @@ const AppShopTable = () => {
             <div className="col-md-5">
               <div className="form-group-two">
                 <label htmlFor="">Shop Status: </label>
-                <select {...register("shopStatus", { required: true })}>
-                  <option value="Onboarding">Onboarding</option>
-                  <option value="Onboarding">Onboarding</option>
+                <select {...register("shop_status", { required: true })}>
+                  <option value="Live">Live</option>
+                  <option value="Temporarily">Temporarily</option>
+                  <option value="M2M">M2M</option>
+                  <option value="Disabled">Disabled</option>
                 </select>
               </div>
               {errors.shopStatus && <span>This field is required</span>}
             </div>
             <div className="col-md-5">
               <div className="form-group-two">
-                <label htmlFor="">Shop Type: </label>
-                <select {...register("shopPaid", { required: true })}>
-                  <option value="Onboarding">Shop Paid</option>
-                  <option value="Onboarding">Shop Paid</option>
+                <label htmlFor="">payment type: </label>
+                <select {...register("payment_type", { required: true })}>
+                  <option value="Direct">Direct</option>
+                  <option value="Deposit">Deposit</option>
                 </select>
               </div>
               {errors.shopPaid && <span>This field is required</span>}
@@ -42,14 +47,13 @@ const AppShopTable = () => {
           <div className="row mt-4">
             <div className="col-md-6 ml-142px">
               <div className="form-group-two">
-                <label htmlFor="contactEmail">Contact Email </label>
+                <label htmlFor="shop_name">shop_name</label>
                 <input
-                  {...register("contactEmail", { required: true })}
-                  id="contactEmail"
-                  placeholder="Example@gmail.com"
+                  {...register("shop_name", { required: true })}
+                  id="shop_name"
                 />
               </div>
-              {errors.contactEmail && <span>This field is required</span>}
+              {errors.shop_name && <span>This field is required</span>}
               <div className="form-group-two">
                 <label htmlFor="">Name </label>
                 <input
@@ -59,154 +63,76 @@ const AppShopTable = () => {
                 />
               </div>
               {errors.res_name && <span>This field is required</span>}
-              <div className="form-group-two">
-                <label htmlFor="">chain </label>
-                <select {...register("chain", { required: true })}>
-                  <option value="chain">chain</option>
-                  <option value="asdfas">easdfas</option>
-                </select>
+              <div className="border-bottom"></div>
+              <div className="row mt-3">
+                <div className="col-md-3">
+                  <img
+                    src="/img/logo.png"
+                    alt="logo"
+                    className="logo w-100 h-auto"
+                  />
+                </div>
+                <div className="col-md-4">
+                  <div>
+                    <label htmlFor="">Update Logo:</label>
+                  </div>
+                  <input {...register("shop_logo",)} type="text" />
+                </div>
               </div>
-              {errors.chain && <span>This field is required</span>}
               <div className="form-group-two">
-                <label htmlFor="">Description </label>
-                <textarea
-                  {...register("description", { required: true })}
-                ></textarea>
-              </div>
-              {errors.description && <span>This field is required</span>}
-              <div className="form-group-two">
-                <label htmlFor="">Agreement Signed Date </label>
+                <label htmlFor="">web_header </label>
                 <input
-                  {...register("sign_date", { required: true })}
-                  type="date"
-                  placeholder="e.g. 2020-01-30"
-                  aria-label="Disabled input example"
+                  {...register("web_header", { required: true })}
+                  type="text"
+                  placeholder="Agnelo's Stuffed Pizza"
                 />
               </div>
-              {errors.sign_date && <span>This field is required</span>}
-            </div>
-          </div>
-          <div className="border-bottom"></div>
-          <div className="row mt-3">
-            <div className="col-md-3">
-              <img
-                src="/img/logo.png"
-                alt="logo"
-                className="logo w-100 h-auto"
-              />
-            </div>
-            <div className="col-md-4">
-              <div>
-                <label htmlFor="">Update Logo:</label>
-              </div>
-              <input type="file" />
-            </div>
-          </div>
-          <div className="border-bottom"></div>
-          <div className="row mt-3 mb-3">
-            <div className="col-md-4">
-              <div>
-                <label htmlFor="">Update Landing Page Image: </label>
-              </div>
-              <input type="file" />
-            </div>
-          </div>
-          <div className="border-bottom"></div>
-          <div className="row mt-3 mb-3">
-            <div className="col-md-4">
-              <div>
-                <label htmlFor="">Update Landing Page Image: </label>
-              </div>
-              <input type="file" />
-              <div>
-                <div className="form-check">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor="flexCheckDefault"
-                  >
-                    Delete
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row mt-3 mb-3">
-            <div className="col-md-4">
-              <div>
-                <label htmlFor="">
-                  Update Desktop Background for Landing Page:{" "}
-                </label>
-              </div>
-              <input type="file" />
-              <div>
-                <div className="form-check">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault2"
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor="flexCheckDefault2"
-                  >
-                    Delete
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="border-bottom"></div>
-          <div className="row mt-4">
-            <div className="col-md-6 ml-142px">
+              {errors.web_header && <span>This field is required</span>}
               <div className="form-group-two">
-                <label htmlFor="">Banner Text </label>
-                <div className="banner-text">
-                  <textarea
-                    {...register("bannerText", { required: true })}
-                    aria-label="Disabled input example"
-                  ></textarea>
-                  <p>
-                    Add a message to the top of all the restaurant&apos;s pages
-                  </p>
-                </div>
-                {errors.bannerText && <span>This field is required</span>}
+                <label htmlFor="">mobile_header </label>
+                <input
+                  {...register("mobile_header", { required: true })}
+                  type="text"
+                  placeholder="Agnelo's Stuffed Pizza"
+                />
               </div>
-            </div>
-          </div>
-          <div className="border-bottom"></div>
-          <div className="row mt-4">
-            <div className="col-md-6 ml-142px">
+              {errors.mobile_header && <span>This field is required</span>}
               <div className="form-group-two">
-                <label htmlFor="">Account Manager: </label>
-                <select {...register("accountManager")}>
-                  <option value="1">Mia tv</option>
-                  <option value="2">Mia tv</option>
-                </select>
-                <button className="transparent">Claim</button>
+                <label htmlFor="">account_manager </label>
+                <input
+                  {...register("account_manager", { required: true })}
+                  type="text"
+                  placeholder="Agnelo's Stuffed Pizza"
+                />
               </div>
+              {errors.mobile_header && <span>This field is required</span>}
               <div className="form-group-two">
-                <label htmlFor="">Sales Representive: </label>
-                <select {...register("salesRepre")}>
-                  <option value="1">Antony Pollotta</option>
-                  <option value="2">Antony Pollotta</option>
-                </select>
-                <button className="transparent">Claim</button>
+                <label htmlFor="">sales_rep </label>
+                <input
+                  {...register("sales_rep", { required: true })}
+                  type="text"
+                  placeholder="Agnelo's Stuffed Pizza"
+                />
               </div>
+              {errors.sales_rep && <span>This field is required</span>}
               <div className="form-group-two">
-                <label htmlFor="">Menu Representive: </label>
-                <select {...register("menuRepre")}>
-                  <option value="1">Mjelima Borova</option>
-                  <option value="2">Mjelima Borova</option>
-                </select>
-                <button className="transparent">Claim</button>
+                <label htmlFor="">menu_rep </label>
+                <input
+                  {...register("menu_rep", { required: true })}
+                  type="text"
+                  placeholder="Agnelo's Stuffed Pizza"
+                />
               </div>
+              {errors.menu_rep && <span>This field is required</span>}
+              <div className="form-group-two">
+                <label htmlFor="">email_statement </label>
+                <input
+                  {...register("email_statement", { required: true })}
+                  type="text"
+                  placeholder="Agnelo's Stuffed Pizza"
+                />
+              </div>
+              {errors.email_statement && <span>This field is required</span>}
             </div>
           </div>
           <div className="border-bottom"></div>
@@ -214,33 +140,9 @@ const AppShopTable = () => {
           <div className="row mt-4">
             <div className="col-md-8">
               <div className="form-group-two">
-                <label htmlFor="">Email Statements To </label>
-                <input
-                  {...register("ownerEmail")}
-                  type="email"
-                  placeholder="Agnelo's Stuffed Pizza"
-                />
-              </div>
-            </div>
-
-            <div className="col-md-12">
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault2"
-                />
-                <label className="form-check-label" htmlFor="flexCheckDefault2">
-                  Receives daily report
-                </label>
-              </div>
-            </div>
-            <div className="col-md-8">
-              <div className="form-group-two">
                 <label htmlFor="">Payout frequency </label>
                 <select
-                  {...register("paymentFrequency")}
+                  {...register("payment_frequency")}
                   aria-label="Disabled input example"
                 >
                   <option value="Weekly">Weekly</option>
@@ -248,6 +150,7 @@ const AppShopTable = () => {
                   <option value="Monthly">Monthly</option>
                 </select>
               </div>
+              {errors.payment_frequency && <span>This field is required</span>}
             </div>
 
             <div className="col-md-12">
@@ -256,9 +159,9 @@ const AppShopTable = () => {
             </div>
             <div className="col-md-8">
               <div className="form-group-two">
-                <label htmlFor="">Flat Amount </label>
+                <label htmlFor="">Flat Fee </label>
                 <input
-                  {...register("mealNow")}
+                  {...register("flat_fee")}
                   type="tel"
                   aria-label="Disabled input example"
                 />
@@ -266,16 +169,16 @@ const AppShopTable = () => {
               <div className="form-group-two">
                 <label htmlFor="">End Trial</label>
                 <input
-                  {...register("endTrial")}
+                  {...register("trial_end")}
                   type="text"
                   placeholder="40"
                   aria-label="Disabled input example"
                 />
               </div>
               <div className="form-group-two">
-                <label htmlFor="">Percentage Amount </label>
+                <label htmlFor="">Percentage fee </label>
                 <input
-                  {...register("processingFee")}
+                  {...register("processing_fee")}
                   type="text"
                   placeholder="40"
                   aria-label="Disabled input example"
@@ -290,11 +193,11 @@ const AppShopTable = () => {
             <div className="col-md-8">
               <div className="form-group-two">
                 <label htmlFor="">Contact Method </label>
-                <select {...register("contactMethod")}>
-                  <option value="phone">Phone</option>
-                  <option value="sms">Sms</option>
-                  <option value="email">Email</option>
-                  <option value="tablet">Tablet</option>
+                <select {...register("contact_method")}>
+                  <option value="Phone">Phone</option>
+                  <option value="Sms">Sms</option>
+                  <option value="Email">Email</option>
+                  <option value="Tablet">Tablet</option>
                 </select>
               </div>
             </div>
@@ -307,58 +210,49 @@ const AppShopTable = () => {
             <div className="col-md-8">
               <div className="form-group-two">
                 <label htmlFor="">Gmb Domain</label>
-                <input {...register("gmbDomain")} type="text" />
+                <input {...register("gmb_domain")} type="text" />
               </div>
               <div className="form-group-two">
                 <label htmlFor="">Own Website </label>
-                <input {...register("ownWebsite")} type="text" />
+                <input {...register("own_website")} type="text" />
               </div>
-              <div className="form-group-two">
+
+              {/* <div className="form-group-two">
                 <label htmlFor="">Price Range</label>
                 <input {...register("priceRange")} type="text" />
-              </div>
+              </div> */}
 
               <div className="form-group-two">
                 <label htmlFor="">Gmb Status </label>
-                <select {...register("gmbStatus")}>
-                  <option value="primary Owner">primary Owner</option>
-                  <option value="Manager">Manager</option>
-                  <option value="Owner">Owner</option>
-                  <option value="Not Verified">Not Verified</option>
-                  <option value="Not Verified">Suspended</option>
-                </select>
-              </div>
-              <div className="form-group-two">
-                <label htmlFor="">Gmb Role</label>
-                <input {...register("gmbRole")} type="text" />
-              </div>
-              <div className="form-group-two">
-                <label htmlFor="">Gmb Email</label>
-                <input {...register("gmbEmail")} type="text" />
-              </div>
-              <div className="form-group-two">
-                <label htmlFor="">gmb Password</label>
-                <input {...register("gmbPassword")} type="text" />
-              </div>
-              <div className="form-group-two">
-                <label htmlFor="">Apple Email</label>
-                <input {...register("appleEmail")} type="text" />
-              </div>
-              <div className="form-group-two">
-                <label htmlFor="">Apple Password</label>
-                <input {...register("applePassword")} type="text" />
-              </div>
-
-              <div className="form-group-two">
-                <label htmlFor="">Apple Status </label>
-                <select {...register("appleStatus")}>
+                <select {...register("gmb_status")}>
+                  <option value="Varified">Varified</option>
                   <option value="Not Verified">Not Verified</option>
                   <option value="Suspended">Suspended</option>
                 </select>
               </div>
               <div className="form-group-two">
-                <label htmlFor="">Apple Owner</label>
-                <select {...register("appleOwner")}>
+                <label htmlFor="">Gmb Role </label>
+                <select {...register("gmb_role")}>
+                  <option value="Primary Owner">Primary Owner</option>
+                  <option value="Manager">Manager</option>
+                  <option value="Owner">Owner</option>
+                </select>
+              </div>
+              <div className="form-group-two">
+                <label htmlFor="">meal now domain</label>
+                <input {...register("meal_now_domain")} type="text" />
+              </div>
+              <div className="form-group-two">
+                <label htmlFor="">Gmb Email</label>
+                <input {...register("gmb_email")} type="text" />
+              </div>
+              <div className="form-group-two">
+                <label htmlFor="">gmb Password</label>
+                <input {...register("gmb_password")} type="text" />
+              </div>
+              <div className="form-group-two">
+                <label htmlFor="">gmb owner</label>
+                <select {...register("gmb_owner")}>
                   <option value="Competitor">Competitor</option>
                   <option value="Meal Now">Meal Now</option>
                 </select>
@@ -366,7 +260,7 @@ const AppShopTable = () => {
 
               <div className="form-group-two">
                 <label htmlFor="">Shops Address</label>
-                <input {...register("shopsAddress")} type="text" />
+                <input {...register("shop_address")} type="text" />
               </div>
               <div className="form-group-two">
                 <label htmlFor="">city</label>
@@ -378,23 +272,31 @@ const AppShopTable = () => {
               </div>
               <div className="form-group-two">
                 <label htmlFor="">zipCode</label>
-                <input {...register("zipCode")} type="text" />
+                <input {...register("zip_code")} type="text" />
               </div>
               <div className="form-group-two">
                 <label htmlFor="">lat</label>
-                <input {...register("zipCode")} type="text" />
+                <input {...register("lat")} type="text" />
               </div>
               <div className="form-group-two">
                 <label htmlFor="">long</label>
-                <input {...register("zipCode")} type="text" />
+                <input {...register("long")} type="text" />
               </div>
               <div className="form-group-two">
                 <label htmlFor="">timeZone</label>
-                <input {...register("timeZone")} type="text" />
+                <input {...register("time_zone")} type="text" />
               </div>
               <div className="form-group-two">
-                <label htmlFor="">ownerEmail</label>
-                <input {...register("ownerEmail2")} type="text" />
+                <label htmlFor="">Owner Email</label>
+                <input {...register("owners_email")} type="text" />
+              </div>
+              <div className="form-group-two">
+                <label htmlFor="">owners phone</label>
+                <input {...register("owners_phone")} type="text" />
+              </div>
+              <div className="form-group-two">
+                <label htmlFor="">Owner Name</label>
+                <input {...register("owners_name")} type="text" />
               </div>
               <div className="form-group-two">
                 <label htmlFor="">Owner Name</label>
@@ -402,43 +304,60 @@ const AppShopTable = () => {
               </div>
               <div className="form-group-two">
                 <label htmlFor="">Shop Contact Name</label>
-                <input {...register("sContactName")} type="text" />
+                <input {...register("se_contact_name")} type="text" />
               </div>
               <div className="form-group-two">
                 <label htmlFor="">Shop Contact Phone</label>
-                <input {...register("sContactPhone")} type="text" />
+                <input {...register("se_contact_phone")} type="text" />
               </div>
               <div className="form-group-two">
                 <label htmlFor="">Shop Contact Email</label>
-                <input {...register("sContactEmail")} type="text" />
+                <input {...register("se_contact_email")} type="text" />
               </div>
               <div className="form-group-two">
                 <label htmlFor="">resPhone</label>
-                <input {...register("resPhone")} type="text" />
+                <input {...register("res_phone")} type="text" />
               </div>
               <div className="form-group-two">
                 <label htmlFor="">Minimum Pick Up Order</label>
-                <input {...register("minimumPickUpOrder")} type="tel" />
+                <input {...register("minimum_pickUp_order")} type="tel" />
               </div>
               <div className="form-group-two">
                 <label htmlFor="">Pick Up Estimate</label>
-                <input {...register("pickUpEstimate")} type="tel" />
+                <input {...register("pickUp_estimate")} type="tel" />
+              </div>
+              <div className="form-group-two">
+                <label htmlFor="">minimum_delivery_order</label>
+                <input {...register("minimum_delivery_order")} type="tel" />
               </div>
               <div className="form-group-two">
                 <label htmlFor="">Delivery Estimate</label>
-                <input {...register("deliveryEstimate")} type="tel" />
+                <input {...register("delivery_estimate")} type="tel" />
               </div>
               <div className="form-group-two">
                 <label htmlFor="">Online Discount</label>
-                <input {...register("onlineDiscount")} type="tel" />
+                <input {...register("online_discount")} type="tel" />
               </div>
               <div className="form-group-two">
-                <label htmlFor="">Pause Delivery Today</label>
-                <input {...register("pauseDeliveryToday")} type="tel" />
+                <label htmlFor="">pause_delivery_today </label>
+                <select {...register("pause_delivery_today")}>
+                  <option value="active">active</option>
+                  <option value="inactive">inactive</option>
+                </select>
               </div>
               <div className="form-group-two">
-                <label htmlFor="">No Scheduled Order</label>
-                <input {...register("noScheduledOrder")} type="tel" />
+                <label htmlFor="">no_scheduled_order </label>
+                <select {...register("pause_delivery_today")}>
+                  <option value="active">active</option>
+                  <option value="inactive">inactive</option>
+                </select>
+              </div>
+              <div className="form-group-two">
+                <label htmlFor="">stop_orders_today </label>
+                <select {...register("stop_orders_today")}>
+                  <option value="active">active</option>
+                  <option value="inactive">inactive</option>
+                </select>
               </div>
             </div>
           </div>
@@ -454,3 +373,6 @@ const AppShopTable = () => {
 };
 
 export default AppShopTable;
+
+
+// "Shop validation failed: payment_type: `Direct` is not a valid enum value for path `payment_type`."

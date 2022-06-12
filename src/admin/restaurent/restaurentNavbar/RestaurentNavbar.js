@@ -7,12 +7,12 @@ const RestaurentNavbar = ({ status }) => {
   const [desable, setDesable] = useState(false);
 
   const newData = [
-    { item: `Search Shop's`, link: "#", id: "searchshop" },
+    { item: `Search Shop's`, link: "search-shop", id: "searchshop" },
     { item: "Add New shop ", link: "add-shop", id: "addshop" },
-    { item: "Live Shops", link: "#", id: "liveshop" },
-    { item: "Disabled Shops", link: "#", id: "disabledshop" },
-    { item: "M2M Shops", link: "#", id: "m2mshops" },
-    { item: "Temporary Paused Shops", link: "#", id: "pausedshops" },
+    { item: "Live Shops", link: "live-shop", id: "liveshop" },
+    { item: "Disabled Shops", link: "disabled-shop", id: "disabledshop" },
+    { item: "M2M Shops", link: "m2m-shop", id: "m2mshops" },
+    { item: "Temporary Paused Shops", link: "temporarily-paused", id: "pausedshops" },
   ];
 
   const addNewsShop = () => {

@@ -4,6 +4,7 @@ import { cartSlice } from './cart/slice'
 import { categorySlice } from './catrgories/slice'
 import { customerSlice } from './customers/slice'
 import { memberSlice } from './members/slice'
+import { shopSlice } from './shop/slice'
 import { singleMemberSlice } from './singleMember/slice'
 import { userSlice } from './users/slice'
 
@@ -14,6 +15,8 @@ export const rootReducer = combineReducers({
     singleMember: singleMemberSlice.reducer,
     categories: categorySlice.reducer,
     customers: customerSlice.reducer,
-    carts: cartSlice.reducer
+    carts: cartSlice.reducer,
+    //shop reducer
+    shop: shopSlice.reducer
     
 })

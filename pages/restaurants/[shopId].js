@@ -1,4 +1,4 @@
-import Layout from "../../src/admin/layout/Layout";
+import { Layout2 } from "../../src/admin/layout/Layout";
 import Navbar from "../../src/admin/Navbar/Navbar";
 import Delivery from "../../src/admin/dashboard/Delivery/Delivery";
 import InfoCard from "../../src/admin/dashboard/InfoCard/InfoCard";
@@ -9,11 +9,23 @@ import PartnerInfo from "../../src/admin/dashboard/PartnerInfo/PartnerInfo";
 import Payment from "../../src/admin/dashboard/Payments/Payment";
 import Payout from "../../src/admin/dashboard/Payout/Payout";
 import Storefront from "../../src/admin/dashboard/Storefront/Storefront";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { getData } from "../../__lib__/helpers/HttpService";
+import { useState } from "react";
 
 const ShopPage = () => {
-    
+  const [shop, setShop] = useState({});
+
+  const router = useRouter();
+  const { shopId } = router?.query;
+
+  useEffect(() => {
+    getData(`admin/shop/${shopId}`).then((res) => setShop(res));
+  }, [shopId]);
+
   return (
-    <Layout>
+    <Layout2>
       <Navbar status="Dashboard" />
       <div className="row">
         <div className="col-12">
@@ -24,7 +36,7 @@ const ShopPage = () => {
           </div>
         </div>
       </div>
-      <InfoCard />
+      <InfoCard shop={shop} />
       <div className="row mt-5">
         <div className="col-sm-6">
           <Order />
@@ -57,7 +69,7 @@ const ShopPage = () => {
           <PartnerInfo />
         </div>
       </div>
-    </Layout>
+    </Layout2>
   );
 };
 

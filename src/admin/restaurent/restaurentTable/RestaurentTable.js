@@ -1,10 +1,8 @@
 import { FaEye } from "react-icons/fa";
 import { BsTools, BsCircleFill } from "react-icons/bs";
+import Link from "next/link";
 
-const RestaurentTable = () => {
-
-  
-
+const RestaurentTable = ({ shops }) => {
   return (
     <div className="card">
       <div className="card-body">
@@ -29,126 +27,58 @@ const RestaurentTable = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">99</th>
-              <td>Shiva Indian Restaurent</td>
-              <td>Mittagong</td>
-              <td>+61 02 4872 3292</td>
-              <td>
-                <div className="d-flex align-items-center">
-                  <span className="open"></span>
-                  {/* <span className="close-icon"></span> */}
-                  Open
-                </div>
-              </td>
-              <td>
-                <span className="badge badge-success">
-                  <FaEye />
-                </span>
-              </td>
-              <td>
-                <span className="badge badge-success">live</span>
-              </td>
-              <td>
-                <span className="badge badge-info">
-                  <BsCircleFill />
-                </span>
-              </td>
-              <td>
-                <div className="row">
-                  <div className="col-6 text-center">
-                    <span className="badge badge-info">
-                      <BsTools />
-                    </span>
+            {shops?.map((shop, i) => (
+              <tr key={i}>
+                <th scope="row">99</th>
+                <td>{shop.shop_name}</td>
+                <td>{shop.address.city}</td>
+                <td>{shop.owners_phone}</td>
+                <td>
+                  <div className="d-flex align-items-center">
+                    <span className="open"></span>
+                    {/* <span className="close-icon"></span> */}
+                    Open
                   </div>
-                  <div className="col-6 text-center">
-                    <span className="badge badge-info">
-                      <BsTools />
-                    </span>
+                </td>
+                <td>
+                  <Link href={`/restaurants/${shop._id}`}>
+                    <a className="badge badge-success">
+                      <FaEye />
+                    </a>
+                  </Link>
+                </td>
+                <td>
+                  <span
+                    className={
+                      shop.shop_status === "Live"
+                        ? "badge badge-success"
+                        : "badge badge-danger"
+                    }
+                  >
+                    {shop.shop_status}
+                  </span>
+                </td>
+                <td>
+                  <span className="badge badge-info">
+                    <BsCircleFill />
+                  </span>
+                </td>
+                <td>
+                  <div className="row">
+                    <div className="col-6 text-center">
+                      <span className="badge badge-info">
+                        <BsTools />
+                      </span>
+                    </div>
+                    <div className="col-6 text-center">
+                      <span className="badge badge-info">
+                        <BsTools />
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">99</th>
-              <td>Shiva Indian Restaurent</td>
-              <td>Mittagong</td>
-              <td>+61 02 4872 3292</td>
-              <td>
-                <div className="d-flex align-items-center">
-                  {/* <span className="open"></span> */}
-                  <span className="close-icon"></span>
-                  Close
-                </div>
-              </td>
-              <td>
-                <span className="badge badge-success">
-                  <FaEye />
-                </span>
-              </td>
-              <td>
-                <span className="badge badge-success">live</span>
-              </td>
-              <td>
-                <span className="badge badge-info">
-                  <BsCircleFill />
-                </span>
-              </td>
-              <td>
-                <div className="row">
-                  <div className="col-6 text-center">
-                    <span className="badge badge-info">
-                      <BsTools />
-                    </span>
-                  </div>
-                  <div className="col-6 text-center">
-                    <span className="badge badge-info">
-                      <BsTools />
-                    </span>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">99</th>
-              <td>Shiva Indian Restaurent</td>
-              <td>Mittagong</td>
-              <td>+61 02 4872 3292</td>
-              <td>
-                <div className="d-flex align-items-center">
-                  <span className="open"></span>
-                  {/* <span className="close-icon"></span> */}
-                  Open
-                </div>
-              </td>
-              <td>
-                <span className="badge badge-success">
-                  <FaEye />
-                </span>
-              </td>
-              <td>
-                <span className="badge badge-success">live</span>
-              </td>
-              <td>
-                <span className="badge badge-info">
-                  <BsCircleFill />
-                </span>
-              </td>
-              <td>
-                <div className="row">
-                  <div className="col-6 text-center">
-                    <span className="badge badge-info">
-                      <BsTools />
-                    </span>
-                  </div>
-                  <div className="col-6 text-center">
-                    <span className="badge badge-info">
-                      <BsTools />
-                    </span>
-                  </div>
-                </div>
-              </td>
-            </tr>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

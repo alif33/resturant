@@ -9,8 +9,9 @@ const shopSchema = new mongoose.Schema(
     },
     payment_type: {
       type: String,
+      // enum: ["Direct", "Deposit"],
+      default: "Direct",
       required: true,
-      enum: ["Direct Deposit"],
     },
     shop_name: {
       type: String,
@@ -19,7 +20,7 @@ const shopSchema = new mongoose.Schema(
 
     shop_logo: {
       type: String,
-      required: true,
+      // required: true,
       default: "",
     },
     web_header: {

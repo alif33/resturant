@@ -1,32 +1,52 @@
-const InfoCard = () => {
+const InfoCard = ({ shop }) => {
+  console.log(shop);
   return (
     <div className="row">
       <div className="col-12">
         <div className="card">
           <div className="card-body">
             <h4 className="card-title mb-0">Info</h4>
-            <p>UUID: 391992D1-25a8-454a-831c-6c6dfd87e1f</p>
+            <p>UUID: {`391992D1-25a8-454a-831c-6c6dfd87e1f`}</p>
             <div className="border-bottom"></div>
             <div className="row">
               <div className="col-sm-4">
                 <div className="info-menu">
                   <ul className="list-unstyled">
-                    <li>Owner Name: Adrian Zamudio</li>
-                    <li>Owner Cell:</li>
-                    <li>Phone type: n/a</li>
-                    <li>Owner Email: angelosstuffedpizza@yahoo.com</li>
+                    <li>
+                      Owner Name: {shop?.owners_name ? shop.owners_name : "N/A"}
+                    </li>
+                    <li>
+                      Owner Cell:{" "}
+                      {shop?.owners_phone ? shop.owners_phone : "N/A"}
+                    </li>
+                    {/* <li>Phone type: {shop.owners_name ? shop.owners_name : "N/A"}</li> */}
+                    <li>
+                      Owner Email:{" "}
+                      {shop?.owners_email ? shop.owners_email : "N/A"}
+                    </li>
                   </ul>
                 </div>
               </div>
               <div className="col-sm-4">
                 <div className="info-menu">
                   <ul className="list-unstyled">
-                    <li>Shop&apos;s Local Time: 16:51 CST</li>
                     <li>
-                      Phone: <b>(773)9279355</b>
+                      Shop&apos;s Local Time:{" "}
+                      {shop?.address?.time_zone ? shop.address.time_zone : "N/A"}
                     </li>
-                    <li>Phone type: landine</li>
-                    <li>Fax:</li>
+                    <li>
+                      Phone:{" "}
+                      <b>
+                        {shop?.se_contact_phone ? shop.se_contact_phone : "N/A"}
+                      </b>
+                    </li>
+                    {/* <li>
+                      Phone type:{" "}
+                      {shop?.owners_email ? shop.owners_email : "N/A"}
+                    </li>
+                    <li>
+                      Fax: {shop?.owners_email ? shop.owners_email : "N/A"}
+                    </li> */}
                   </ul>
                 </div>
               </div>
@@ -45,8 +65,12 @@ const InfoCard = () => {
               <div className="col-sm-4">
                 <div className="info-menu">
                   <ul className="list-unstyled">
-                    <li>Deliver: Not Open</li>
-                    <li>Pickup: 11:00-21:15</li>
+                    <li>
+                      Deliver: {shop?.shop_status ? shop.shop_status : "N/A"}
+                    </li>
+                    <li>
+                      Pickup: {shop?.shop_status ? shop.shop_status : "N/A"}
+                    </li>
                   </ul>
                 </div>
               </div>
