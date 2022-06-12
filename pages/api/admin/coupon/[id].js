@@ -1,5 +1,5 @@
 // import nc from "next-connect";
-// import DeliveryZone from "../../../../models/DeliveryZone";
+// import Coupon from "../../../../models/Coupon";
 // import { isAdmin } from "../../../../utils/auth";
 // import db from "../../../../utils/db";
 
@@ -8,9 +8,9 @@
 // handler.get(async (req, res) => {
 
 //   await db.connect();
-//   const deliveryZone = new DeliveryZone({
+//   const coupon = new Coupon({
 //   });
-//   if (await deliveryZone.save()) {
+//   if (await coupon.save()) {
 //     await db.disconnect();
 //     return res.send({
 //       success: true,

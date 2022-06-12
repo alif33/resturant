@@ -14,11 +14,18 @@ const couponSchema = new mongoose.Schema(
         },
         _type: {
             type: String,
-            enum: ['FLAT', 'PERCENTAGE']
+            enum: ['Flat', 'Percentage']
         },
         amount: {
             type: Number,
-            required: true
+            required: true,
+            trim: true
+        },
+        coupon_condition:{
+            type: String,
+            enum: ['Order Subtotal', 'Has Product Type'],
+            required: false,
+
         },
         _shop: {
             type: mongoose.Schema.Types.ObjectId,
