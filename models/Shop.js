@@ -20,12 +20,8 @@ const shopSchema = new mongoose.Schema(
 
     shop_logo: {
       type: String,
-<<<<<<< HEAD
       // required: true,
       default: "",
-=======
-      required: true,
->>>>>>> 6658a6b324794e01caa47441cfb8ee439734cd46
     },
     web_header: {
       type: String,
