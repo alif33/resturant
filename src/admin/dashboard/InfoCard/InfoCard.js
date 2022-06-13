@@ -32,7 +32,9 @@ const InfoCard = ({ shop }) => {
                   <ul className="list-unstyled">
                     <li>
                       Shop&apos;s Local Time:{" "}
-                      {shop?.address?.time_zone ? shop.address.time_zone : "N/A"}
+                      {shop?.address?.time_zone
+                        ? shop.address.time_zone
+                        : "N/A"}
                     </li>
                     <li>
                       Phone:{" "}
@@ -45,7 +47,7 @@ const InfoCard = ({ shop }) => {
                       {shop?.owners_email ? shop.owners_email : "N/A"}
                     </li>
                     <li>
-                      Fax: {shop?.owners_email ? shop.owners_email : "N/A"}
+                      Fax: {shop?.account_manager ? shop.account_manager : "N/A"}
                     </li> */}
                   </ul>
                 </div>
@@ -53,7 +55,7 @@ const InfoCard = ({ shop }) => {
               <div className="col-sm-4">
                 <div className="info-menu">
                   <ul className="list-unstyled">
-                    <li>Acc: Manager./</li>
+                    <li>Acc: Manager: {shop?.account_manager ? shop.account_manager : "N/A"}</li>
                     <li>Tier: 5</li>
                     <li>Date Onboarded:</li>
                   </ul>
@@ -66,10 +68,12 @@ const InfoCard = ({ shop }) => {
                 <div className="info-menu">
                   <ul className="list-unstyled">
                     <li>
-                      Deliver: {shop?.shop_status ? shop.shop_status : "N/A"}
+                      Delivery Time:{" "}
+                      {shop?.shop_status ? shop.shop_status : "N/A"}
                     </li>
                     <li>
-                      Pickup: {shop?.shop_status ? shop.shop_status : "N/A"}
+                      Pick Up Time:{" "}
+                      {shop?.shop_status ? shop.shop_status : "N/A"}
                     </li>
                   </ul>
                 </div>

@@ -1,4 +1,4 @@
-const Payout = () => {
+const Payout = ({shop}) => {
   return (
     <div className="card">
       <div className="card-body">
@@ -9,8 +9,8 @@ const Payout = () => {
             <li>
               Slice fee: <b>2.25</b>
             </li>
-            <li>Frequency:</li>
-            <li>Method: Check</li>
+            <li>Frequency: {shop?.payment_frequency ? shop.payment_frequency : "N/A"}</li>
+            <li>Method: {shop?.payment_type ? shop.payment_type : "N/A"}</li>
             <li>
               Instant Payouts: <b>No</b>
             </li>

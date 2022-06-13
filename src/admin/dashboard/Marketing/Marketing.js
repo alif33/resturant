@@ -1,4 +1,4 @@
-const Marketing = () => {
+const Marketing = ({ shop }) => {
   return (
     <div className="card">
       <div className="card-body">
@@ -6,12 +6,17 @@ const Marketing = () => {
         <div className="border-bottom"></div>
         <div className="info-menu">
           <ul className="list-unstyled">
-            <li>GBM status:</li>
-            <li>GBN owner</li>
+            <li>GBM status: {shop?.gmb_status ? shop.gmb_status : "N/A"}</li>
+            <li>GMB Owner: {shop?.gmb_owner ? shop.gmb_owner : "N/A"}</li>
             <li>
-              Email: <span className="button">not issued</span>
+              Email:{" "}
+              {shop?.gmb_email ? (
+                shop.gmb_email
+              ) : (
+                <span className="button">not issued</span>
+              )}
             </li>
-            <li>Domin:</li>
+            <li>Domain: {shop?.gmb_domain ? shop.gmb_domain : "N/A"}</li>
           </ul>
         </div>
       </div>

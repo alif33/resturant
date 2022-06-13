@@ -1,5 +1,6 @@
 
-const Payment = () => {
+const Payment = ({shop}) => {
+
     return (
         <div className="card h-100">
         <div className="card-body">
@@ -7,12 +8,8 @@ const Payment = () => {
           <div className="border-bottom"></div>
           <div className="info-menu">
             <ul className="list-unstyled">
-              <li>Free Trail: <b>No</b></li>
-              <li>Trail Period: <b>-</b></li>
-              <li>Fee (amount) per order: <b>2.25</b></li>
-              <li>Fee Per call: <b>2.25</b></li>
-              <li>Fee Per call: <b>4</b></li>
-              <li>Fee % per order: <b>-</b></li>
+              <li>Free Trail: <b>{shop?.owners_email ? shop.owners_email : "N/A"}</b></li>
+              <li>Free end: <b>{shop?.trial_end ? shop.trial_end : "N/A"}</b></li>
             </ul>
           </div>
         </div>

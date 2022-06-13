@@ -15,11 +15,12 @@ const Layout = ({children, history }) => {
   );
 };
 
-export const Layout2 = ({children, history }) => {
+export const Layout2 = ({children, history, shopId}) => {
+  console.log(shopId);
   return (
     <div id="app-container">
       <Topnav history={history} />
-      <Sidebar />
+      <Sidebar shopId={shopId} />
       <main>
         <div className="container-fluid">{children}</div>
       </main>

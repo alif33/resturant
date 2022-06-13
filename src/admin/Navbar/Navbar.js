@@ -1,15 +1,15 @@
 import Link from "next/link";
 
-const Navbar = ({ status }) => {
+const Navbar = ({ status, shopId }) => {
   const menuList = [
-    { item: "Dashboard", link: "/dashboard" },
-    { item: "Settings", link: "/dashboard/setting" },
-    { item: "Payments", link: "/dashboard/payment" },
-    { item: "SEO Settings", link: "/dashboard/seo-setting" },
-    { item: "Location", link: "/dashboard/location" },
-    { item: "Contact", link: "/dashboard/contact" },
-    { item: "Ordering", link: "/dashboard/ordering" },
-    { item: "Statements", link: "/dashboard/statement" },
+    { item: "Dashboard", link: `/restaurant/${shopId}` },
+    { item: "Settings", link: `/restaurant/${shopId}/setting` },
+    { item: "Payments", link: `/restaurant/${shopId}/payment` },
+    { item: "SEO Settings", link: `/restaurant/${shopId}/seo-setting` },
+    { item: "Location", link: `/restaurant/${shopId}/location` },
+    { item: "Contact", link: `/restaurant/${shopId}/contact` },
+    { item: "Ordering", link: `/restaurant/${shopId}/ordering` },
+    { item: "Statements", link: `/restaurant/${shopId}/statement` },
     ,
   ];
   return (
@@ -25,7 +25,10 @@ const Navbar = ({ status }) => {
             <div className="header-menu">
               <ul className="list-unstyled">
                 {menuList.map((menuItem, i) => (
-                  <li key={i} className={status === menuItem.item ? "active" : "not"}>
+                  <li
+                    key={i}
+                    className={status === menuItem.item ? "active" : "not"}
+                  >
                     <Link href={menuItem.link}>
                       <a>{menuItem.item}</a>
                     </Link>
