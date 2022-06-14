@@ -1,4 +1,4 @@
-const Delivery = () => {
+const Delivery = ({shop}) => {
   return (
     <div className="card">
       <div className="card-body">
@@ -7,7 +7,8 @@ const Delivery = () => {
         <div className="info-menu">
           <ul className="list-unstyled">
             <li>Delivery Available: <span className="button bg-danger">No</span></li>
-            <li>Estimate: 20-35 min</li>
+            <li>Delivery min: {shop?.minimum_delivery_order ? shop.minimum_delivery_order : "N/A"}</li>
+            <li>Estimate delivery: {shop?.delivery_estimate ? shop.delivery_estimate : "N/A"}</li>
           </ul>
         </div>
       </div>

@@ -1,52 +1,51 @@
 import Link from "next/link";
 
-const Sidebar = () => {
+const Sidebar = ({shopId}) => {
   return (
     <div className="menu">
       <div className="main-menu">
         <div className="scroll">
           <ul className="list-unstyled">
             <li className="active">
-              <Link href="/dashboard">
+              <Link href="/restaurants">
                 <a>
-                  {" "}
                   <i className="iconsminds-shop-4"></i>
                   <span>Menu</span>
                 </a>
               </Link>
             </li>
             <li>
-              <Link href="/dashboard/schedule">
+              <Link href={`/restaurant/${shopId}/schedule`}>
                 <a>
                   <i className="iconsminds-digital-drawing"></i> Schedule
                 </a>
               </Link>
             </li>
             <li>
-              <Link href="/dashboard/delivery-zones">
+              <Link href={`/restaurant/${shopId}/delivery-zones`}>
                 <a>
                   <i className="iconsminds-digital-drawing"></i> Delivery Zones
                 </a>
               </Link>
             </li>
             <li>
-              <Link href="/dashboard/orders">
+              <Link href={`/restaurant/${shopId}/orders`}>
                 <a>
                   <i className="iconsminds-air-balloon-1"></i> Orders
                 </a>
               </Link>
             </li>
             <li>
-              <Link href="/dashboard/coupons">
+              <Link href={`/restaurant/${shopId}/coupons`}>
                 <a>
                   <i className="iconsminds-pantone"></i> Coupons
                 </a>
               </Link>
             </li>
             <li>
-              <Link href="/dashboard/bannger">
+              <Link href={`/restaurant/${shopId}/bannger`}>
                 <a>
-                  <i className="iconsminds-pantone"></i> Bannger
+                  <i className="iconsminds-pantone"></i> Banner
                 </a>
               </Link>
             </li>
