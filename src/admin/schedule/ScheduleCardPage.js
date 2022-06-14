@@ -1,9 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ScheduleAdd from "../../modal/scheduleAdd/ScheduleAdd";
 import ScheduleCart from "./scheduleCart/ScheduleCart";
+import { useRouter } from "next/router";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { setSchedule } from "../../../store/schedule/actions";
 
 const ScheduleCardPage = () => {
   const [loading, setLoading] = useState(false);
+  const [schedules, setSchedules] = useState([]);
+
+  const router = useRouter();
+  const { shopId } = router.query;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (shopId) {
+      dispatch(setSchedule(`schedules/${shopId}`));
+    }
+  }, [shopId, loading, dispatch]);
+
+  const { schedule } = useSelector((state) => state);
+  useEffect(() => {
+    setSchedules(schedule.scheduleList);
+  }, [schedule]);
+
   return (
     <div className="schedule-card-page">
       <div className="s-card-header">
@@ -21,7 +42,7 @@ const ScheduleCardPage = () => {
         loading={loading}
         setLoading={setLoading}
         deleteUrl={`admin/schedule`}
-        url={`schedules`}
+        schedules={schedules}
       />
 
       <div className="s-card-bottom">

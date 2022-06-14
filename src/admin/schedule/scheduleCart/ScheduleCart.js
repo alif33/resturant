@@ -1,21 +1,10 @@
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteData, getData } from "../../../../__lib__/helpers/HttpService";
 
-const ScheduleCart = ({ url, loading, setLoading, deleteUrl }) => {
-  const [schedules, setSchedules] = useState([]);
-
-  const router = useRouter();
-  const { shopId } = router.query;
-
-  useEffect(() => {
-    if (shopId && url) {
-      getData(`${url}/${shopId}`).then((res) => {
-        setSchedules(res);
-      });
-    }
-  }, [shopId, loading, url]);
+const ScheduleCart = ({loading, setLoading, deleteUrl, schedules }) => {
+  
 
   const deleteShedule = (id) => {
     const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmE3ZDY4YWJiNjQ5ODExYTFiN2FiYzMiLCJuYW1lIjoiSmFoaWQiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY1NTE2NjYwOSwiZXhwIjoxNjU3NzU4NjA5fQ.9SwaFI4kgXqdpoiuJN-LOr9zXNY6I0UNo7PGT4pEHU8`;
