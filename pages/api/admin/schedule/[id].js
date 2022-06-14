@@ -10,7 +10,7 @@ handler.use(isAdmin).delete(async (req, res) => {
     try {
       await db.connect();
       const schedule = await Schedule.findByIdAndDelete({ _id: req.query.id });
-      if (schedule) {
+      if (schedule.length > 0) {
         await db.disconnect();
         res.send({
           success: true,
@@ -26,7 +26,7 @@ handler.use(isAdmin).delete(async (req, res) => {
     } catch (error) {
       await db.disconnect();
       res.send({
-        error: "Contact not found",
+        error: "Schedule not found",
       });
     }
   });
