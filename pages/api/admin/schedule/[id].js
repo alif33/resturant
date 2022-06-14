@@ -26,7 +26,7 @@ handler.use(isAdmin).delete(async (req, res) => {
     } catch (error) {
       await db.disconnect();
       res.send({
-        error: "Contact not found",
+        error: "Schedule not found",
       });
     }
   });
