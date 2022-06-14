@@ -7,7 +7,7 @@ const handler = nc();
 handler.get(async (req, res) => {
  try{
     await db.connect();
-    const shop = await Shop.find({}).populate('products', );
+    const shop = await Shop.find({});
     await db.disconnect();
     res.status(200).json(shop)
  }catch(err){
