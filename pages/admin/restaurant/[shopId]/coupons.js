@@ -1,5 +1,5 @@
-import CouponsPage from "../../../src/admin/dashboard/Coupons/CouponsPage";
-import { Layout2 } from "../../../src/admin/layout/Layout";
+import CouponsPage from "../../../../src/admin/dashboard/Coupons/CouponsPage";
+import { Layout2 } from "../../../../src/admin/layout/Layout";
 import { useRouter } from "next/router";
 
 const Coupons = () => {

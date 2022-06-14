@@ -1,11 +1,17 @@
 import { useRouter } from "next/router";
 import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { adminLogin } from "../../../../store/admins/actions";
 import { setSessionStorage } from "../../../../utils/setSession";
+import { postData } from "../../../../__lib__/helpers/HttpService";
+import Cookies from "universal-cookie";
 
 const LoginFrom = () => {
+  const [disable, setDisable] = useState(false);
+  const cookies = new Cookies();
+
   const {
     register,
     handleSubmit,
@@ -16,34 +22,19 @@ const LoginFrom = () => {
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    // console.log(data);
-    var myHeaders = new Headers();
-
-    myHeaders.append("Content-Type", "application/json");
-
-    var raw = JSON.stringify({
-      email: data.dashboardEmail,
-      password: data.dashboardPassword,
+    setDisable(true);
+    postData(`admin/login`, data, setDisable).then((res) => {
+      console.log(res);
+      if (res.success) {
+        dispatch(adminLogin(res.admin));
+        cookies.set("_admin", res.token, { path: "/" });
+        // toast.success(res.message);
+      }
     });
-
-    var requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-
-    fetch("http://localhost:3000/api/admin/login", requestOptions)
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.success) {
-          setSessionStorage(JSON.stringify(res.token));
-          dispatch(adminLogin({ token: res.token, admin: res }));
-          router.push("/dashboard");
-        }
-      })
-      .catch((error) => console.log("error", error));
   };
+
+  console.log(cookies.get("myCat"));
+
   const { admins } = useSelector((state) => state);
 
   return (
@@ -59,9 +50,12 @@ const LoginFrom = () => {
               id="dashboardEmail"
               aria-describedby="emailHelp"
               placeholder="Enter email"
-              {...register("dashboardEmail", { required: true })}
+              {...register("email", { required: true })}
             />
-            {errors.dashboardEmail && <span>This field is required</span>}
+            {errors.email && (
+              <span className="text-danger">This field is required</span>
+            )}
+
             <small id="emailHelp" className="form-text text-muted">
               We&apos;ll never share your email with anyone else.
             </small>
@@ -73,9 +67,11 @@ const LoginFrom = () => {
               className="form-control"
               id="dashboardPassword"
               placeholder="Password"
-              {...register("dashboardPassword", { required: true })}
+              {...register("password", { required: true })}
             />
-            {errors.dashboardPassword && <span>This field is required</span>}
+            {errors.password && (
+              <span className="text-danger">This field is required</span>
+            )}
           </div>
           {/* 
           <div className="custom-control custom-checkbox mb-3 mt-3">

@@ -29,7 +29,8 @@
     "reactstrap": "^9.0.2",
     "redux-persist": "^6.0.0",
     "slugify": "^1.6.5",
-    "streamifier": "^0.1.1"
+    "streamifier": "^0.1.1",
+    "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
     "eslint": "8.15.0",

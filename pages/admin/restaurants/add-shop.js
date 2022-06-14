@@ -1,6 +1,6 @@
-import Layout from "../../src/admin/layout/Layout";
-import RestaurentNavbar from "../../src/admin/restaurent/restaurentNavbar/RestaurentNavbar";
-import AppShopTable from "../../src/admin/restaurent/appShopTable/AppShopTable";
+import Layout from "../../../src/admin/layout/Layout";
+import RestaurentNavbar from "../../../src/admin/restaurent/restaurentNavbar/RestaurentNavbar";
+import AppShopTable from "../../../src/admin/restaurent/appShopTable/AppShopTable";
 
 const AddShopPage = () => {
   return (

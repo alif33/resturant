@@ -1,7 +1,7 @@
 import React from "react";
-import { Layout2 } from "../../../src/admin/layout/Layout";
-import Navbar from "../../../src/admin/Navbar/Navbar";
-import PaymentForm from "../../../src/admin/payment/PaymentForm";
+import { Layout2 } from "../../../../src/admin/layout/Layout";
+import Navbar from "../../../../src/admin/Navbar/Navbar";
+import PaymentForm from "../../../../src/admin/payment/PaymentForm";
 
 const Paymentpage = () => {
   return (

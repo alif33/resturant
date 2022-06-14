@@ -1,7 +1,7 @@
 import React from "react";
-import { Layout2 } from "../../../src/admin/layout/Layout";
-import LocationForm from "../../../src/admin/Location/LocationForm";
-import Navbar from "../../../src/admin/Navbar/Navbar";
+import { Layout2 } from "../../../../src/admin/layout/Layout";
+import LocationForm from "../../../../src/admin/Location/LocationForm";
+import Navbar from "../../../../src/admin/Navbar/Navbar";
 
 const LocationPage = () => {
   return (

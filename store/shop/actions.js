@@ -4,6 +4,7 @@ const { actions: slice } = shopSlice;
 
 export const setShop = () => (dispatch) => {
   getData("shops").then((res) => {
+    console.log(res);
     dispatch(slice.setShop(res));
   });
 };

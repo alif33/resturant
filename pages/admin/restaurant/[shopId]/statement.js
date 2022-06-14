@@ -1,6 +1,6 @@
 import React from "react";
-import { Layout2 } from "../../../src/admin/layout/Layout";
-import Navbar from "../../../src/admin/Navbar/Navbar";
+import { Layout2 } from "../../../../src/admin/layout/Layout";
+import Navbar from "../../../../src/admin/Navbar/Navbar";
 
 const StatementPage = () => {
   return (

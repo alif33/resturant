@@ -1,7 +1,7 @@
 import React from "react";
-import { Layout2 } from "../../../src/admin/layout/Layout";
-import ContactForm from "../../../src/admin/contact/ContactForm";
-import Navbar from "../../../src/admin/Navbar/Navbar";
+import { Layout2 } from "../../../../src/admin/layout/Layout";
+import ContactForm from "../../../../src/admin/contact/ContactForm";
+import Navbar from "../../../../src/admin/Navbar/Navbar";
 
 const ContactPage = () => {
   return (

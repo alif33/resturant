@@ -4,7 +4,18 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { authPost } from "../../../__lib__/helpers/HttpService";
 
-const ScheduleAddForm = ({ setLoading, close, postUrl }) => {
+const ScheduleAddForm = ({ setLoading, close, postUrl, loading }) => {
+
+  const dayName = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+  
   const router = useRouter();
   const { shopId } = router.query;
   const {
@@ -23,7 +34,7 @@ const ScheduleAddForm = ({ setLoading, close, postUrl }) => {
       .then((res) => {
         if (res.success) {
           toast.success(res.message);
-          setLoading(true);
+          setLoading(!loading);
           close();
         }
         if (!res.success) {
@@ -45,8 +56,11 @@ const ScheduleAddForm = ({ setLoading, close, postUrl }) => {
           className="form-control"
           {...register("pic_day_name", { required: true })}
         >
-          <option value="choose">Choose...</option>
-          <option>...</option>
+          {dayName?.map((day, i) => (
+            <option key={i} value={day}>
+              {day}
+            </option>
+          ))}
         </select>
         <label className="text-lg mr-2 ml-2">Name: </label>
         <input

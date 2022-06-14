@@ -2,7 +2,7 @@ import Popup from "reactjs-popup";
 import ScheduleAddForm from "./ScheduleAddForm";
 
 
-const ScheduleAdd = ({setLoading, postUrl}) => {
+const ScheduleAdd = ({setLoading, postUrl, loading}) => {
   return (
     <Popup
     trigger={<button className="btn btn-outline-danger">Add</button> }
@@ -14,7 +14,7 @@ const ScheduleAdd = ({setLoading, postUrl}) => {
         <button className="close" onClick={close}>
           &times;
         </button>
-        <ScheduleAddForm setLoading={setLoading} postUrl={postUrl} close={close} />
+        <ScheduleAddForm setLoading={setLoading} loading={loading} postUrl={postUrl} close={close} />
       </div>
     )}
   </Popup>

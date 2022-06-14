@@ -6,13 +6,14 @@ import Marketing from "../../../src/admin/dashboard/Marketing/Marketing";
 import Menu from "../../../src/admin/dashboard/Menu/Menu";
 import Order from "../../../src/admin/dashboard/Order/Order";
 import PartnerInfo from "../../../src/admin/dashboard/PartnerInfo/PartnerInfo";
-import Payment from "../../../src/admin/dashboard/Payments/Payment";
-import Payout from "../../../src/admin/dashboard/Payout/Payout";
-import Storefront from "../../../src/admin/dashboard/Storefront/Storefront";
+import Payment from "../../../../src/admin/dashboard/Payments/Payment";
+import Payout from "../../../../src/admin/dashboard/Payout/Payout";
+import Storefront from "../../../../src/admin/dashboard/Storefront/Storefront";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { getData } from "../../../__lib__/helpers/HttpService";
+import { getData } from "../../../../__lib__/helpers/HttpService";
 import { useState } from "react";
+import { adminAuth } from "../../../../__lib__/helpers/requireAuthentication";
 
 const ShopPage = () => {
   const [shop, setShop] = useState({});
@@ -23,6 +24,8 @@ const ShopPage = () => {
   useEffect(() => {
     getData(`admin/shop/${shopId}`).then((res) => setShop(res));
   }, [shopId]);
+
+
 
   return (
     <Layout2 shopId={shopId} >
@@ -74,3 +77,10 @@ const ShopPage = () => {
 };
 
 export default ShopPage;
+
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});
