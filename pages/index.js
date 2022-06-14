@@ -1,11 +1,8 @@
-import React from 'react';
+import React from "react";
+import Layout from "../src/admin/layout/Layout";
 
 const index = () => {
-    return (
-        <div>
-            <h1>manin pages</h1>
-        </div>
-    );
+  return <Layout></Layout>;
 };
 
 export default index;
