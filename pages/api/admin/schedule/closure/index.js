@@ -14,7 +14,7 @@ handler.use(isAdmin).post(async (req, res) => {
     pic_day_name,
     pic_s_time,
     pic_e_time,
-    shop
+    shop,
   } = req.body;
 
   await db.connect();
@@ -25,7 +25,7 @@ handler.use(isAdmin).post(async (req, res) => {
     pic_day_name,
     pic_s_time,
     pic_e_time,
-    shop
+    shop,
   });
   if (await closures.save()) {
     await db.disconnect();
