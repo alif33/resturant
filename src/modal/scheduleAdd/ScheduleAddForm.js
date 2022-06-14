@@ -17,7 +17,7 @@ const ScheduleAddForm = ({ setLoading, close, postUrl }) => {
   const onSubmit = (data) => {
     console.log(data);
     const newData = { ...data, shop: shopId };
-    const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmE0Y2E4NzY5OGQzYmY3NTAwODhjNmQiLCJuYW1lIjoiSmFoaWQiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY1NDk2NjkxOSwiZXhwIjoxNjU3NTU4OTE5fQ.5gV4J4IFpXjxhwXi1WcaIVxS-NFC78k1rzz-Nkp80xI`;
+    const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmE3ZDY4YWJiNjQ5ODExYTFiN2FiYzMiLCJuYW1lIjoiSmFoaWQiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY1NTE2NjYwOSwiZXhwIjoxNjU3NzU4NjA5fQ.9SwaFI4kgXqdpoiuJN-LOr9zXNY6I0UNo7PGT4pEHU8`;
 
     authPost(postUrl, newData, token)
       .then((res) => {
