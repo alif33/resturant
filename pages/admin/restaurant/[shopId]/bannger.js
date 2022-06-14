@@ -1,6 +1,5 @@
-import React from "react";
-import BannerPage from "../../../src/admin/dashboard/Banner/BannerPage";
-import { Layout2 } from "../../../src/admin/layout/Layout";
+import BannerPage from "../../../../src/admin/dashboard/Banner/BannerPage";
+import { Layout2 } from "../../../../src/admin/layout/Layout";
 import { useRouter } from "next/router";
 
 const Bannger = () => {

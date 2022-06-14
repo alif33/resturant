@@ -1,5 +1,5 @@
-import { Layout2 } from "../../../src/admin/layout/Layout";
-import OrderPage from "../../../src/admin/dashboard/Orders/OrderPage";
+import { Layout2 } from "../../../../src/admin/layout/Layout";
+import OrderPage from "../../../../src/admin/dashboard/Orders/OrderPage";
 import { useRouter } from "next/router";
 
 const Orders = () => {

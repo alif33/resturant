@@ -37,12 +37,6 @@ const Closures = () => {
           />
         </div>{" "}
       </div>
-      {/* <ScheduleCart
-        loading={loading}
-        setLoading={setLoading}
-        url={``}
-        deleteUrl={``}
-      /> */}
       <ScheduleCart
         loading={loading}
         setLoading={setLoading}

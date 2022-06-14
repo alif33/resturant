@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import Layout from "../../src/admin/layout/Layout";
-import RestaurentNavbar from "../../src/admin/restaurent/restaurentNavbar/RestaurentNavbar";
-import RestaurentTable from "../../src/admin/restaurent/restaurentTable/RestaurentTable";
+import Layout from "../../../src/admin/layout/Layout";
+import RestaurentNavbar from "../../../src/admin/restaurent/restaurentNavbar/RestaurentNavbar";
+import RestaurentTable from "../../../src/admin/restaurent/restaurentTable/RestaurentTable";
 import { useDispatch, useSelector } from "react-redux";
-import { setLiveShop } from "../../store/shop/actions";
+import { setLiveShop } from "../../../store/shop/actions";
 
 const LiveShopPage = () => {
   const dispatch = useDispatch();

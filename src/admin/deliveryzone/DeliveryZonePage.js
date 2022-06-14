@@ -11,6 +11,7 @@ const DeliveryZonePage = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
@@ -22,6 +23,7 @@ const DeliveryZonePage = () => {
       console.log(res);
       if (res.success) {
         toast.success(res.message);
+        reset();
       }
     });
   };
@@ -45,7 +47,7 @@ const DeliveryZonePage = () => {
                 <input
                   {...register("driving_radius", { required: true })}
                   type="text"
-                  placeholder="0"
+                  placeholder=" Driving Radius"
                 />
                 <button className="btn btn-danger">Draw</button>
               </div>
@@ -61,7 +63,7 @@ const DeliveryZonePage = () => {
                 <input
                   {...register("add_marker", { required: true })}
                   type="text"
-                  placeholder="0"
+                  placeholder="add marker"
                 />
                 {errors.add_marker && <span>This field is required</span>}
               </div>
@@ -108,7 +110,7 @@ const DeliveryZonePage = () => {
                 <input
                   {...register("delivery_fee", { required: true })}
                   type="text"
-                  placeholder="0"
+                  placeholder=" Delivery fee"
                 />
                 {errors.delivery_fee && <span>This field is required</span>}
               </div>
@@ -121,7 +123,7 @@ const DeliveryZonePage = () => {
                 <input
                   {...register("delivery_radius", { required: true })}
                   type="text"
-                  placeholder="0"
+                  placeholder="Delivery radius"
                 />
                 {errors.delivery_radius && <span>This field is required</span>}
               </div>

@@ -15,35 +15,35 @@ const Sidebar = ({shopId}) => {
               </Link>
             </li>
             <li>
-              <Link href={`/restaurant/${shopId}/schedule`}>
+              <Link href={`/admin/restaurant/${shopId}/schedule`}>
                 <a>
                   <i className="iconsminds-digital-drawing"></i> Schedule
                 </a>
               </Link>
             </li>
             <li>
-              <Link href={`/restaurant/${shopId}/delivery-zones`}>
+              <Link href={`/admin/restaurant/${shopId}/delivery-zones`}>
                 <a>
                   <i className="iconsminds-digital-drawing"></i> Delivery Zones
                 </a>
               </Link>
             </li>
             <li>
-              <Link href={`/restaurant/${shopId}/orders`}>
+              <Link href={`/admin/restaurant/${shopId}/orders`}>
                 <a>
                   <i className="iconsminds-air-balloon-1"></i> Orders
                 </a>
               </Link>
             </li>
             <li>
-              <Link href={`/restaurant/${shopId}/coupons`}>
+              <Link href={`/admin/restaurant/${shopId}/coupons`}>
                 <a>
                   <i className="iconsminds-pantone"></i> Coupons
                 </a>
               </Link>
             </li>
             <li>
-              <Link href={`/restaurant/${shopId}/bannger`}>
+              <Link href={`/admin/restaurant/${shopId}/bannger`}>
                 <a>
                   <i className="iconsminds-pantone"></i> Banner
                 </a>
