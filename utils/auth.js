@@ -65,7 +65,7 @@ const isAdmin = async (req, res, next) => {
     const token = authorization.slice(7, authorization.length);
     jwt.verify(token, process.env.JWT_SECRET, (err, decode) => {
       if (err) {
-        res.status(401).send({ message: "Access Denied" });
+        res.status(401).send({ message: "Access Denied with error" });
       } else {
         req.user = decode;
         adminVerify(decode, res, next);
