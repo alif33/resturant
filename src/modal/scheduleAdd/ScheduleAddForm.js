@@ -40,7 +40,6 @@ const ScheduleAddForm = ({ setLoading, close, postUrl }) => {
   return (
     <form className="form-inline py-4" onSubmit={handleSubmit(onSubmit)}>
       <div className="row w-100 justify-content-center ">
-        <label className="text-lg mr-2">Day Select: </label>
         <select
           id="inputState"
           className="form-control"
