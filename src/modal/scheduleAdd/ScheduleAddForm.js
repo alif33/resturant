@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { authPost } from "../../../__lib__/helpers/HttpService";
 
-const ScheduleAddForm = ({ setLoading, close, postUrl }) => {
+const ScheduleAddForm = ({ setLoading, close, postUrl, loading }) => {
   const router = useRouter();
   const { shopId } = router.query;
   const {
@@ -23,7 +23,7 @@ const ScheduleAddForm = ({ setLoading, close, postUrl }) => {
       .then((res) => {
         if (res.success) {
           toast.success(res.message);
-          setLoading(true);
+          setLoading(!loading);
           close();
         }
         if (!res.success) {

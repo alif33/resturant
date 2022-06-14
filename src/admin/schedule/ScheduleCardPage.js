@@ -9,11 +9,20 @@ const ScheduleCardPage = () => {
       <div className="s-card-header">
         <div className="d-flex align-items-center justify-content-between">
           <h3>Regular Hours</h3>
-          <ScheduleAdd setLoading={setLoading} postUrl={`admin/schedule`} />
+          <ScheduleAdd
+            loading={loading}
+            setLoading={setLoading}
+            postUrl={`admin/schedule`}
+          />
         </div>
       </div>
 
-      <ScheduleCart loading={loading} url={`schedules`} />
+      <ScheduleCart
+        loading={loading}
+        setLoading={setLoading}
+        deleteUrl={`admin/schedule`}
+        url={`schedules`}
+      />
 
       <div className="s-card-bottom">
         <div className="d-flex align-items-center justify-content-end">

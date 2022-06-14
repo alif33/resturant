@@ -11,13 +11,13 @@ const SpecialHours = () => {
         <div className="d-flex align-items-center justify-content-between">
           <h3>Special Hours</h3>
           <ScheduleAdd
-            setLoading={setLoading}
+           loading={loading} setLoading={setLoading}
             postUrl={`admin/schedule/special-hour`}
           />
         </div>
       </div>
 
-      <ScheduleCart loading={loading} url={`schedules/special-hours`} />
+      <ScheduleCart loading={loading} setLoading={setLoading} deleteUrl={`admin/schedule/special-hour`} url={`schedules/special-hours`} />
 
       <div className="s-card-bottom">
         <div className="d-flex align-items-center justify-content-end">

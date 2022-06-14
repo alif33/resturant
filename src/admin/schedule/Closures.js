@@ -11,12 +11,18 @@ const Closures = () => {
         <div className="d-flex align-items-center justify-content-between">
           <h3>Closures</h3>
           <ScheduleAdd
+            loading={loading}
             setLoading={setLoading}
             postUrl={`admin/schedule/closure`}
           />
         </div>{" "}
       </div>
-      <ScheduleCart loading={loading} url={`schedules/closures`} />
+      <ScheduleCart
+        loading={loading}
+        setLoading={setLoading}
+        url={`schedules/closures`}
+        deleteUrl={`admin/schedule/closure`}
+      />
 
       <div className="s-card-bottom">
         <div className="d-flex align-items-center justify-content-end">
