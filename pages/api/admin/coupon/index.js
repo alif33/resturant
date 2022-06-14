@@ -6,14 +6,8 @@ import db from "../../../../utils/db";
 const handler = nc();
 
 handler.use(isAdmin).post(async (req, res) => {
-  const {
-    name,
-    description,
-    _type,
-    amount,
-    coupon_condition,
-    _shop,
-  } = req.body;
+  const { name, description, _type, amount, coupon_condition, _shop } =
+    req.body;
   await db.connect();
   const coupon = new Coupon({
     name,
@@ -27,7 +21,7 @@ handler.use(isAdmin).post(async (req, res) => {
     await db.disconnect();
     return res.send({
       success: true,
-      message: "Delivery zone added successfully",
+      message: "Coupon added successfully",
     });
   }
 });
