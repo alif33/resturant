@@ -245,8 +245,8 @@ const Topnav = ({
         </li>
         {shopId && (
           <li className="nav-item">
-            <Link href={`/admin/restaurant/${shopId}/add-product`}>
-              <a className="nav-link">Add Product</a>
+            <Link href={`/admin/restaurant/${shopId}/products`}>
+              <a className="nav-link">Products</a>
             </Link>
           </li>
         )}

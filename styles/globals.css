@@ -441,6 +441,10 @@ span.btn-span {
   }
 }
 
+.popup-content2-content{
+  height: 410px;
+}
+
 .modal {
   font-size: 12px;
   position: absolute !important;
@@ -503,14 +507,88 @@ span.btn-span {
   background: transparent;
   border-radius: 18px;
   border: 0;
+  z-index: 9;
 }
 
 .text-lg {
   font-size: 18px;
 }
 
-.form-group  label {
+.form-group label {
   font-size: 16px !important;
   font-weight: 600;
   text-transform: capitalize;
+}
+
+.dropdown-menu.dropdown {
+  position: absolute;
+  will-change: transform;
+  top: 100%;
+  left: 0%;
+  display: block;
+  border-radius: 0 !important;
+  width: 100% !important;
+}
+
+.btn-lg {
+  border-radius: 0px !important;
+  font-size: 18px;
+}
+
+/* style={{
+  position: "absolute",
+  willChange: "transform",
+  top: "0px",
+  left: "0px",
+  transform: "translate3d(0px, 26px, 0px)",
+  display: "block",
+}} */
+
+.product-table ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.product-table ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #a9a9a9;
+  margin: 0;
+  padding: 4px 4px;
+}
+.product-table ul li:last-child {
+  border-bottom: 1px solid #a9a9a9;
+}
+.product-table ul li:nth-of-type(odd) {
+  background-color: #f3f3f3 !important;
+}
+
+.product-name {
+  display: flex;
+  align-items: center;
+}
+.product-name span {
+  margin: 0 4px;
+}
+.product-name span svg {
+  width: 30px;
+  height: 30px;
+}
+.product-name h5 {
+  margin: 0 11px;
+  background: #6e6e6e;
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 5px;
+}
+.product-name h4 {
+  margin: 0 4px;
+}
+
+.product-action button.btn-outline-dark {
+  border: 1px solid #9f9f9f;
+}
+.product-action button.btn {
+  border-radius: 0;
 }

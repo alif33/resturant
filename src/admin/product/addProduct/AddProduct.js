@@ -2,8 +2,13 @@ import { useForm } from "react-hook-form";
 import Cookies from "universal-cookie";
 import { authPost } from "../../../../__lib__/helpers/HttpService";
 import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { setCategories } from "../../../../store/catrgories/actions";
+import { useRouter } from "next/router";
 
 const AddProduct = ({ shopId }) => {
+  const router = useRouter();
   const cookies = new Cookies();
   const token = cookies.get("_admin");
   const {
@@ -14,11 +19,10 @@ const AddProduct = ({ shopId }) => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-
     var formdata = new FormData();
     formdata.append("product_name", data.product_name);
     formdata.append("description", data.description);
-    formdata.append("category", "62a4ceae698d3bf750088c81");
+    formdata.append("category", data.category);
     formdata.append("image", data.image[0]);
     formdata.append("options", [data.options]);
     formdata.append("shop", shopId);
@@ -35,9 +39,18 @@ const AddProduct = ({ shopId }) => {
       if (res.success) {
         toast.success(res.message);
         reset();
+        router.push(`/admin/restaurant/${shopId}/products`);
       }
     });
   };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setCategories());
+  }, [dispatch]);
+
+  const { categories } = useSelector((state) => state);
 
   return (
     <div className="card mb-4">
@@ -63,8 +76,11 @@ const AddProduct = ({ shopId }) => {
                 {...register("category", { required: true })}
                 className="form-control"
               >
-                <option selected="">Choose...</option>
-                <option>...</option>
+                {categories.categoryList?.map((category, i) => (
+                  <option key={i} value={category._id}>
+                    {category.categoryName}
+                  </option>
+                ))}
               </select>
               {errors.category && (
                 <span className="text-danger">This field is required</span>

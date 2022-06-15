@@ -3,6 +3,6 @@ import { categorySlice } from "./slice";
 const { actions: slice } = categorySlice;
 
 export const setCategories = () => (dispatch) => {
-  getData('/admin/categories')
+  getData('categories')
     .then(response => dispatch(slice.setCategories(response)))
 }
