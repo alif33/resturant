@@ -3,25 +3,30 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { authPost } from "../../../../__lib__/helpers/HttpService";
 import { toast } from "react-hot-toast";
+import Cookies from "universal-cookie";
 
 const CouponsPage = () => {
   const router = useRouter();
   const { shopId } = router.query;
+  const cookies = new Cookies();
+  const token = cookies.get('_admin');
+
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
     const newData = { ...data, _shop: shopId };
-    const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmE3ZDY4YWJiNjQ5ODExYTFiN2FiYzMiLCJuYW1lIjoiSmFoaWQiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY1NTE5NzY3OSwiZXhwIjoxNjU3Nzg5Njc5fQ.FIXtFKYxqyB123Q5QtVZEZrmhKQSVkHnJVdJYoe-KfU`;
 
     authPost(`admin/coupon`, newData, token).then((res) => {
       console.log(res);
       if (res.success) {
         toast.success(res.message);
+        reset();
       }
     });
   };

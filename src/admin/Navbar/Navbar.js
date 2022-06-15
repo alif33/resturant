@@ -2,14 +2,14 @@ import Link from "next/link";
 
 const Navbar = ({ status, shopId }) => {
   const menuList = [
-    { item: "Dashboard", link: `/restaurant/${shopId}` },
-    { item: "Settings", link: `/restaurant/${shopId}/setting` },
-    { item: "Payments", link: `/restaurant/${shopId}/payment` },
-    { item: "SEO Settings", link: `/restaurant/${shopId}/seo-setting` },
-    { item: "Location", link: `/restaurant/${shopId}/location` },
-    { item: "Contact", link: `/restaurant/${shopId}/contact` },
-    { item: "Ordering", link: `/restaurant/${shopId}/ordering` },
-    { item: "Statements", link: `/restaurant/${shopId}/statement` },
+    { item: "Dashboard", link: `${shopId}` },
+    { item: "Settings", link: `${shopId}/setting` },
+    { item: "Payments", link: `${shopId}/payment` },
+    { item: "SEO Settings", link: `${shopId}/seo-setting` },
+    { item: "Location", link: `${shopId}/location` },
+    { item: "Contact", link: `${shopId}/contact` },
+    { item: "Ordering", link: `${shopId}/ordering` },
+    { item: "Statements", link: `${shopId}/statement` },
     ,
   ];
   return (
@@ -29,7 +29,7 @@ const Navbar = ({ status, shopId }) => {
                     key={i}
                     className={status === menuItem.item ? "active" : "not"}
                   >
-                    <Link href={menuItem.link}>
+                    <Link href={`/admin/restaurant/${menuItem.link}`}>
                       <a>{menuItem.item}</a>
                     </Link>
                   </li>

@@ -41,7 +41,7 @@ const RestaurentTable = ({ shops }) => {
                   </div>
                 </td>
                 <td>
-                  <Link href={`/restaurant/${shop._id}`}>
+                  <Link href={`/admin/restaurant/${shop._id}`}>
                     <a className="badge badge-success">
                       <FaEye />
                     </a>

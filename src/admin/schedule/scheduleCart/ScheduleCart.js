@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
+import Cookies from "universal-cookie";
 import { deleteData, getData } from "../../../../__lib__/helpers/HttpService";
 
 const ScheduleCart = ({loading, setLoading, deleteUrl, schedules }) => {
-  
+  const cookies = new Cookies();
+  const token = cookies.get('_admin');
 
   const deleteShedule = (id) => {
-    const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmE3ZDY4YWJiNjQ5ODExYTFiN2FiYzMiLCJuYW1lIjoiSmFoaWQiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY1NTE2NjYwOSwiZXhwIjoxNjU3NzU4NjA5fQ.9SwaFI4kgXqdpoiuJN-LOr9zXNY6I0UNo7PGT4pEHU8`;
 
     deleteData(`${deleteUrl}/${id}`, token).then((res) => {
       if (res.success) {

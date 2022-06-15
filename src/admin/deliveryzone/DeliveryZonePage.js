@@ -7,6 +7,8 @@ import { toast } from "react-hot-toast"
 const DeliveryZonePage = () => {
   const router = useRouter();
   const { shopId } = router.query;
+  const cookies = new Cookies();
+  const token = cookies.get('_admin');
   const {
     register,
     handleSubmit,
@@ -17,7 +19,6 @@ const DeliveryZonePage = () => {
   const onSubmit = (data) => {
     console.log(data);
     const newData = { ...data, shop: shopId };
-    const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmE3ZDY4YWJiNjQ5ODExYTFiN2FiYzMiLCJuYW1lIjoiSmFoaWQiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY1NTE5NzY3OSwiZXhwIjoxNjU3Nzg5Njc5fQ.FIXtFKYxqyB123Q5QtVZEZrmhKQSVkHnJVdJYoe-KfU`;
 
     authPost(`admin/delivery-zone`, newData, token).then((res) => {
       console.log(res);

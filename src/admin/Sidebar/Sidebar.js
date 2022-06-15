@@ -7,7 +7,7 @@ const Sidebar = ({shopId}) => {
         <div className="scroll">
           <ul className="list-unstyled">
             <li className="active">
-              <Link href="/restaurants">
+              <Link href="/admin/restaurants">
                 <a>
                   <i className="iconsminds-shop-4"></i>
                   <span>Menu</span>

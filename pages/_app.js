@@ -9,12 +9,14 @@ import { Provider } from "react-redux";
 import { createWrapper } from 'next-redux-wrapper';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from '../store';
+import { Toaster } from "react-hot-toast";
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
     <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
+    <Toaster position="top-center" reverseOrder={false} />
       <Component {...pageProps} />
     </PersistGate>
   </Provider>

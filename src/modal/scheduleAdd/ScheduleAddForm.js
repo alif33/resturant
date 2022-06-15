@@ -2,9 +2,14 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import Cookies from "universal-cookie";
 import { authPost } from "../../../__lib__/helpers/HttpService";
 
 const ScheduleAddForm = ({ setLoading, close, postUrl, loading }) => {
+  const router = useRouter();
+  const { shopId } = router.query;
+  const cookies = new Cookies();
+  const token = cookies.get('_admin');
 
   const dayName = [
     "Monday",
@@ -16,8 +21,7 @@ const ScheduleAddForm = ({ setLoading, close, postUrl, loading }) => {
     "Sunday",
   ];
   
-  const router = useRouter();
-  const { shopId } = router.query;
+  
   const {
     register,
     handleSubmit,
@@ -28,7 +32,6 @@ const ScheduleAddForm = ({ setLoading, close, postUrl, loading }) => {
   const onSubmit = (data) => {
     console.log(data);
     const newData = { ...data, shop: shopId };
-    const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmE3ZDY4YWJiNjQ5ODExYTFiN2FiYzMiLCJuYW1lIjoiSmFoaWQiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY1NTE2NjYwOSwiZXhwIjoxNjU3NzU4NjA5fQ.9SwaFI4kgXqdpoiuJN-LOr9zXNY6I0UNo7PGT4pEHU8`;
 
     authPost(postUrl, newData, token)
       .then((res) => {

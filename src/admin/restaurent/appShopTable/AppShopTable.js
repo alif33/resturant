@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import Cookies from "universal-cookie";
 import { authPost, postData } from "../../../../__lib__/helpers/HttpService";
 
 const AppShopTable = () => {
   const [loading, setLoading] = useState(false);
-  const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjhmMzNmYWZlMGI5YTBhN2I5NzgzZjQiLCJuYW1lIjoiSmFoaWQiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY1NDkyNDMwOSwiZXhwIjoxNjU3NTE2MzA5fQ.pG_hFpwwRUzSjk0wvUHhwMWRPxyLUZNAqhUYSr8loXo`;
+  const cookies = new Cookies();
+  const token = cookies.get('_admin');
   const {
     register,
     handleSubmit,
