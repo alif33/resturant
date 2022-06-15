@@ -60,6 +60,7 @@ const ProductSchema = new mongoose.Schema(
       options: {
         type: Array
       },
+      
       selection: {
         name: {
           type: String,

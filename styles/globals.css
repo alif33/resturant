@@ -505,6 +505,12 @@ span.btn-span {
   border: 0;
 }
 
-.text-lg{
+.text-lg {
   font-size: 18px;
+}
+
+.form-group  label {
+  font-size: 16px !important;
+  font-weight: 600;
+  text-transform: capitalize;
 }

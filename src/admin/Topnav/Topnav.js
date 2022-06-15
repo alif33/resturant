@@ -10,6 +10,7 @@ import {
 } from "reactstrap";
 import TopnavEasyAccess from "./TopnavEasyAccess";
 import TopnavNotifications from "./TopnavNotifications";
+import { useRouter } from "next/router";
 
 const Topnav = ({
   intl,
@@ -174,6 +175,9 @@ const Topnav = ({
 
   //   const { messages } = intl;
 
+  const router = useRouter();
+  const { shopId } = router?.query;
+
   return (
     <nav className="navbar fixed-top">
       <div className="top-navbar-left">
@@ -220,7 +224,7 @@ const Topnav = ({
           </Link>
         </li>
         <li className="nav-item">
-          <Link href="/restaurants">
+          <Link href="/admin/restaurants">
             <a className="nav-link">Restaurants</a>
           </Link>
         </li>
@@ -239,6 +243,13 @@ const Topnav = ({
             <a className="nav-link">Report</a>
           </Link>
         </li>
+        {shopId && (
+          <li className="nav-item">
+            <Link href={`/admin/restaurant/${shopId}/add-product`}>
+              <a className="nav-link">Add Product</a>
+            </Link>
+          </li>
+        )}
       </ul>
 
       <div className="top-navbar-right">
