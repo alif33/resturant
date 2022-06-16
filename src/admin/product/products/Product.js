@@ -6,7 +6,7 @@ import { BsPencilSquare } from "react-icons/bs";
 import { ImCopy } from "react-icons/im";
 import { MdDelete } from "react-icons/md";
 
-const ProductPage = () => {
+const ProductPage = ({ products }) => {
   return (
     <div className="card">
       <div className="card-body">
@@ -22,42 +22,28 @@ const ProductPage = () => {
 
         <div className="product-table">
           <ul>
-            <li>
-              <div className="product-name">
-                <span>
-                  <MenuIcon2 />
-                </span>
-                <h5>MenuIcon2</h5>
-                <h4>MenuIcon2</h4>
-              </div>
-              <div className="product-action">
-                <button className="btn btn-outline-dark">
-                  <BsPencilSquare /> Edit
-                </button>
-                <button className="btn btn-info">
-                  <ImCopy /> Copy
-                </button>
-                <button className="btn btn-danger"><MdDelete /> Delete</button>
-              </div>
-            </li>
-            <li>
-              <div className="product-name">
-                <span>
-                  <MenuIcon2 />
-                </span>
-                <h5>MenuIcon2</h5>
-                <h4>MenuIcon2</h4>
-              </div>
-              <div className="product-action">
-                <button className="btn btn-outline-dark">
-                  <BsPencilSquare /> Edit
-                </button>
-                <button className="btn btn-info">
-                  <ImCopy /> Copy
-                </button>
-                <button className="btn btn-danger"><MdDelete /> Delete</button>
-              </div>
-            </li>
+            {products?.map((product) => (
+              <li key={product._id}>
+                <div className="product-name">
+                  <span>
+                    <MenuIcon2 />
+                  </span>
+                  <h5>{product._id}</h5>
+                  <h4>{product.product_name}</h4>
+                </div>
+                <div className="product-action">
+                  <button className="btn btn-outline-dark">
+                    <BsPencilSquare /> Edit
+                  </button>
+                  <button className="btn btn-info">
+                    <ImCopy /> Copy
+                  </button>
+                  <button className="btn btn-danger">
+                    <MdDelete /> Delete
+                  </button>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

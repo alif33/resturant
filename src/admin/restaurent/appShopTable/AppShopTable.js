@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Cookies from "universal-cookie";
-import { authPost, postData } from "../../../../__lib__/helpers/HttpService";
+import { addShopPost } from "../../../../__lib__/helpers/HttpService";
 
 const AppShopTable = () => {
   const [loading, setLoading] = useState(false);
   const cookies = new Cookies();
-  const token = cookies.get('_admin');
+  const token = cookies.get("_admin");
   const {
     register,
     handleSubmit,
@@ -14,8 +14,8 @@ const AppShopTable = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
-    authPost(`admin/shop`, data, token).then((res) => console.log(res));
+    const res = addShopPost(data, token);
+    console.log(res);
   };
   return (
     <div className="card">
@@ -71,11 +71,11 @@ const AppShopTable = () => {
           </div>
           <div className="row mt-3">
             <div className="form-group col-md-6 mt-3">
-              <label htmlFor="">Update Logo: </label>
+              <label htmlFor="">Shop Logo: </label>
               <input
                 className="form-control"
                 {...register("shop_logo")}
-                type="text"
+                type="file"
               />
               {errors.shop_logo && <span>This field is required</span>}
             </div>
@@ -84,7 +84,7 @@ const AppShopTable = () => {
               <input
                 className="form-control"
                 {...register("web_header", { required: true })}
-                type="text"
+                type="file"
                 placeholder="Agnelo's Stuffed Pizza"
               />
               {errors.web_header && <span>This field is required</span>}
@@ -96,7 +96,7 @@ const AppShopTable = () => {
               <input
                 className="form-control"
                 {...register("mobile_header", { required: true })}
-                type="text"
+                type="file"
                 placeholder="Agnelo's Stuffed Pizza"
               />
               {errors.mobile_header && <span>This field is required</span>}

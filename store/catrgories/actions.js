@@ -4,5 +4,5 @@ const { actions: slice } = categorySlice;
 
 export const setCategories = () => (dispatch) => {
   getData('categories')
-    .then(response => dispatch(slice.setCategories(response)))
+    .then(response => dispatch(slice.setCategories(response)));
 }

@@ -4,9 +4,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { adminLogin } from "../../../../store/admins/actions";
-import { setSessionStorage } from "../../../../utils/setSession";
 import { postData } from "../../../../__lib__/helpers/HttpService";
 import Cookies from "universal-cookie";
+import toast from "react-hot-toast";
 
 const LoginFrom = () => {
   const [disable, setDisable] = useState(false);
@@ -28,7 +28,7 @@ const LoginFrom = () => {
       if (res.success) {
         dispatch(adminLogin(res.admin));
         cookies.set("_admin", res.token, { path: "/" });
-        // toast.success(res.message);
+        toast.success(res.message);
       }
     });
   };

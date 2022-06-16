@@ -16,7 +16,7 @@ const Layout = ({children, history }) => {
 };
 
 export const Layout2 = ({children, history, shopId}) => {
-  console.log(shopId);
+  
   return (
     <div id="app-container">
       <Topnav history={history} />
