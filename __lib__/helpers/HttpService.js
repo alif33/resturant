@@ -103,7 +103,7 @@ export const getFormData = async (key, data) => {
   return formData;
 };
 
-export const addShopPost = (data, token) => {
+export const addShopPost = (data, token, reset) => {
   var formdata = new FormData();
   formdata.append("shop_status", data.shop_status);
   formdata.append("shop_pay_type", data.shop_pay_type);
@@ -151,5 +151,11 @@ export const addShopPost = (data, token) => {
   formdata.append("no_scheduled_order", data.no_scheduled_order);
   formdata.append("stop_order_today", data.stop_order_today);
 
-  authPost(`admin/shop`, formdata, token).then((res) => res);
+  authPost(`admin/shop`, formdata, token).then((res) => {
+    if (res.success) {
+      toast.success(res.message);
+      reset();
+    }
+    return res;
+  });
 };

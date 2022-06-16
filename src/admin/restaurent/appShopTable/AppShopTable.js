@@ -11,11 +11,11 @@ const AppShopTable = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    const res = addShopPost(data, token);
-    console.log(res);
+    addShopPost(data, token, reset);
   };
   return (
     <div className="card">
@@ -30,6 +30,7 @@ const AppShopTable = () => {
               >
                 <option value="Live">Live</option>
                 <option value="Temporarily">Temporarily</option>
+                <option value="Temporarily Paused">Temporarily Paused</option>
                 <option value="M2M">M2M</option>
                 <option value="Disabled">Disabled</option>
               </select>
@@ -64,7 +65,6 @@ const AppShopTable = () => {
                 className="form-control"
                 {...register("res_name", { required: true })}
                 type="text"
-                placeholder="Agnelo's Stuffed Pizza"
               />
               {errors.res_name && <span>This field is required</span>}
             </div>
@@ -85,7 +85,6 @@ const AppShopTable = () => {
                 className="form-control"
                 {...register("web_header", { required: true })}
                 type="file"
-                placeholder="Agnelo's Stuffed Pizza"
               />
               {errors.web_header && <span>This field is required</span>}
             </div>
@@ -97,7 +96,6 @@ const AppShopTable = () => {
                 className="form-control"
                 {...register("mobile_header", { required: true })}
                 type="file"
-                placeholder="Agnelo's Stuffed Pizza"
               />
               {errors.mobile_header && <span>This field is required</span>}
             </div>
@@ -107,7 +105,6 @@ const AppShopTable = () => {
                 className="form-control"
                 {...register("account_manager", { required: true })}
                 type="text"
-                placeholder="Agnelo's Stuffed Pizza"
               />
               {errors.account_manager && <span>This field is required</span>}
             </div>
@@ -120,7 +117,6 @@ const AppShopTable = () => {
                 className="form-control"
                 {...register("sales_rep", { required: true })}
                 type="text"
-                placeholder="Agnelo's Stuffed Pizza"
               />
               {errors.sales_rep && <span>This field is required</span>}
             </div>
@@ -130,7 +126,6 @@ const AppShopTable = () => {
                 className="form-control"
                 {...register("menu_rep", { required: true })}
                 type="text"
-                placeholder="Agnelo's Stuffed Pizza"
               />
               {errors.menu_rep && <span>This field is required</span>}
             </div>
@@ -142,7 +137,6 @@ const AppShopTable = () => {
                 className="form-control"
                 {...register("email_statement", { required: true })}
                 type="text"
-                placeholder="Agnelo's Stuffed Pizza"
               />
               {errors.email_statement && <span>This field is required</span>}
             </div>
@@ -178,8 +172,6 @@ const AppShopTable = () => {
                 className="form-control"
                 {...register("trial_end", { required: true })}
                 type="text"
-                placeholder="40"
-                aria-label="Disabled input example"
               />
               {errors.trial_end && <span>This field is required</span>}
             </div>
@@ -192,8 +184,6 @@ const AppShopTable = () => {
                 className="form-control"
                 {...register("processing_fee", { required: true })}
                 type="text"
-                placeholder="40"
-                aria-label="Disabled input example"
               />
               {errors.processing_fee && <span>This field is required</span>}
             </div>
@@ -244,7 +234,7 @@ const AppShopTable = () => {
             <div className="form-group col-md-6 mt-3">
               <label htmlFor="">Gmb Status </label>
               <select className="form-control" {...register("gmb_status")}>
-                <option value="Varified">Varified</option>
+                <option value="Verified">Verified</option>
                 <option value="Not Verified">Not Verified</option>
                 <option value="Suspended">Suspended</option>
               </select>
