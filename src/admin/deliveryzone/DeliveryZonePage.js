@@ -18,11 +18,11 @@ const DeliveryZonePage = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     const newData = { ...data, shop: shopId };
 
     authPost(`admin/delivery-zone`, newData, token).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.success) {
         toast.success(res.message);
         reset();

@@ -3,11 +3,31 @@ import Cookies from "universal-cookie";
 import { authPost } from "../../../../__lib__/helpers/HttpService";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setCategories } from "../../../../store/catrgories/actions";
 import { useRouter } from "next/router";
+import { MultiSelect } from "react-multi-select-component";
+
+const options = [
+  { label: "Featured", value: "Featured" },
+  { label: "Alcohol", value: "Alcohol" },
+  { label: "Discount", value: "Discount" },
+  { label: "Ineligible", value: "Ineligible" },
+  { label: "In-store Only", value: "In-store Only" },
+  { label: "Loyalty Reward", value: "Loyalty Reward" },
+  { label: "Photo Hidden", value: "Photo Hidden" },
+];
 
 const AddProduct = ({ shopId }) => {
+  const [selected, setSelected] = useState([]);
+  const [ProSelected, setProSelected] = useState([]);
+
+  const seledtedOptions = selected.map((item) => item.value);
+  const proSeledtedOptions = ProSelected.map((item) => item.value);
+
+  console.log(seledtedOptions);
+  console.log(proSeledtedOptions);
+
   const router = useRouter();
   const cookies = new Cookies();
   const token = cookies.get("_admin");
@@ -24,13 +44,13 @@ const AddProduct = ({ shopId }) => {
     formdata.append("description", data.description);
     formdata.append("category", data.category);
     formdata.append("image", data.image[0]);
-    formdata.append("options", [data.options]);
+    formdata.append("options", seledtedOptions);
     formdata.append("shop", shopId);
     formdata.append("cata_title", data.cata_title);
     formdata.append("cata_price", data.cata_price);
     formdata.append("property_name", data.property_name);
     formdata.append("limit", data.limit);
-    formdata.append("property_option", [data.property_option]);
+    formdata.append("property_option", proSeledtedOptions);
     formdata.append("sele_name", data.name);
     formdata.append("large_price", data.large_price);
     formdata.append("xlarge_price", data.xlarge_price);
@@ -55,7 +75,7 @@ const AddProduct = ({ shopId }) => {
   return (
     <div className="card mb-4">
       <div className="card-body">
-        <h5 className="mb-4">Form Grid</h5>
+        <h5 className="mb-4">Add a new Product</h5>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-row">
@@ -113,10 +133,11 @@ const AddProduct = ({ shopId }) => {
           </div>
           <div className="form-group mt-3">
             <label htmlFor="">options</label>
-            <input
-              type="text"
-              className="form-control"
-              {...register("options")}
+            <MultiSelect
+              options={options}
+              value={selected}
+              onChange={setSelected}
+              labelledBy="Select"
             />
           </div>
 
@@ -174,10 +195,11 @@ const AddProduct = ({ shopId }) => {
             </div>
             <div className="form-group col-md-4">
               <label htmlFor="">options</label>
-              <input
-                {...register("options")}
-                type="text"
-                className="form-control"
+              <MultiSelect
+                options={options}
+                value={ProSelected}
+                onChange={setProSelected}
+                labelledBy="Checkbox"
               />
             </div>
           </div>

@@ -1,5 +1,4 @@
 const InfoCard = ({ shop }) => {
-  console.log(shop);
   return (
     <div className="row">
       <div className="col-12">

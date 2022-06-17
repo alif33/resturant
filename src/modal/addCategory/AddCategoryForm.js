@@ -13,10 +13,10 @@ const AddCategoryForm = ({ dropdown, setDropdown, close }) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
 
     postReq(`/admin/category`, data).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.success) {
         toast.success(res.message);
         reset();
@@ -26,7 +26,7 @@ const AddCategoryForm = ({ dropdown, setDropdown, close }) => {
     });
   };
   return (
-    <div className="card w-100">
+    <div className=" w-100">
       <div className="card-body">
         <h5 className="mb-4">Add New Category</h5>
 

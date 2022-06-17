@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Layout2 } from "../../../../src/admin/layout/Layout";
-import ProductPage from "../../../../src/admin/product/products/Product";
-import { getData } from "../../../../__lib__/helpers/HttpService";
+import { Layout2 } from "../../../../../src/admin/layout/Layout";
+import ProductPage from "../../../../../src/admin/product/products/Product";
+import { getData } from "../../../../../__lib__/helpers/HttpService";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -20,11 +20,7 @@ const ProductsPage = () => {
     <Layout2 shopId={shopId}>
       <div className="row">
         <div className="col-12">
-          {products.length === 0 ? (
-            <h3>Loading...</h3>
-          ) : (
-            <ProductPage products={products} />
-          )}
+          <ProductPage shopId={shopId} products={products} />
         </div>
       </div>
     </Layout2>

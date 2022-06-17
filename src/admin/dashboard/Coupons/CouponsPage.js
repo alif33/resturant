@@ -19,11 +19,11 @@ const CouponsPage = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     const newData = { ...data, _shop: shopId };
 
     authPost(`admin/coupon`, newData, token).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.success) {
         toast.success(res.message);
         reset();

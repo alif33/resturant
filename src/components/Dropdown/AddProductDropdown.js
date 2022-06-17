@@ -1,12 +1,22 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { setCategories } from "../../../store/catrgories/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const AddProductDropdown = () => {
   const [dropdown, setDropdown] = useState(false);
 
   const router = useRouter();
   const { shopId } = router.query;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setCategories());
+  }, [dispatch, dropdown]);
+
+  const { categories } = useSelector((state) => state);
 
   return (
     <div className="btn-group show">
@@ -26,12 +36,11 @@ const AddProductDropdown = () => {
           className="dropdown-menu dropdown-menu-right show"
           // style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-73px, 43px, 0px);"
         >
-          <a className="dropdown-item" href="#">
-            Action
-          </a>
-          <a className="dropdown-item" href="#">
-            Another action
-          </a>
+          {categories?.categoryList?.map((item) => (
+            <Link href={item._id} key={item._id}>
+              <a className="dropdown-item">{item.categoryName}</a>
+            </Link>
+          ))}
         </div>
       )}
     </div>

@@ -30,7 +30,6 @@ const ScheduleAddForm = ({ setLoading, close, postUrl, loading }) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     const newData = { ...data, shop: shopId };
 
     authPost(postUrl, newData, token)
@@ -73,10 +72,10 @@ const ScheduleAddForm = ({ setLoading, close, postUrl, loading }) => {
         />
         <div className="col-12 text-center">
           {errors.pic_day_name && (
-            <span className="ml-3">This field day required</span>
+            <span className="ml-3 text-danger">This field day required</span>
           )}
           {errors.de_day_name && (
-            <span className="ml-3">This field naem required</span>
+            <span className="ml-3 text-danger">This field naem required</span>
           )}
         </div>
       </div>
@@ -100,10 +99,10 @@ const ScheduleAddForm = ({ setLoading, close, postUrl, loading }) => {
         </div>
         <div className="col-12 text-center">
           {errors.de_s_time && (
-            <span className="ml-3">This field start required</span>
+            <span className="ml-3 text-danger">This field start required</span>
           )}
           {errors.de_e_time && (
-            <span className="ml-3">This field end required</span>
+            <span className="ml-3 text-danger">This field end required</span>
           )}
         </div>
       </div>
@@ -126,10 +125,10 @@ const ScheduleAddForm = ({ setLoading, close, postUrl, loading }) => {
         </div>
         <div className="col-12 text-center">
           {errors.de_s_time && (
-            <span className="ml-3">This field start required</span>
+            <span className="ml-3 text-danger">This field start required</span>
           )}
           {errors.de_e_time && (
-            <span className="ml-3">This field end required</span>
+            <span className="ml-3 text-danger">This field end required</span>
           )}
         </div>
       </div>

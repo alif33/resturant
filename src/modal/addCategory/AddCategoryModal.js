@@ -10,7 +10,7 @@ const AddCategoryModal = ({dropdown, setDropdown}) => {
       className="popup-content2"
     >
       {(close) => (
-        <div className="modal">
+        <div className="editModal">
           <button className="close" onClick={close}>
             &times;
           </button>
