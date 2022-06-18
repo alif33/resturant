@@ -43,9 +43,8 @@ handler
       { name: "mobile_header", maxCount: 1 },
     ])
   )
-  .patch(async (req, res) => {
-
-    console.log(req.body.shop_name)
+  .put(async (req, res) => {
+    // console.log(req.body)
     const {
       shop_status,
       shop_pay_type,
@@ -86,6 +85,9 @@ handler
       minimum_delivery_order,
       delivery_estimate,
       online_discount,
+      pause_delivery_today,
+      no_scheduled_order,
+      stop_order_today,
     } = req.body;
     const address = {
       shop_address: shop_address,
@@ -137,43 +139,50 @@ handler
         { _id: req.query.shopId },
         {
           $set: {
-            shop_status,
-            shop_pay_type,
-            shop_name,
+            shop_status: shop_status,
+            shop_pay_type: shop_pay_type,
+            shop_name:  shop_name,
             shop_logo: shop_logo?.url,
             web_header: web_header?.url,
             mobile_header: mobile_header?.url,
-            account_manager,
-            sales_rep,
-            menu_rep,
-            email_statement,
-            payment_frequency,
-            flat_fee,
-            trial_end,
-            processing_fee,
-            contact_method,
-            gmb_domain,
-            own_website,
-            gmb_status,
-            gmb_role,
-            meal_now_domain,
-            gmb_email,
-            gmb_password,
-            gmb_owner,
-            owners_email,
-            owners_name,
-            owners_phone,
-            se_contact_name,
-            se_contact_phone,
-            se_contact_email,
-            res_phone,
-            minimum_pickUp_order,
-            pickUp_estimate,
-            minimum_delivery_order,
-            delivery_estimate,
-            online_discount,
+            account_manager: account_manager,
+            sales_rep: sales_rep,
+            menu_rep: menu_rep,
+            email_statement: email_statement,
+            payment_frequency: payment_frequency,
+            flat_fee: flat_fee,
+            trial_end: trial_end,
+            processing_fee: processing_fee,
+            contact_method: contact_method,
+            gmb_domain: gmb_domain,
+            own_website: own_website,
+            gmb_status: gmb_status,
+            gmb_role: gmb_role,
+            meal_now_domain: meal_now_domain,
+            gmb_email: gmb_email,
+            gmb_password: gmb_password,
+            gmb_owner : gmb_owner,
+            owners_email: owners_email,
+            owners_name: owners_name,
+            owners_phone: owners_phone,
+            se_contact_name: se_contact_name,
+            se_contact_phone: se_contact_phone,
+            se_contact_email: se_contact_email,
+            res_phone: res_phone,
+            minimum_pickUp_order: minimum_pickUp_order,
+            pickUp_estimate: pickUp_estimate,
+            minimum_delivery_order: minimum_delivery_order,
+            delivery_estimate: delivery_estimate,
+            online_discount: online_discount,
             address: address,
-          },
+            pause_delivery_today: pause_delivery_today,
+            no_scheduled_order: no_scheduled_order,
+            stop_order_today: stop_order_today
+
+          }
+        },
+        {
+          new: true
         }
       );
 

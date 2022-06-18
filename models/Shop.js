@@ -21,7 +21,7 @@ const shopSchema = new mongoose.Schema(
 
     shop_logo: {
       type: String,
-      // required: true,
+      required: true,
       default: "",
     },
     web_header: {
