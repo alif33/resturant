@@ -40,7 +40,7 @@ const LocationForm = () => {
               <div className="form-group-two">
                 <label htmlFor="">*Address </label>
                 <input
-                  defaultValue={shop?.address.shop_address}
+                  defaultValue={shop?.address?.shop_address}
                   {...register("shop_address", { required: true })}
                   type="text"
                 />
@@ -52,7 +52,7 @@ const LocationForm = () => {
                 <label htmlFor="">*City </label>
                 <input
                   type="text"
-                  defaultValue={shop?.address.city}
+                  defaultValue={shop?.address?.city}
                   {...register("city", { required: true })}
                 />
               </div>
@@ -63,7 +63,7 @@ const LocationForm = () => {
                 <label htmlFor="">*State </label>
                 <input
                   type="text"
-                  defaultValue={shop?.address.state}
+                  defaultValue={shop?.address?.state}
                   {...register("state", { required: true })}
                 />
               </div>
@@ -74,7 +74,7 @@ const LocationForm = () => {
                 <label htmlFor="">*Zipcode </label>
                 <input
                   type="text"
-                  defaultValue={shop?.address.zip_code}
+                  defaultValue={shop?.address?.zip_code}
                   {...register("zip_code", { required: true })}
                 />
               </div>
@@ -85,7 +85,8 @@ const LocationForm = () => {
                 <label htmlFor="">Time Zone </label>
                 <input
                   type="text"
-                  defaultValue={shop?.address.time_zone}
+                  defaultValue={shop?.address?.time_zone}
+                  {...register("time_zone",)}
                   aria-label="Disabled input example"
                   disabled
                 />
@@ -99,7 +100,8 @@ const LocationForm = () => {
                 <label htmlFor="">Longitude </label>
                 <input
                   type="text"
-                  defaultValue={shop?.address.lat}
+                  defaultValue={shop?.address?.lat}
+                  {...register("lat",)}
                   aria-label="Disabled input example"
                   disabled
                 />
@@ -108,7 +110,8 @@ const LocationForm = () => {
                 <label htmlFor="">Latitude </label>
                 <input
                   type="text"
-                  defaultValue={shop?.address.long}
+                  defaultValue={shop?.address?.long}
+                  {...register("long",)}
                   aria-label="Disabled input example"
                   disabled
                 />

@@ -5,7 +5,7 @@ const shopSchema = new mongoose.Schema(
     shop_status: {
       type: String,
       required: true,
-      enum: ["Live", "Temporarily", "Temporarily Paused", "M2M", "Disabled"]
+      enum: ["Live", "Temporarily Paused", "M2M", "Disabled"],
     },
     shop_pay_type: {
       type: String,
@@ -16,7 +16,7 @@ const shopSchema = new mongoose.Schema(
 
     shop_name: {
       type: String,
-      required: true, 
+      required: true,
     },
 
     shop_logo: {
@@ -33,20 +33,20 @@ const shopSchema = new mongoose.Schema(
       required: true,
     },
     account_manager: {
-        type: String,
-        required: false,
+      type: String,
+      required: false,
     },
     sales_rep: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     menu_rep: {
-        type: String, 
-        required: true,
+      type: String,
+      required: true,
     },
     email_statement: {
-        type: String, 
-        required: true,
+      type: String,
+      required: true,
     },
     payment_frequency: {
       type: String,
@@ -58,12 +58,12 @@ const shopSchema = new mongoose.Schema(
       reuired: true,
     },
     trial_end: {
-        type: String, 
-        required: true,
+      type: String,
+      required: true,
     },
     processing_fee: {
-        type: String, 
-        required: true,
+      type: String,
+      required: true,
     },
     contact_method: {
       type: String,
@@ -99,54 +99,47 @@ const shopSchema = new mongoose.Schema(
     },
     gmb_owner: {
       type: String,
-      enum: [ "Competitor", "Meal Now"],
+      enum: ["Competitor", "Meal Now"],
       required: true,
     },
-    
+
     meal_now_domain: {
       type: String,
       required: true,
     },
 
-
     address: {
       shop_address: {
         type: String,
-        required: true
-       
+        required: true,
       },
 
       city: {
         type: String,
         required: true,
-        
       },
       state: {
         type: String,
         required: true,
-     
       },
       zip_code: {
         type: String,
         required: true,
-     
       },
       lat: {
         type: String,
         required: false,
-        default: ""
+        default: "",
       },
       long: {
         type: String,
         required: false,
-        default: ""
-        
+        default: "",
       },
       time_zone: {
         type: String,
         required: false,
-        default: ""
-      
+        default: "",
       },
     },
     owners_email: {
@@ -168,7 +161,7 @@ const shopSchema = new mongoose.Schema(
     se_contact_phone: {
       type: String,
       required: true,
-      default: ""
+      default: "",
     },
     se_contact_email: {
       type: String,
@@ -200,26 +193,25 @@ const shopSchema = new mongoose.Schema(
       required: true,
     },
     pause_delivery_today: {
-        type: String,
-        required: true,
-        enum: ["active", "inactive"],
-        default: "active",
+      type: String,
+      required: true,
+      enum: ["active", "inactive"],
+      default: "active",
     },
     no_scheduled_order: {
-        type: String,
-        required: true,
-        enum: ["active", "inactive"],
-        default: "active",
+      type: String,
+      required: true,
+      enum: ["active", "inactive"],
+      default: "active",
     },
     stop_order_today: {
       type: String,
       required: true,
       enum: ["active", "inactive"],
       default: "active",
-
-    }
+    },
   },
-  
+
   {
     timestamps: true,
   }

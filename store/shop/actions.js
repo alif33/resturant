@@ -29,3 +29,6 @@ export const setTemporaryPausedShops = () => (dispatch) => {
     dispatch(slice.setTemporaryPausedShops(res));
   });
 };
+export const setSearchShops = (data) => (dispatch) => {
+  dispatch(slice.setSearchShops(data));
+};

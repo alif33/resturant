@@ -6,6 +6,8 @@ import SearchShop from "../searchShop/SearchShop";
 
 const RestaurentNavbar = ({ status }) => {
   const [desable, setDesable] = useState(false);
+  
+
 
   const newData = [
     { item: "All shop's ", link: "", id: "allshop" },
@@ -19,6 +21,7 @@ const RestaurentNavbar = ({ status }) => {
       id: "pausedshops",
     },
   ];
+
 
 
   return (

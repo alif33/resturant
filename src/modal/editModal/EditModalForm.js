@@ -5,7 +5,11 @@ import { MultiSelect } from "react-multi-select-component";
 import Cookies from "universal-cookie";
 import { setCategories } from "../../../store/catrgories/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { getData } from "../../../__lib__/helpers/HttpService";
+import {
+  getData,
+  getUserData,
+  updateData,
+} from "../../../__lib__/helpers/HttpService";
 
 const options = [
   { label: "Featured", value: "Featured" },
@@ -18,12 +22,17 @@ const options = [
 ];
 
 const EditModalForm = ({ productId }) => {
-  const [selected, setSelected] = useState([ { label: "Featured", value: "Featured" },]);
+  const [selected, setSelected] = useState([
+    { label: "Featured", value: "Featured" },
+  ]);
   const [ProSelected, setProSelected] = useState([]);
   const [product, setProduct] = useState([]);
+  const [image, setImage] = useState();
 
   const seledtedOptions = selected.map((item) => item.value);
   const proSeledtedOptions = ProSelected.map((item) => item.value);
+
+  const dispatch = useDispatch();
   const router = useRouter();
   const cookies = new Cookies();
   const token = cookies.get("_admin");
@@ -34,9 +43,6 @@ const EditModalForm = ({ productId }) => {
     reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {};
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setCategories());
@@ -45,12 +51,35 @@ const EditModalForm = ({ productId }) => {
   const { categories } = useSelector((state) => state);
 
   useEffect(() => {
-    getData(`products`).then((res) =>
-      setProduct(res.filter((pro) => pro._id === productId))
-    );
-  }, [productId]);
+    productId &&
+      getUserData(`admin/product/${productId}`, token).then((res) =>
+        setProduct(res)
+      );
+  }, [productId, token]);
 
-  console.log(product);
+  const onSubmit = (data) => {
+    var formdata = new FormData();
+    formdata.append("product_name", data.product_name);
+    formdata.append("description", data.description);
+    formdata.append("category", data.category);
+    formdata.append("image", data.image[0]);
+    formdata.append("options", seledtedOptions);
+    formdata.append("shop", shopId);
+    formdata.append("cata_title", data.cata_title);
+    formdata.append("cata_price", data.cata_price);
+    formdata.append("property_name", data.property_name);
+    formdata.append("limit", data.limit);
+    formdata.append("property_option", proSeledtedOptions);
+    formdata.append("sele_name", data.name);
+    formdata.append("large_price", data.large_price);
+    formdata.append("xlarge_price", data.xlarge_price);
+
+    updateData(`admin/product/${productId}`, formdata, token).then((res) =>
+      console.log(res)
+    );
+  };
+
+  // console.log(image);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -60,7 +89,7 @@ const EditModalForm = ({ productId }) => {
           <input
             type="text"
             className="form-control"
-            defaultValue={product[0]?.product_name}
+            defaultValue={product?.product_name}
             {...register("product_name", { required: true })}
           />
           {errors.product_name && (
@@ -72,7 +101,7 @@ const EditModalForm = ({ productId }) => {
           <select
             {...register("category", { required: true })}
             className="form-control"
-            defaultValue={`new value`}
+            value={product?.category}
           >
             {categories.categoryList?.map((category, i) => (
               <option key={i} value={category._id}>
@@ -91,7 +120,10 @@ const EditModalForm = ({ productId }) => {
         <textarea
           type="text"
           className="form-control"
+          defaultValue={product?.description}
           {...register("description", { required: true })}
+          // cols="30"
+          rows="8"
         />
         {errors.description && (
           <span className="text-danger">This field is required</span>
@@ -99,15 +131,25 @@ const EditModalForm = ({ productId }) => {
       </div>
 
       <div className="form-group mt-3">
-        <label htmlFor="">Image</label>
+        {image ? (
+          <img src={image} style={{ height: "100px", width: "100px" }} alt="" />
+        ) : (
+          <img
+            src={product?.image}
+            style={{ height: "100px", width: "100px" }}
+            alt=""
+          />
+        )}
+
         <input
           type="file"
           className="ml-4"
-          {...register("image", { required: true })}
+          {...register("image")}
+          onChange={(e) => {
+            console.log("okay");
+            setImage(URL.createObjectURL(e.target.files[0]));
+          }}
         />
-        {errors.image && (
-          <span className="text-danger">This field is required</span>
-        )}
       </div>
       <div className="form-group mt-3">
         <label htmlFor="">options</label>
@@ -126,6 +168,7 @@ const EditModalForm = ({ productId }) => {
         <div className="form-group col-md-6">
           <label htmlFor="">Cata Title</label>
           <input
+            defaultValue={product?.catalog?.product_type.cata_title}
             {...register("cata_title", { required: true })}
             type="text"
             className="form-control"
@@ -138,6 +181,7 @@ const EditModalForm = ({ productId }) => {
         <div className="form-group col-md-6">
           <label htmlFor="">Cata Price</label>
           <input
+            defaultValue={product?.catalog?.product_type.cata_price}
             {...register("cata_price", { required: true })}
             type="number"
             className="form-control"
@@ -152,6 +196,7 @@ const EditModalForm = ({ productId }) => {
         <div className="form-group col-md-5">
           <label htmlFor="">property_name</label>
           <input
+            defaultValue={product?.property?.property_name}
             {...register("property_name", { required: true })}
             type="text"
             className="form-control"
@@ -163,6 +208,7 @@ const EditModalForm = ({ productId }) => {
         <div className="form-group col-md-3">
           <label htmlFor="">limit</label>
           <input
+            defaultValue={product?.property?.limit}
             {...register("limit", { required: true })}
             type="number"
             className="form-control"
@@ -185,6 +231,7 @@ const EditModalForm = ({ productId }) => {
         <div className="form-group col-md-4">
           <label htmlFor="">name</label>
           <input
+            defaultValue={product?.property?.selection.name}
             {...register("name", { required: true })}
             type="text"
             className="form-control"
@@ -196,6 +243,7 @@ const EditModalForm = ({ productId }) => {
         <div className="form-group col-md-4">
           <label htmlFor="">large_price</label>
           <input
+            defaultValue={product?.property?.selection.large_price}
             {...register("large_price")}
             type="number"
             className="form-control"
@@ -204,6 +252,7 @@ const EditModalForm = ({ productId }) => {
         <div className="form-group col-md-4">
           <label htmlFor="">xlarge_price</label>
           <input
+            defaultValue={product?.property?.selection.xlarge_price}
             {...register("xlarge_price")}
             type="number"
             className="form-control"
