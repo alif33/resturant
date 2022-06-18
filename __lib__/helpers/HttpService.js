@@ -82,6 +82,7 @@ export const updateData = async (endPoint, formData, token) => {
     return error;
   }
 };
+
 export const deleteData = async (endPoint, token) => {
   try {
     const { data } = await axios.delete(API_URL + endPoint, {
@@ -103,7 +104,7 @@ export const getFormData = async (key, data) => {
   return formData;
 };
 
-export const addShopPost = (data, token, reset) => {
+const appendFormData = (data) => {
   var formdata = new FormData();
   formdata.append("shop_status", data.shop_status);
   formdata.append("shop_pay_type", data.shop_pay_type);
@@ -150,11 +151,25 @@ export const addShopPost = (data, token, reset) => {
   formdata.append("pause_delivery_today", data.pause_delivery_today);
   formdata.append("no_scheduled_order", data.no_scheduled_order);
   formdata.append("stop_order_today", data.stop_order_today);
+  return formdata;
+};
 
+export const addShopPost = (data, token, reset) => {
+  const formdata = appendFormData(data);
   authPost(`admin/shop`, formdata, token).then((res) => {
     if (res.success) {
       toast.success(res.message);
       reset();
+    }
+    return res;
+  });
+};
+
+export const shopUpdate = (url, data, token) => {
+  const formdata = appendFormData(data);
+  updateData(url, formdata, token).then((res) => {
+    if (res.success) {
+      toast.success(res.message);
     }
     return res;
   });

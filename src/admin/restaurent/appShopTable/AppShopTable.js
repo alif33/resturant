@@ -34,18 +34,18 @@ const AppShopTable = () => {
                 <option value="M2M">M2M</option>
                 <option value="Disabled">Disabled</option>
               </select>
-              {errors.shopStatus && <span>This field is required</span>}
+              {errors.shop_status && <span className="text-danger">This field is required</span>}
             </div>
             <div className="form-group col-md-6 mt-3">
               <label htmlFor="">payment type: </label>
               <select
                 className="form-control"
-                {...register("payment_type", { required: true })}
+                {...register("shop_pay_type", { required: true })}
               >
                 <option value="Direct">Direct</option>
                 <option value="Deposit">Deposit</option>
               </select>
-              {errors.shopPaid && <span>This field is required</span>}
+              {errors.shop_pay_type && <span className="text-danger">This field is required</span>}
             </div>
           </div>
           <div className="border-bottom"></div>
@@ -57,7 +57,7 @@ const AppShopTable = () => {
                 {...register("shop_name", { required: true })}
                 id="shop_name"
               />
-              {errors.shop_name && <span>This field is required</span>}
+              {errors.shop_name && <span className="text-danger">This field is required</span>}
             </div>
             <div className="form-group col-md-6 mt-3">
               <label htmlFor="">Name </label>
