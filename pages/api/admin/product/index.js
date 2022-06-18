@@ -25,7 +25,8 @@ handler.use(isAdmin, upload.single("image")).post(async (req, res) => {
   const { product_name, shop, description, category, options,
     cata_title, cata_price, property_name, limit, property_option, sele_name, large_price, xlarge_price
   } = req.body;
-  console.log(req.body)
+
+
   const streamUpload = (req) => {
     return new Promise((resolve, reject) => {
       const stream = cloudinary.uploader.upload_stream((error, result) => {

@@ -199,7 +199,7 @@ handler
         });
       }
     } catch (err) {
-      console.log(err)
+     
       res.status(500).json({
         error: "Server side error",
       });

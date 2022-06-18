@@ -7,6 +7,8 @@ import db from "../../../utils/db";
 const handler = nc();
 
 handler.get(async (req, res) => {
+
+   console.log(req.query)
  try{
     await db.connect();
     const product = await Product.find({shop: req.query.shopId}).populate("category shop", "categoryName shop_name", {Shop, Category} );
