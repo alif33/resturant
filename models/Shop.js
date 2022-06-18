@@ -178,6 +178,7 @@ const shopSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+
     minimum_pickUp_order: {
       type: Number,
       required: true,
@@ -218,6 +219,7 @@ const shopSchema = new mongoose.Schema(
 
     }
   },
+  
   {
     timestamps: true,
   }

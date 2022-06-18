@@ -36,7 +36,7 @@ const SeoSettingForm = () => {
   return (
     <div className="card">
       <div className="card-body">
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="row mt-4">
             <div className="col-md-8">
               <div className="form-group-two">
@@ -142,6 +142,17 @@ const SeoSettingForm = () => {
                 </select>
               </div>
               {errors.gmb_owner && (
+                <span className="text-danger">This field is required</span>
+              )}
+               <div className="form-group-two">
+                <label htmlFor="">Meal Now Domain </label>
+                <input
+                  defaultValue={shop?.meal_now_domain}
+                  {...register("meal_now_domain", { required: true })}
+                  type="text"
+                />
+              </div>
+              {errors.meal_now_domain && (
                 <span className="text-danger">This field is required</span>
               )}
             </div>
