@@ -39,6 +39,7 @@ handler
     isAdmin
   )
   .put(async (req, res) => {
+    console.log(req.body)
     // const imageArray = [
     //   req.files.res_logo[0].buffer,
     //   req.files.landingLogo[0].buffer,
@@ -64,14 +65,15 @@ handler
 
     try {
       await db.connect();
-     await Shop.findByIdAndUpdate(
+    const updated  = await Shop.findByIdAndUpdate(
         { _id: req.query.shopId },
         { $set: req.body }
       );
       await db.disconnect();
       res.status(200).json({
         success: true,
-        message: "Shop update successfully"
+        message: "Shop update successfully",
+        updated: updated
       });
     } catch (err) {
       res.status(500).json({
