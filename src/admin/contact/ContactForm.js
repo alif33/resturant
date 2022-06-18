@@ -1,25 +1,79 @@
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import Cookies from "universal-cookie";
+import { getData, shopUpdate } from "../../../__lib__/helpers/HttpService";
+
 const ContactForm = () => {
+  const [shop, setShop] = useState({});
+  const router = useRouter();
+  const { shopId } = router?.query;
+  const cookies = new Cookies();
+  const token = cookies.get("_admin");
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  useEffect(() => {
+    shopId && getData(`admin/shop/${shopId}`).then((res) => setShop(res));
+  }, [shopId]);
+
+  console.log(shop);
+
+  const onSubmit = (data) => {
+    console.log(data);
+    const newData = { ...shop, ...data };
+    console.log(newData);
+    shopUpdate(`/admin/shop/${shopId}`, newData, token);
+  };
+
   return (
     <div className="card">
       <div className="card-body">
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="row mt-4">
             <div className="col-md-8">
               <div className="form-group-two">
                 <label htmlFor="">Contact name </label>
-                <input type="text" placeholder="4850 S Pulaski Rd" />
+                <input
+                  defaultValue={shop?.owners_name}
+                  {...register("owners_name", { required: true })}
+                  type="text"
+                  placeholder="4850 S Pulaski Rd"
+                />
               </div>
+              {errors.owners_name && (
+                <span className="text-danger">This field is required</span>
+              )}
               <div className="form-group-two">
                 <label htmlFor="">Contact phone</label>
                 <div className="banner-text">
-                  <input type="text" placeholder="Chicago" />
+                  <input
+                    type="text"
+                    defaultValue={shop?.owners_phone}
+                    {...register("owners_phone", { required: true })}
+                  />
                   <p>Phone type : n/a</p>
                 </div>
+                {errors.owners_phone && (
+                  <span className="text-danger">This field is required</span>
+                )}
               </div>
               <div className="form-group-two">
                 <label htmlFor="">Contact email </label>
-                <input type="text" />
+                <input
+                  defaultValue={shop?.owners_name}
+                  {...register("owners_name", { required: true })}
+                  type="text"
+                />
               </div>
+              {errors.owners_name && (
+                <span className="text-danger">This field is required</span>
+              )}
             </div>
           </div>
           <div className="border-bottom"></div>
@@ -27,19 +81,40 @@ const ContactForm = () => {
             <div className="col-md-8">
               <div className="form-group-two">
                 <label htmlFor="">Secondary contact name </label>
-                <input type="text" />
+                <input
+                  defaultValue={shop?.se_contact_name}
+                  {...register("se_contact_name", { required: true })}
+                  type="text"
+                />
               </div>
+              {errors.se_contact_name && (
+                <span className="text-danger">This field is required</span>
+              )}
               <div className="form-group-two">
                 <label htmlFor="">Secondary contact phone</label>
                 <div className="banner-text">
-                  <input type="text" placeholder="Chicago" />
+                  <input
+                    type="text"
+                    defaultValue={shop?.se_contact_phone}
+                    {...register("se_contact_phone", { required: true })}
+                  />
                   <p>Phone type : n/a</p>
                 </div>
+                {errors.se_contact_phone && (
+                  <span className="text-danger">This field is required</span>
+                )}
               </div>
               <div className="form-group-two">
                 <label htmlFor="">Secondary contact email </label>
-                <input type="text" />
+                <input
+                  defaultValue={shop?.se_contact_email}
+                  {...register("se_contact_email", { required: true })}
+                  type="text"
+                />
               </div>
+              {errors.se_contact_email && (
+                <span className="text-danger">This field is required</span>
+              )}
             </div>
           </div>
           <div className="border-bottom"></div>
@@ -48,9 +123,17 @@ const ContactForm = () => {
               <div className="form-group-two">
                 <label htmlFor="">Restaurant phone</label>
                 <div className="banner-text">
-                  <input type="text" placeholder="Chicago" />
+                  <input
+                    defaultValue={shop?.res_phone}
+                    {...register("res_phone", { required: true })}
+                    type="text"
+                    placeholder="Chicago"
+                  />
                   <p>Phone type: landline</p>
                 </div>
+                {errors.res_phone && (
+                  <span className="text-danger">This field is required</span>
+                )}
               </div>
             </div>
           </div>
