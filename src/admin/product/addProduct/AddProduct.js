@@ -54,6 +54,7 @@ const AddProduct = ({ shopId }) => {
     formdata.append("sele_name", data.name);
     formdata.append("large_price", data.large_price);
     formdata.append("xlarge_price", data.xlarge_price);
+    formdata.append("name", data.name);
 
     authPost(`admin/product`, formdata, token).then((res) => {
       if (res.success) {

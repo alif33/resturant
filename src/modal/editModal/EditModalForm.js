@@ -10,6 +10,7 @@ import {
   getUserData,
   updateData,
 } from "../../../__lib__/helpers/HttpService";
+import toast from "react-hot-toast";
 
 const options = [
   { label: "Featured", value: "Featured" },
@@ -21,7 +22,7 @@ const options = [
   { label: "Photo Hidden", value: "Photo Hidden" },
 ];
 
-const EditModalForm = ({ productId }) => {
+const EditModalForm = ({ productId, close }) => {
   const [selected, setSelected] = useState([
     { label: "Featured", value: "Featured" },
   ]);
@@ -64,7 +65,7 @@ const EditModalForm = ({ productId }) => {
     formdata.append("category", data.category);
     formdata.append("image", data.image[0]);
     formdata.append("options", seledtedOptions);
-    formdata.append("shop", shopId);
+    // formdata.append("shop", shopId);
     formdata.append("cata_title", data.cata_title);
     formdata.append("cata_price", data.cata_price);
     formdata.append("property_name", data.property_name);
@@ -73,10 +74,15 @@ const EditModalForm = ({ productId }) => {
     formdata.append("sele_name", data.name);
     formdata.append("large_price", data.large_price);
     formdata.append("xlarge_price", data.xlarge_price);
+    formdata.append("name", data.name);
 
-    updateData(`admin/product/${productId}`, formdata, token).then((res) =>
-      console.log(res)
-    );
+    updateData(`admin/product/${productId}`, formdata, token).then((res) => {
+      console.log(res);
+      if (res.success) {
+        toast.success(res.message);
+        close();
+      }
+    });
   };
 
   // console.log(image);
@@ -90,16 +96,13 @@ const EditModalForm = ({ productId }) => {
             type="text"
             className="form-control"
             defaultValue={product?.product_name}
-            {...register("product_name", { required: true })}
+            {...register("product_name")}
           />
-          {errors.product_name && (
-            <span className="text-danger">This field is required</span>
-          )}
         </div>
         <div className="form-group col-md-6">
           <label htmlFor="">category</label>
           <select
-            {...register("category", { required: true })}
+            {...register("category")}
             className="form-control"
             value={product?.category}
           >
@@ -109,9 +112,6 @@ const EditModalForm = ({ productId }) => {
               </option>
             ))}
           </select>
-          {errors.category && (
-            <span className="text-danger">This field is required</span>
-          )}
         </div>
       </div>
 
@@ -121,13 +121,10 @@ const EditModalForm = ({ productId }) => {
           type="text"
           className="form-control"
           defaultValue={product?.description}
-          {...register("description", { required: true })}
+          {...register("description")}
           // cols="30"
           rows="8"
         />
-        {errors.description && (
-          <span className="text-danger">This field is required</span>
-        )}
       </div>
 
       <div className="form-group mt-3">
@@ -169,26 +166,20 @@ const EditModalForm = ({ productId }) => {
           <label htmlFor="">Cata Title</label>
           <input
             defaultValue={product?.catalog?.product_type.cata_title}
-            {...register("cata_title", { required: true })}
+            {...register("cata_title")}
             type="text"
             className="form-control"
           />
-          {errors.cata_title && (
-            <span className="text-danger">This field is required</span>
-          )}
         </div>
 
         <div className="form-group col-md-6">
           <label htmlFor="">Cata Price</label>
           <input
             defaultValue={product?.catalog?.product_type.cata_price}
-            {...register("cata_price", { required: true })}
+            {...register("cata_price")}
             type="number"
             className="form-control"
           />
-          {errors.cata_price && (
-            <span className="text-danger">This field is required</span>
-          )}
         </div>
       </div>
 
@@ -197,25 +188,19 @@ const EditModalForm = ({ productId }) => {
           <label htmlFor="">property_name</label>
           <input
             defaultValue={product?.property?.property_name}
-            {...register("property_name", { required: true })}
+            {...register("property_name")}
             type="text"
             className="form-control"
           />
-          {errors.property_name && (
-            <span className="text-danger">This field is required</span>
-          )}
         </div>
         <div className="form-group col-md-3">
           <label htmlFor="">limit</label>
           <input
             defaultValue={product?.property?.limit}
-            {...register("limit", { required: true })}
+            {...register("limit")}
             type="number"
             className="form-control"
           />
-          {errors.limit && (
-            <span className="text-danger">This field is required</span>
-          )}
         </div>
         <div className="form-group col-md-4">
           <label htmlFor="">options</label>
@@ -232,13 +217,10 @@ const EditModalForm = ({ productId }) => {
           <label htmlFor="">name</label>
           <input
             defaultValue={product?.property?.selection.name}
-            {...register("name", { required: true })}
+            {...register("name")}
             type="text"
             className="form-control"
           />
-          {errors.name && (
-            <span className="text-danger">This field is required</span>
-          )}
         </div>
         <div className="form-group col-md-4">
           <label htmlFor="">large_price</label>
