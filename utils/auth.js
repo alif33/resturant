@@ -60,6 +60,7 @@ const isAuth = async (req, res, next) => {
 
 const isAdmin = async (req, res, next) => {
   const { authorization } = req.headers;
+  console.log(req.headers.authorization)
   if (authorization) {
     // Bearer xxx => xxx
     const token = authorization.slice(7, authorization.length);

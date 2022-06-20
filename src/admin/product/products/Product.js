@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import AddProductDropdown from "../../../components/Dropdown/AddProductDropdown";
-import EditModal from "../../../modal/editModal/EditModal";
-import UpdateDropdown from "../../../components/Dropdown/UpdateDropdown";
-import MenuIcon2 from "../../../components/svg/MenuIcon2";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import toast from "react-hot-toast";
 import { ImCopy } from "react-icons/im";
 import { MdDelete } from "react-icons/md";
-import Link from "next/link";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import Cookies from "universal-cookie";
 import {
   copyData,
   deleteData,
-  getData,
+  getData
 } from "../../../../__lib__/helpers/HttpService";
-import Cookies from "universal-cookie";
-import toast from "react-hot-toast";
+import AddProductDropdown from "../../../components/Dropdown/AddProductDropdown";
+import UpdateDropdown from "../../../components/Dropdown/UpdateDropdown";
+import MenuIcon2 from "../../../components/svg/MenuIcon2";
+import EditModal from "../../../modal/editModal/EditModal";
 
 const ProductPage = ({ shopId }) => {
   const [products, setProducts] = useState([]);
