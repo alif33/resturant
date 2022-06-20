@@ -52,7 +52,7 @@ handler.use(isAdmin, upload.single("image")).post(async (req, res) => {
       options: options,
       shop: shop,
       catalog: {product_type: {cata_title: cata_title, cata_price: cata_price}},
-      property: {property_name: property_name, limit: limit, property_option: property_option, 
+      property: {property_name: property_name, limit: limit, options: property_option, 
         selection: {name: sele_name, large_price: large_price, xlarge_price: xlarge_price}}
     });
     if (await product.save()) {
