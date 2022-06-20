@@ -138,6 +138,7 @@ handler
       const updated = await Shop.findByIdAndUpdate(
         { _id: req.query.shopId },
         {
+          
           $set: {
             shop_status: shop_status,
             shop_pay_type: shop_pay_type,
