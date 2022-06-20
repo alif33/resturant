@@ -45,52 +45,14 @@ handler.get(async (req, res) => {
 // copy the product
 
 handler.use(isAdmin).post(async (req, res) => {
-  const {
-    product_name,
-    shop,
-    description,
-    category,
-    options,
-    image,
-    cata_title,
-    cata_price,
-    property_name,
-    limit,
-    property_option,
-    sele_name,
-    large_price,
-    xlarge_price,
-  } = req.body;
-
   try {
     await db.connect();
     const product = await Product.findById({ _id: req.query.id });
-    if (product) {
-      const newProduct = new Product({
-        product_name: product_name,
-        description: description,
-        category: category,
-        image: image,
-        options: options,
-        shop: shop,
-        catalog: {
-          product_type: {
-            cata_title: cata_title,
-            cata_price: cata_price,
-          },
-        },
 
-        property: {
-          property_name: property_name,
-          limit: limit,
-          property_option: property_option,
-          selection: {
-            sele_name: sele_name,
-            large_price: large_price,
-            xlarge_price: xlarge_price,
-          },
-        },
-      });
+    if (product) {
+      const duplicate = product.toObject();
+      delete duplicate._id;
+      const newProduct = new Product(duplicate);
       if (await newProduct.save()) {
         await db.disconnect();
         res.send({
@@ -104,6 +66,7 @@ handler.use(isAdmin).post(async (req, res) => {
       res.send({ error: "Product not found" });
     }
   } catch (err) {
+    console.log(err);
     res.status(500).json({
       error: "Server side error",
     });
