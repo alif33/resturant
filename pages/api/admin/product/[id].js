@@ -41,6 +41,8 @@ handler.get(async (req, res) => {
     });
   }
 });
+
+
 // copy the product
 
 handler.use(isAdmin).patch(async (req, res) => {
@@ -98,7 +100,6 @@ handler.use(isAdmin).patch(async (req, res) => {
     }
    
   } catch (err) {
-    console.log(err)
     res.status(500).json({
       error: "Server side error",
     });
@@ -194,5 +195,35 @@ handler.use(isAdmin, upload.single("image")).put(async (req, res) => {
     });
   }
 });
+
+
+handler.use(isAdmin).delete(async (req, res) => {
+  try {
+    await db.connect();
+    const product = await Product.findByIdAndDelete({ _id: req.query.id });
+    if (product) {
+      await db.disconnect();
+      res.send({
+        success: true,
+        message: "Product deleted",
+      });
+    } else {
+      await db.disconnect();
+      res.send({
+        success: false,
+        error: "Product not found",
+      });
+    }
+  } catch (error) {
+    await db.disconnect();
+    res.send({
+      error: "Product not found",
+    });
+  }
+});
+
+//delete product
+
+
 
 export default handler;
