@@ -6,9 +6,9 @@ import { ImCopy } from "react-icons/im";
 import { MdDelete } from "react-icons/md";
 import Cookies from "universal-cookie";
 import {
-  copyData,
+  authPost,
   deleteData,
-  getData
+  getData,
 } from "../../../../__lib__/helpers/HttpService";
 import AddProductDropdown from "../../../components/Dropdown/AddProductDropdown";
 import UpdateDropdown from "../../../components/Dropdown/UpdateDropdown";
@@ -39,8 +39,26 @@ const ProductPage = ({ shopId }) => {
     }
   }, [shopId, load]);
 
-  const copyHanle = (id) => {
-    copyData(`admin/product/${id}`, token).then((res) => {
+  const copyHanle = (product) => {
+    console.log(product.product_name);
+    var formdata = {
+      product_name: product?.product_name,
+      description: product?.description,
+      category: product?.category,
+      image: product?.image,
+      options: product?.options,
+      shop: shopId,
+      cata_title: product?.catalog?.product_type.cata_title,
+      cata_price: product?.catalog?.product_type.cata_price,
+      property_name: product?.property?.property_name,
+      limit: product?.property?.limit,
+      property_option: product?.property?.options,
+      sele_name: product?.property?.selection.name,
+      large_price: product?.property?.selection.large_price,
+      xlarge_price: product?.property?.selection.xlarge_price,
+    };
+
+    authPost(`admin/product`, formdata, token).then((res) => {
       if (res.success) {
         setLoad(!load);
         toast.success(res.message);
@@ -114,7 +132,7 @@ const ProductPage = ({ shopId }) => {
                               load={load}
                             />
                             <button
-                              onClick={() => copyHanle(product._id)}
+                              onClick={() => copyHanle(product)}
                               className="btn btn-info"
                             >
                               <ImCopy /> Copy
