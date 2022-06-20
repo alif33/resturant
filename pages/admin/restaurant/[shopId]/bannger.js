@@ -1,6 +1,7 @@
 import BannerPage from "../../../../src/admin/dashboard/Banner/BannerPage";
 import { Layout2 } from "../../../../src/admin/layout/Layout";
 import { useRouter } from "next/router";
+import { adminAuth } from "../../../../__lib__/helpers/requireAuthentication";
 
 const Bannger = () => {
   const router = useRouter();

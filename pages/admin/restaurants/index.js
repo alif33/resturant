@@ -22,22 +22,22 @@ const Restaurants = () => {
   }, [shop.shopList]);
 
   const applySearch = () => {
-    setShopList(shop.shopList);
-    let listForSearch = shopList;
-    console.log(searchInput);
-    listForSearch = listForSearch.filter(
-      (item) =>
-        item.shop_name
-          .toLowerCase()
-          .search(searchInput.toLowerCase().trim()) !== -1
-    );
-    setShopList(listForSearch);
+    let listForSearch = shop.shopList;
+    if (searchInput) {
+      listForSearch = listForSearch.filter(
+        (item) =>
+          item.shop_name
+            .toLowerCase()
+            .search(searchInput.toLowerCase().trim()) !== -1
+      );
+      setShopList(listForSearch);
+    } else {
+      setShopList(shop.shopList);
+    }
   };
   useEffect(() => {
     applySearch();
   }, [searchInput]);
-
-  console.log(shopList);
 
   return (
     <Layout>

@@ -1,6 +1,7 @@
 import { Layout2 } from "../../../../src/admin/layout/Layout";
 import OrderPage from "../../../../src/admin/dashboard/Orders/OrderPage";
 import { useRouter } from "next/router";
+import { adminAuth } from "../../../../__lib__/helpers/requireAuthentication";
 
 const Orders = () => {
   const router = useRouter();

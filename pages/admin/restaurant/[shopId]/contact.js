@@ -3,6 +3,7 @@ import { Layout2 } from "../../../../src/admin/layout/Layout";
 import ContactForm from "../../../../src/admin/contact/ContactForm";
 import Navbar from "../../../../src/admin/Navbar/Navbar";
 import { useRouter } from "next/router";
+import { adminAuth } from "../../../../__lib__/helpers/requireAuthentication";
 
 const ContactPage = () => {
   const router = useRouter();

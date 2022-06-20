@@ -1,6 +1,7 @@
 import DeliveryZonePage from "../../../../src/admin/deliveryzone/DeliveryZonePage";
 import{ Layout2 } from "../../../../src/admin/layout/Layout";
 import { useRouter } from "next/router";
+import { adminAuth } from "../../../../__lib__/helpers/requireAuthentication";
 
 const DeliveryZones = () => {
   const router = useRouter();

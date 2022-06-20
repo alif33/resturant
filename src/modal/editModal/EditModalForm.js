@@ -22,10 +22,8 @@ const options = [
   { label: "Photo Hidden", value: "Photo Hidden" },
 ];
 
-const EditModalForm = ({ productId, close }) => {
-  const [selected, setSelected] = useState([
-    { label: "Featured", value: "Featured" },
-  ]);
+const EditModalForm = ({ productId, close, load, setLoad }) => {
+  const [selected, setSelected] = useState([]);
   const [ProSelected, setProSelected] = useState([]);
   const [product, setProduct] = useState([]);
   const [image, setImage] = useState();
@@ -53,33 +51,63 @@ const EditModalForm = ({ productId, close }) => {
 
   useEffect(() => {
     productId &&
-      getUserData(`admin/product/${productId}`, token).then((res) =>
-        setProduct(res)
-      );
+      getUserData(`admin/product/${productId}`, token).then((res) => {
+        setProduct(res);
+        const newSelect = res?.options[0]
+          .split(",")
+          .map((item) => ({ label: item, value: item }));
+        const newProSelect = res?.property?.options[0]
+          .split(",")
+          .map((item) => ({ label: item, value: item }));
+        setSelected(newSelect);
+        setProSelected(newProSelect);
+      });
   }, [productId, token]);
 
   const onSubmit = (data) => {
     var formdata = new FormData();
     formdata.append("product_name", data.product_name || product?.product_name);
-    formdata.append("description", data.description || product?.category);
-    formdata.append("category", data.category);
-    formdata.append("image", data.image[0]);
-    formdata.append("options", seledtedOptions);
+    formdata.append("description", data.description || product?.description);
+    formdata.append("category", data.category || product?.category);
+    formdata.append("image", data.image[0] || product?.image);
+    formdata.append("options", seledtedOptions || product?.options);
     // formdata.append("shop", shopId);
-    formdata.append("cata_title", data.cata_title);
-    formdata.append("cata_price", data.cata_price);
-    formdata.append("property_name", data.property_name);
-    formdata.append("limit", data.limit);
-    formdata.append("property_option", proSeledtedOptions);
-    formdata.append("sele_name", data.name);
-    formdata.append("large_price", data.large_price);
-    formdata.append("xlarge_price", data.xlarge_price);
+    formdata.append(
+      "cata_title",
+      data.cata_title || product?.catalog?.product_type.cata_title
+    );
+    formdata.append(
+      "cata_price",
+      data.cata_price || product?.catalog?.product_type.cata_price
+    );
+    formdata.append(
+      "property_name",
+      data.property_name || product?.property?.property_name
+    );
+    formdata.append("limit", data.limit || product?.property?.limit);
+    formdata.append(
+      "property_option",
+      proSeledtedOptions || product?.property?.options
+    );
+    formdata.append(
+      "sele_name",
+      data.name || product?.property?.selection.name
+    );
+    formdata.append(
+      "large_price",
+      data.large_price || product?.property?.selection.large_price
+    );
+    formdata.append(
+      "xlarge_price",
+      data.xlarge_price || product?.property?.selection.xlarge_price
+    );
     // formdata.append("name", data.name);
 
     updateData(`admin/product/${productId}`, formdata, token).then((res) => {
       console.log(res);
       if (res.success) {
         toast.success(res.message);
+        setLoad(!load);
         close();
       }
     });

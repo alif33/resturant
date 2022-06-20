@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../../src/admin/layout/Layout";
 import RestaurentNavbar from "../../../src/admin/restaurent/restaurentNavbar/RestaurentNavbar";
 import RestaurentTable from "../../../src/admin/restaurent/restaurentTable/RestaurentTable";
@@ -8,6 +8,7 @@ import { adminAuth } from "../../../__lib__/helpers/requireAuthentication";
 
 const LiveShopPage = () => {
   const [searchInput, setSearchInput] = useState("");
+  const [shopList, setShopList] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,6 +16,29 @@ const LiveShopPage = () => {
   }, [dispatch]);
 
   const { shop } = useSelector((state) => state);
+
+  useEffect(() => {
+    setShopList(shop.liveShopList);
+  }, [shop.liveShopList]);
+
+  const applySearch = () => {
+    let listForSearch = shop.liveShopList;
+    if (searchInput) {
+      listForSearch = listForSearch.filter(
+        (item) =>
+          item.shop_name
+            .toLowerCase()
+            .search(searchInput.toLowerCase().trim()) !== -1
+      );
+      setShopList(listForSearch);
+    } else {
+      setShopList(shop.liveShopList);
+    }
+  };
+  useEffect(() => {
+    applySearch();
+  }, [searchInput]);
+
   return (
     <Layout>
       <RestaurentNavbar
@@ -24,7 +48,7 @@ const LiveShopPage = () => {
       />
       <div className="row">
         <div className="col-12 mt-4">
-          <RestaurentTable shops={shop.liveShopList} />
+          <RestaurentTable shops={shopList} />
         </div>
       </div>
     </Layout>

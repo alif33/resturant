@@ -1,6 +1,7 @@
 import { Layout2 } from "../../../../src/admin/layout/Layout";
 import SchedulePage from "../../../../src/admin/schedule/SchedulePage";
 import { useRouter } from "next/router";
+import { adminAuth } from "../../../../__lib__/helpers/requireAuthentication";
 
 const Schedule = () => {
   const router = useRouter();

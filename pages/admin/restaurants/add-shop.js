@@ -1,6 +1,7 @@
 import Layout from "../../../src/admin/layout/Layout";
 import RestaurentNavbar from "../../../src/admin/restaurent/restaurentNavbar/RestaurentNavbar";
 import AppShopTable from "../../../src/admin/restaurent/appShopTable/AppShopTable";
+import { adminAuth } from "../../../__lib__/helpers/requireAuthentication";
 
 const AddShopPage = () => {
   return (
@@ -16,7 +17,6 @@ const AddShopPage = () => {
 };
 
 export default AddShopPage;
-
 
 export const getServerSideProps = adminAuth((context) => {
   return {

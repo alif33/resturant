@@ -1,6 +1,7 @@
 import CouponsPage from "../../../../src/admin/dashboard/Coupons/CouponsPage";
 import { Layout2 } from "../../../../src/admin/layout/Layout";
 import { useRouter } from "next/router";
+import { adminAuth } from "../../../../__lib__/helpers/requireAuthentication";
 
 const Coupons = () => {
   const router = useRouter();

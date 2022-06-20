@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 
 const LoginFrom = () => {
   const [disable, setDisable] = useState(false);
+  const router = useRouter();
   const cookies = new Cookies();
 
   const {
@@ -18,7 +19,6 @@ const LoginFrom = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const router = useRouter();
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
@@ -29,7 +29,7 @@ const LoginFrom = () => {
         dispatch(adminLogin(res.admin));
         cookies.set("_admin", res.token, { path: "/" });
         toast.success(res.message);
-        rotuer.push("/admin/restaurants");
+        router.push("/admin/restaurants");
       }
     });
   };

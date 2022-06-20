@@ -3,6 +3,7 @@ import React from "react";
 import { Layout2 } from "../../../../src/admin/layout/Layout";
 import Navbar from "../../../../src/admin/Navbar/Navbar";
 import SeoSettingForm from "../../../../src/admin/seoSetting/SeoSettingForm";
+import { adminAuth } from "../../../../__lib__/helpers/requireAuthentication";
 
 const SeoSetting = () => {
   const router = useRouter();

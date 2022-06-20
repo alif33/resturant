@@ -7,11 +7,20 @@ import { ImCopy } from "react-icons/im";
 import { MdDelete } from "react-icons/md";
 import Link from "next/link";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import DropDreag from "./ProductPage";
-import { getData } from "../../../../__lib__/helpers/HttpService";
+import {
+  copyData,
+  deleteData,
+  getData,
+} from "../../../../__lib__/helpers/HttpService";
+import Cookies from "universal-cookie";
+import toast from "react-hot-toast";
 
-const ProductPage = ({ products, shopId }) => {
+const ProductPage = ({ shopId }) => {
+  const [products, setProducts] = useState([]);
+  const [load, setLoad] = useState(false);
   const [shop, setShop] = useState({});
+  const cookies = new Cookies();
+  const token = cookies.get("_admin");
   var noProduct = <li>there is no product</li>;
 
   useEffect(() => {
@@ -23,6 +32,30 @@ const ProductPage = ({ products, shopId }) => {
   useEffect(() => {
     shopId && getData(`admin/shop/${shopId}`).then((res) => setShop(res));
   }, [shopId]);
+
+  useEffect(() => {
+    if (shopId) {
+      getData(`products/${shopId}`).then((res) => setProducts(res));
+    }
+  }, [shopId, load]);
+
+  const copyHanle = (id) => {
+    copyData(`admin/product/${id}`, token).then((res) => {
+      if (res.success) {
+        setLoad(!load);
+        toast.success(res.message);
+      }
+    });
+  };
+
+  const deleteHanle = (id) => {
+    deleteData(`admin/product/${id}`, token).then((res) => {
+      if (res.success) {
+        setLoad(!load);
+        toast.success(res.message);
+      }
+    });
+  };
 
   return (
     <div className="card">
@@ -75,11 +108,21 @@ const ProductPage = ({ products, shopId }) => {
                             <h4>{product.product_name}</h4>
                           </div>
                           <div className="product-action">
-                            <EditModal productId={product._id} />
-                            <button className="btn btn-info">
+                            <EditModal
+                              productId={product._id}
+                              setLoad={setLoad}
+                              load={load}
+                            />
+                            <button
+                              onClick={() => copyHanle(product._id)}
+                              className="btn btn-info"
+                            >
                               <ImCopy /> Copy
                             </button>
-                            <button className="btn btn-danger">
+                            <button
+                              onClick={() => deleteHanle(product._id)}
+                              className="btn btn-danger"
+                            >
                               <MdDelete /> Delete
                             </button>
                           </div>

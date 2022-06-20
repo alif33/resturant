@@ -2,7 +2,7 @@ import Popup from "reactjs-popup";
 import EditModalForm from "./EditModalForm";
 import { BsPencilSquare } from "react-icons/bs";
 
-const EditModal = ({productId}) => {
+const EditModal = ({productId, load, setLoad}) => {
     return (
         <Popup
         trigger={ <button className="btn btn-outline-dark">
@@ -15,7 +15,7 @@ const EditModal = ({productId}) => {
             <button className="close" onClick={close}>
               &times;
             </button>
-            <EditModalForm close={close} productId={productId} />
+            <EditModalForm close={close} productId={productId} setLoad={setLoad} load={load} />
           </div>
         )}
       </Popup>

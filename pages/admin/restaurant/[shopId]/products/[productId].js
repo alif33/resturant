@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import React from "react";
 import { Layout2 } from "../../../../../src/admin/layout/Layout";
 import SingleProduct from "../../../../../src/admin/product/singleProduct/SingleProduct";
+import {adminAuth} from "../../../../../__lib__/helpers/requireAuthentication";
+
 
 const SingleProductPage = () => {
   const router = useRouter();
