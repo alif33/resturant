@@ -22,8 +22,8 @@ const AddProduct = ({ shopId }) => {
   const [selected, setSelected] = useState([]);
   const [ProSelected, setProSelected] = useState([]);
 
-  const seledtedOptions = selected.map((item) => item.value);
-  const proSeledtedOptions = ProSelected.map((item) => item.value);
+  // const seledtedOptions = selected.map((item) => item.value);
+  // const proSeledtedOptions = ProSelected.map((item) => item.value);
 
   console.log(seledtedOptions);
   console.log(proSeledtedOptions);
@@ -39,22 +39,27 @@ const AddProduct = ({ shopId }) => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    var formdata = new FormData();
+    const formdata = new FormData();
     formdata.append("product_name", data.product_name);
     formdata.append("description", data.description);
     formdata.append("category", data.category);
     formdata.append("image", data.image[0]);
-    formdata.append("options", seledtedOptions);
+    for (let i = 0; i < selected.length; i++) {
+      const element = selected[i].value;
+      formdata.append("options", element);
+    }
     formdata.append("shop", shopId);
     formdata.append("cata_title", data.cata_title);
     formdata.append("cata_price", data.cata_price);
     formdata.append("property_name", data.property_name);
     formdata.append("limit", data.limit);
-    formdata.append("property_option", proSeledtedOptions);
+    for (let i = 0; i < ProSelected.length; i++) {
+      const element = ProSelected[i].value;
+      formdata.append("property_option", element);
+    }
     formdata.append("sele_name", data.name);
     formdata.append("large_price", data.large_price);
     formdata.append("xlarge_price", data.xlarge_price);
-    // formdata.append("name", data.name);
 
     authPost(`admin/product`, formdata, token).then((res) => {
       if (res.success) {

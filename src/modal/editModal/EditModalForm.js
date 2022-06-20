@@ -52,15 +52,16 @@ const EditModalForm = ({ productId, close, load, setLoad }) => {
   useEffect(() => {
     productId &&
       getUserData(`admin/product/${productId}`, token).then((res) => {
+        console.log(res?.options);
         setProduct(res);
-        const newSelect = res?.options[0]
-          .split(",")
-          .map((item) => ({ label: item, value: item }));
-        const newProSelect = res?.property?.options[0]
-          .split(",")
-          .map((item) => ({ label: item, value: item }));
-        setSelected(newSelect);
-        setProSelected(newProSelect);
+        // const newSelect = res?.options[0]
+        //   .split(",")
+        //   .map((item) => ({ label: item, value: item }));
+        // const newProSelect = res?.property?.options[0]
+        //   .split(",")
+        //   .map((item) => ({ label: item, value: item }));
+        // setSelected(newSelect);
+        // setProSelected(newProSelect);
       });
   }, [productId, token]);
 

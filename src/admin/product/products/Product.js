@@ -39,26 +39,8 @@ const ProductPage = ({ shopId }) => {
     }
   }, [shopId, load]);
 
-  const copyHanle = (product) => {
-    console.log(product.product_name);
-    var formdata = {
-      product_name: product?.product_name,
-      description: product?.description,
-      category: product?.category,
-      image: product?.image,
-      options: product?.options,
-      shop: shopId,
-      cata_title: product?.catalog?.product_type.cata_title,
-      cata_price: product?.catalog?.product_type.cata_price,
-      property_name: product?.property?.property_name,
-      limit: product?.property?.limit,
-      property_option: product?.property?.options,
-      sele_name: product?.property?.selection.name,
-      large_price: product?.property?.selection.large_price,
-      xlarge_price: product?.property?.selection.xlarge_price,
-    };
-
-    authPost(`admin/product`, formdata, token).then((res) => {
+  const copyHanle = (id) => {
+    authPost(`admin/product/${id}`, {}, token).then((res) => {
       if (res.success) {
         setLoad(!load);
         toast.success(res.message);
@@ -132,7 +114,7 @@ const ProductPage = ({ shopId }) => {
                               load={load}
                             />
                             <button
-                              onClick={() => copyHanle(product)}
+                              onClick={() => copyHanle(product._id)}
                               className="btn btn-info"
                             >
                               <ImCopy /> Copy
