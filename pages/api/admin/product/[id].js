@@ -131,7 +131,7 @@ handler.use(isAdmin, upload.single("image")).put(async (req, res) => {
             limit: limit,
             options: property_option,
             selection: {
-              sele_name: sele_name,
+              name: sele_name,
               large_price: large_price,
               xlarge_price: xlarge_price,
             },
