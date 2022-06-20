@@ -52,6 +52,7 @@ handler.use(isAdmin).post(async (req, res) => {
     if (product) {
       const duplicate = product.toObject();
       delete duplicate._id;
+      duplicate.product_name = duplicate.product_name + " " + "Copy"
       const newProduct = new Product(duplicate);
       if (await newProduct.save()) {
         await db.disconnect();
