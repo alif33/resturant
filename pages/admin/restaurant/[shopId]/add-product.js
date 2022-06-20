@@ -27,3 +27,4 @@ export const getServerSideProps = adminAuth((context) => {
     props: {},
   };
 });
+
