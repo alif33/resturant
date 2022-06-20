@@ -22,15 +22,17 @@ const handler = nc();
 const upload = multer();
 
 handler
-  .use(
-    isAdmin,
-    upload.fields([
-      { name: "shop_logo", maxCount: 1 },
+  .use(isAdmin,upload.fields([{ name: "shop_logo", maxCount: 1 },
+    
+    
+      
       { name: "web_header", maxCount: 1 },
       { name: "mobile_header", maxCount: 1 },
     ])
   )
   .post(async (req, res) => {
+
+
     const streamUpload = (file) => {
       return new Promise((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream((error, result) => {

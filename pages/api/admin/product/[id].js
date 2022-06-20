@@ -24,18 +24,17 @@ const upload = multer();
 // single product get
 
 handler.get(async (req, res) => {
-    try {
-      await db.connect();
-      const product = await Product.findById({ _id: req.query.id });
-      await db.disconnect();
-      res.status(200).json(product);
-    } catch (err) {
-      res.status(500).json({
-        error: "Server side error",
-      });
-    }
-  });
-
+  try {
+    await db.connect();
+    const product = await Product.findById({ _id: req.query.id });
+    await db.disconnect();
+    res.status(200).json(product);
+  } catch (err) {
+    res.status(500).json({
+      error: "Server side error",
+    });
+  }
+});
 
 //updated
 
@@ -55,6 +54,8 @@ handler.use(isAdmin, upload.single("image")).put(async (req, res) => {
     large_price,
     xlarge_price,
   } = req.body;
+
+  console.log(property_option);
 
   //cloudinary upload file streamifier
 
@@ -81,26 +82,29 @@ handler.use(isAdmin, upload.single("image")).put(async (req, res) => {
     const updated = await Product.findByIdAndUpdate(
       { _id: req.query.id },
       {
-        product_name: product_name,
-        description: description,
-        category: category,
-        image: image?.url,
-        options: options,
-        catalog: {
-          product_type: { cata_title: cata_title, cata_price: cata_price },
-        },
-        property: {
-          property_name: property_name,
-          limit: limit,
-          property_option: property_option,
-          selection: {
-            sele_name: sele_name,
-            large_price: large_price,
-            xlarge_price: xlarge_price,
+        $set: {
+          product_name: product_name,
+          description: description,
+          category: category,
+          image: image?.url,
+          options: options,
+          catalog: {
+            product_type: { cata_title: cata_title, cata_price: cata_price },
+          },
+          property: {
+            property_name: property_name,
+            limit: limit,
+            options: property_option,
+            selection: {
+              sele_name: sele_name,
+              large_price: large_price,
+              xlarge_price: xlarge_price,
+            },
           },
         },
-      }, {
-        new: true
+      },
+      {
+        new: true,
       }
     );
     if (updated) {
