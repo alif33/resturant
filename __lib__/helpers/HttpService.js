@@ -82,17 +82,6 @@ export const updateData = async (endPoint, formData, token) => {
     return error;
   }
 };
-export const copyData = async (endPoint, token) => {
-  try {
-    const { data } = await axios.patch(API_URL + endPoint, {
-      headers: authHeader(token),
-    });
-    return data;
-  } catch (error) {
-    toast.error(`${error?.response?.data?.message}`);
-    return error;
-  }
-};
 
 export const deleteData = async (endPoint, token) => {
   try {
