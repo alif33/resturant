@@ -4,10 +4,8 @@ import toast from "react-hot-toast";
 import { postData } from "../../../../__lib__/helpers/HttpService";
 import SearchShop from "../searchShop/SearchShop";
 
-const RestaurentNavbar = ({ status }) => {
-  const [desable, setDesable] = useState(false);
-  
-
+const RestaurentNavbar = ({ status, searchInput, setSearchInput }) => {
+  // const [desable, setDesable] = useState(false);
 
   const newData = [
     { item: "All shop's ", link: "", id: "allshop" },
@@ -21,12 +19,11 @@ const RestaurentNavbar = ({ status }) => {
       id: "pausedshops",
     },
   ];
-
-
+  console.log(searchInput);
 
   return (
     <nav className="navbar">
-      <SearchShop />
+      <SearchShop searchInput={searchInput} setSearchInput={setSearchInput} />
       <ul className="navbar-nav">
         {newData.map((listItem, i) => (
           <li className="nav-item" key={i}>

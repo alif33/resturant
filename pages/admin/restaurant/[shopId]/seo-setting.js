@@ -20,3 +20,10 @@ const SeoSetting = () => {
 };
 
 export default SeoSetting;
+
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

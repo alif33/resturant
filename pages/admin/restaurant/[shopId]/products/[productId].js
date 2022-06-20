@@ -18,3 +18,9 @@ const SingleProductPage = () => {
 };
 
 export default SingleProductPage;
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

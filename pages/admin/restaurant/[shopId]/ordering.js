@@ -21,3 +21,9 @@ const OrderingPage = () => {
 };
 
 export default OrderingPage;
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

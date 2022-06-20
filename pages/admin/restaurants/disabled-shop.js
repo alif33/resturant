@@ -28,3 +28,9 @@ const DisablesShopPage = () => {
 };
 
 export default DisablesShopPage;
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

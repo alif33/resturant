@@ -10,7 +10,7 @@ const ScheduleAdd = ({setLoading, postUrl, loading}) => {
     nested
   >
     {close => (
-      <div className="modal">
+      <div className="eidtModal">
         <button className="close" onClick={close}>
           &times;
         </button>

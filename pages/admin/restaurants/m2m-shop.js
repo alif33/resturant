@@ -26,3 +26,9 @@ const M2mShopPage = () => {
 };
 
 export default M2mShopPage;
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

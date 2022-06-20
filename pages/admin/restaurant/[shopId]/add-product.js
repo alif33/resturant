@@ -19,3 +19,10 @@ const ProductAddPage = () => {
 };
 
 export default ProductAddPage;
+
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

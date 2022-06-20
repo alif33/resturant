@@ -20,3 +20,10 @@ const LocationPage = () => {
 };
 
 export default LocationPage;
+
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

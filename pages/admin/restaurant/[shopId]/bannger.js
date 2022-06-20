@@ -17,3 +17,9 @@ const Bannger = () => {
 };
 
 export default Bannger;
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

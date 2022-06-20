@@ -17,3 +17,10 @@ const Schedule = () => {
 };
 
 export default Schedule;
+
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

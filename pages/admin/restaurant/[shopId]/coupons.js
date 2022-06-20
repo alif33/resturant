@@ -17,3 +17,10 @@ const Coupons = () => {
 };
 
 export default Coupons;
+
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

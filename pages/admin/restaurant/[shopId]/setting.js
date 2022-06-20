@@ -20,3 +20,10 @@ const AddNewShop = () => {
 };
 
 export default AddNewShop;
+
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

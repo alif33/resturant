@@ -16,3 +16,10 @@ const AddShopPage = () => {
 };
 
 export default AddShopPage;
+
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

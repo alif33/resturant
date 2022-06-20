@@ -1,20 +1,18 @@
-import React, { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { getData } from "../../../../__lib__/helpers/HttpService";
 
-const SearchShop = ({ changeInput }) => {
-  // const [inputSearch, setInputSearch] = useState([]);
-
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => {
-    console.log(data.search);
-    getData(`shops/s?search=${data.search}`).then((res) => console.log(res));
-  };
+const SearchShop = ({ searchInput, setSearchInput }) => {
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   watch,
+  //   formState: { errors },
+  // } = useForm();
+  // const onSubmit = (data) => {
+  //   console.log(data.search);
+  //   getData(`shops/s?search=${data.search}`).then((res) => console.log(res));
+  // };
 
   // const debounce = (func) => {
   //   let timer;
@@ -31,13 +29,14 @@ const SearchShop = ({ changeInput }) => {
   // const optimisedVersion = useCallback(debounce(changeInput), []);
 
   // const changeHangle = (e) => {
-  //   // optimisedVersion(e);
-  //   setInputSearch(e.target.value);
+  //   optimisedVersion(e);
   // };
+
+  console.log(searchInput);
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      // onSubmit={handleSubmit(onSubmit)}
       className="d-flex align-items-center"
     >
       <div className="form-group ml-4">
@@ -45,14 +44,14 @@ const SearchShop = ({ changeInput }) => {
           type="text"
           className="form-control"
           placeholder="search with shop name"
-          {...register("search")}
-          // value={inputSearch}
-          // onChange={changeHangle}
+          // {...register("search")}
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
         />
       </div>
-      <button type="submit" className="btn btn-primary mb-0 ml-2 ml-4">
+      {/* <button type="submit" className="btn btn-primary mb-0 ml-2 ml-4">
         Submit
-      </button>
+      </button> */}
     </form>
   );
 };

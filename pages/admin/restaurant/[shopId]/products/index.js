@@ -28,3 +28,9 @@ const ProductsPage = () => {
 };
 
 export default ProductsPage;
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

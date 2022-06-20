@@ -20,3 +20,10 @@ const Paymentpage = () => {
 };
 
 export default Paymentpage;
+
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Cookies from "universal-cookie";
 import { addShopPost } from "../../../../__lib__/helpers/HttpService";
 
 const AppShopTable = () => {
   const [loading, setLoading] = useState(false);
+  const [location, setLocation] = useState({});
   const cookies = new Cookies();
   const token = cookies.get("_admin");
   const {
@@ -14,9 +15,33 @@ const AppShopTable = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    addShopPost(data, token, reset);
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        // console.log(position);
+        setLocation({
+          lat: position.coords.latitude,
+          long: position.coords.longitude,
+        });
+      });
+    }
   };
+
+  
+  useEffect(() => {
+  getLocation();
+  }, []);
+
+  // console.log(location);
+
+  const onSubmit = (data) => {
+   if(location){
+    const newDate = {...data, ...location }
+    addShopPost(newDate, token, reset);
+   }
+  };
+
   return (
     <div className="card">
       <div className="card-body">
@@ -34,7 +59,9 @@ const AppShopTable = () => {
                 <option value="M2M">M2M</option>
                 <option value="Disabled">Disabled</option>
               </select>
-              {errors.shop_status && <span className="text-danger">This field is required</span>}
+              {errors.shop_status && (
+                <span className="text-danger">This field is required</span>
+              )}
             </div>
             <div className="form-group col-md-6 mt-3">
               <label htmlFor="">payment type: </label>
@@ -45,7 +72,9 @@ const AppShopTable = () => {
                 <option value="Direct">Direct</option>
                 <option value="Deposit">Deposit</option>
               </select>
-              {errors.shop_pay_type && <span className="text-danger">This field is required</span>}
+              {errors.shop_pay_type && (
+                <span className="text-danger">This field is required</span>
+              )}
             </div>
           </div>
           <div className="border-bottom"></div>
@@ -57,7 +86,9 @@ const AppShopTable = () => {
                 {...register("shop_name", { required: true })}
                 id="shop_name"
               />
-              {errors.shop_name && <span className="text-danger">This field is required</span>}
+              {errors.shop_name && (
+                <span className="text-danger">This field is required</span>
+              )}
             </div>
             <div className="form-group col-md-6 mt-3">
               <label htmlFor="">Name </label>
@@ -311,7 +342,8 @@ const AppShopTable = () => {
                 type="text"
               />
             </div>
-            <div className="form-group col-md-6 mt-3">
+
+            {/* <div className="form-group col-md-6 mt-3">
               <label htmlFor="">lat</label>
               <input
                 className="form-control"
@@ -319,6 +351,7 @@ const AppShopTable = () => {
                 type="text"
               />
             </div>
+
             <div className="form-group col-md-6 mt-3">
               <label htmlFor="">long</label>
               <input
@@ -326,7 +359,8 @@ const AppShopTable = () => {
                 {...register("long")}
                 type="text"
               />
-            </div>
+            </div> */}
+
             <div className="form-group col-md-6 mt-3">
               <label htmlFor="">timeZone</label>
               <input

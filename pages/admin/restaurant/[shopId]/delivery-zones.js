@@ -17,3 +17,9 @@ const DeliveryZones = () => {
 };
 
 export default DeliveryZones;
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

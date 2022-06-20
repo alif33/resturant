@@ -14,3 +14,10 @@ const StatementPage = () => {
 };
 
 export default StatementPage;
+
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

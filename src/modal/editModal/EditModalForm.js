@@ -60,8 +60,8 @@ const EditModalForm = ({ productId, close }) => {
 
   const onSubmit = (data) => {
     var formdata = new FormData();
-    formdata.append("product_name", data.product_name);
-    formdata.append("description", data.description);
+    formdata.append("product_name", data.product_name || product?.product_name);
+    formdata.append("description", data.description || product?.category);
     formdata.append("category", data.category);
     formdata.append("image", data.image[0]);
     formdata.append("options", seledtedOptions);
@@ -74,7 +74,7 @@ const EditModalForm = ({ productId, close }) => {
     formdata.append("sele_name", data.name);
     formdata.append("large_price", data.large_price);
     formdata.append("xlarge_price", data.xlarge_price);
-    formdata.append("name", data.name);
+    // formdata.append("name", data.name);
 
     updateData(`admin/product/${productId}`, formdata, token).then((res) => {
       console.log(res);

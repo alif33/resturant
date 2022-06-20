@@ -17,3 +17,10 @@ const Orders = () => {
 };
 
 export default Orders;
+
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

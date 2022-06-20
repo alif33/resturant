@@ -17,24 +17,26 @@ const OrderingFrom = () => {
     reset,
     formState: { errors },
   } = useForm();
+  
+  // console.log(watch().minimum_pickUp_order);
 
   useEffect(() => {
     shopId && getData(`admin/shop/${shopId}`).then((res) => setShop(res));
   }, [shopId]);
 
-  console.log(shop);
+  // console.log(shop);
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     const newData = { ...shop, ...data };
-    console.log(newData);
+    // console.log(newData);
     shopUpdate(`/admin/shop/${shopId}`, newData, token);
   };
 
   return (
     <div className="card">
       <div className="card-body">
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="row mt-4">
             <div className="col-md-8">
               <div className="form-group-two">
@@ -101,8 +103,7 @@ const OrderingFrom = () => {
                   {...register("pause_delivery_today", { required: true })}
                 >
                   <option value="active">active</option>
-                  <option value="active">active</option>
-                  <option value="active">active</option>
+                  <option value="inactive">inactive</option>
                 </select>
               </div>
               {errors.pause_delivery_today && (
@@ -115,8 +116,7 @@ const OrderingFrom = () => {
                   {...register("no_scheduled_order", { required: true })}
                 >
                   <option value="active">active</option>
-                  <option value="active">active</option>
-                  <option value="active">active</option>
+                  <option value="inactive">inactive</option>
                 </select>
               </div>
               {errors.no_scheduled_order && (
@@ -129,8 +129,7 @@ const OrderingFrom = () => {
                   {...register("stop_order_today", { required: true })}
                 >
                   <option value="active">active</option>
-                  <option value="active">active</option>
-                  <option value="active">active</option>
+                  <option value="inactive">inactive</option>
                 </select>
               </div>
               {errors.stop_order_today && (

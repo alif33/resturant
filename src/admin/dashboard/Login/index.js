@@ -29,6 +29,7 @@ const LoginFrom = () => {
         dispatch(adminLogin(res.admin));
         cookies.set("_admin", res.token, { path: "/" });
         toast.success(res.message);
+        rotuer.push("/admin/restaurants");
       }
     });
   };

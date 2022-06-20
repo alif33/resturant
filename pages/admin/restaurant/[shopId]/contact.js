@@ -20,3 +20,9 @@ const ContactPage = () => {
 };
 
 export default ContactPage;
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

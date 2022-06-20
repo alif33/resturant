@@ -12,11 +12,11 @@ import { getData } from "../../../../__lib__/helpers/HttpService";
 
 const ProductPage = ({ products, shopId }) => {
   const [shop, setShop] = useState({});
-  var noProduct = <li>Loading...</li>;
+  var noProduct = <li>there is no product</li>;
 
   useEffect(() => {
     setInterval(() => {
-      noProduct = <li>there is no product</li>;
+      noProduct = <li>Loading...</li>;
     }, 300);
   }, []);
 

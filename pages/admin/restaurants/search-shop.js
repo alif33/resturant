@@ -26,3 +26,10 @@ const SearchShopPage = () => {
 };
 
 export default SearchShopPage;
+
+
+export const getServerSideProps = adminAuth((context) => {
+  return {
+    props: {},
+  };
+});

@@ -24,13 +24,13 @@ const AddProductDropdown = () => {
         <a className="btn btn-outline-dark btn-lg px-4">add product</a>
       </Link>
 
-      <button
+      {/* <button
         type="button"
         className="btn btn-outline-dark btn-lg  dropdown-toggle dropdown-toggle-split"
         onClick={() => setDropdown(!dropdown)}
       >
         <span className="sr-only">Toggle Dropdown</span>
-      </button>
+      </button> */}
       {dropdown && (
         <div
           className="dropdown-menu dropdown-menu-right show"
