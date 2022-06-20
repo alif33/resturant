@@ -42,47 +42,52 @@ handler.get(async (req, res) => {
   }
 });
 
-
 // copy the product
 
-handler.use(isAdmin).patch(async (req, res) => {
+handler.use(isAdmin).post(async (req, res) => {
+  const {
+    product_name,
+    shop,
+    description,
+    category,
+    options,
+    image,
+    cata_title,
+    cata_price,
+    property_name,
+    limit,
+    property_option,
+    sele_name,
+    large_price,
+    xlarge_price,
+  } = req.body;
+
   try {
     await db.connect();
     const product = await Product.findById({ _id: req.query.id });
-
-    const {
-      product_name,
-      description,
-      shop,
-      category,
-      image,
-      options,
-      catalog,
-      property,
-    } = product;
     if (product) {
       const newProduct = new Product({
-        product_name,
-        description,
-        category,
+        product_name: product_name,
+        description: description,
+        category: category,
         image: image,
-        options,
-        shop,
+        options: options,
+        shop: shop,
         catalog: {
           product_type: {
-            cata_title: catalog.product_type.cata_title,
-            cata_price: catalog.product_type.cata_price,
+            cata_title: cata_title,
+            cata_price: cata_price,
           },
         },
 
         property: {
-          property_name: property.property_name,
-          limit: property.limit,
-          property_option: property.property_option,
+          property_name: property_name,
+          limit: limit,
+          property_option: property_option,
           selection: {
-            sele_name: property.selection.sele_name,
-            large_price: property.selection.large_price,
-            xlarge_price: property.selection.xlarge_price,
+            sele_name: sele_name,
+            large_price: large_price,
+            xlarge_price: xlarge_price,
           },
         },
       });
@@ -92,13 +97,12 @@ handler.use(isAdmin).patch(async (req, res) => {
           success: true,
           message: "Product copied",
         });
-      }else{
-        res.send({error: "erver side error"})
+      } else {
+        res.send({ error: "erver side error" });
       }
-    }else{
-      res.send({error: "Product not found"});
+    } else {
+      res.send({ error: "Product not found" });
     }
-   
   } catch (err) {
     res.status(500).json({
       error: "Server side error",
@@ -124,7 +128,6 @@ handler.use(isAdmin, upload.single("image")).put(async (req, res) => {
     large_price,
     xlarge_price,
   } = req.body;
-
 
   //cloudinary upload file streamifier
 
@@ -196,7 +199,6 @@ handler.use(isAdmin, upload.single("image")).put(async (req, res) => {
   }
 });
 
-
 handler.use(isAdmin).delete(async (req, res) => {
   try {
     await db.connect();
@@ -223,7 +225,5 @@ handler.use(isAdmin).delete(async (req, res) => {
 });
 
 //delete product
-
-
 
 export default handler;
