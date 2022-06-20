@@ -81,7 +81,7 @@ const ProductPage = ({ shopId }) => {
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                 >
-                  {products.length === 0 && noProduct}
+                  {products?.length === 0 && noProduct}
 
                   {products?.map((product) => (
                     <Draggable

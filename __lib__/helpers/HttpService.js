@@ -83,9 +83,11 @@ export const updateData = async (endPoint, formData, token) => {
   }
 };
 export const copyData = async (endPoint, token) => {
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${token}`);
   try {
     const { data } = await axios.patch(API_URL + endPoint, {
-      headers: authHeader(token),
+      headers: myHeaders,
     });
     return data;
   } catch (error) {

@@ -26,7 +26,7 @@ const RestaurentTable = ({ shops }) => {
               </th>
             </tr>
           </thead>
-          {shops.length === 0 && (
+          {shops?.length === 0 && (
             <h1 className="mt-3 text-center">There is no Shop</h1>
           )}
           <tbody>
