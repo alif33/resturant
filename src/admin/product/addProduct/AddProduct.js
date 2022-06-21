@@ -21,6 +21,7 @@ const options = [
 const AddProduct = ({ shopId }) => {
   const [selected, setSelected] = useState([]);
   const [ProSelected, setProSelected] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
   const cookies = new Cookies();
@@ -33,6 +34,7 @@ const AddProduct = ({ shopId }) => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
+    setLoading(true);
     const formdata = new FormData();
     formdata.append("product_name", data.product_name);
     formdata.append("description", data.description);
@@ -61,6 +63,7 @@ const AddProduct = ({ shopId }) => {
         reset();
         router.push(`/admin/restaurant/${shopId}/products`);
       }
+      setLoading(true);
     });
   };
 
@@ -232,10 +235,21 @@ const AddProduct = ({ shopId }) => {
               />
             </div>
           </div>
-
-          <button type="submit" className="btn btn-primary d-block mt-3">
-            Add Product
-          </button>
+          {loading ? (
+            <div className="btn btn-primary ml-auto px-4">
+              <div
+                className="spinner-border text-light"
+                style={{ height: "20px", width: "20px" }}
+                role="status"
+              >
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          ) : (
+            <button type="submit" className="btn btn-primary d-block mt-3">
+              Add Product
+            </button>
+          )}
         </form>
       </div>
     </div>

@@ -27,6 +27,7 @@ const EditModalForm = ({ productId, close, load, setLoad }) => {
   const [ProSelected, setProSelected] = useState([]);
   const [product, setProduct] = useState([]);
   const [image, setImage] = useState();
+  const [loading, setLoading] = useState(false);
 
   const seledtedOptions = selected.map((item) => item.value);
   const proSeledtedOptions = ProSelected.map((item) => item.value);
@@ -66,6 +67,7 @@ const EditModalForm = ({ productId, close, load, setLoad }) => {
   }, [productId, token]);
 
   const onSubmit = (data) => {
+    setLoading(true);
     var formdata = new FormData();
     formdata.append("product_name", data.product_name || product?.product_name);
     formdata.append("description", data.description || product?.description);
@@ -105,12 +107,12 @@ const EditModalForm = ({ productId, close, load, setLoad }) => {
     // formdata.append("name", data.name);
 
     updateData(`admin/product/${productId}`, formdata, token).then((res) => {
-      console.log(res);
       if (res.success) {
         toast.success(res.message);
         setLoad(!load);
         close();
       }
+      setLoading(false);
     });
   };
 
@@ -272,9 +274,21 @@ const EditModalForm = ({ productId, close, load, setLoad }) => {
       </div>
 
       <div className="text-center mt-3">
-        <button type="submit" className="btn btn-primary d-block  m-auto">
-          Update Product
-        </button>
+        {loading ? (
+          <div className="btn btn-primary ml-auto px-4">
+            <div
+              className="spinner-border text-light"
+              style={{ height: "20px", width: "20px" }}
+              role="status"
+            >
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        ) : (
+          <button type="submit" className="btn btn-primary d-block  m-auto">
+            Update Product
+          </button>
+        )}
       </div>
     </form>
   );

@@ -19,6 +19,7 @@ const ProductPage = ({ shopId }) => {
   const [products, setProducts] = useState([]);
   const [load, setLoad] = useState(false);
   const [shop, setShop] = useState({});
+  const [loading, setLoading] = useState(false);
   const cookies = new Cookies();
   const token = cookies.get("_admin");
   var noProduct = <li>there is no product</li>;
@@ -40,20 +41,24 @@ const ProductPage = ({ shopId }) => {
   }, [shopId, load]);
 
   const copyHanle = (id) => {
+    setLoading(true);
     authPost(`admin/product/${id}`, {}, token).then((res) => {
       if (res.success) {
         setLoad(!load);
         toast.success(res.message);
       }
+      setLoading(false);
     });
   };
 
   const deleteHanle = (id) => {
+    setLoading(true);
     deleteData(`admin/product/${id}`, token).then((res) => {
       if (res.success) {
         setLoad(!load);
         toast.success(res.message);
       }
+      setLoading(false);
     });
   };
 
@@ -113,18 +118,52 @@ const ProductPage = ({ shopId }) => {
                               setLoad={setLoad}
                               load={load}
                             />
-                            <button
-                              onClick={() => copyHanle(product._id)}
-                              className="btn btn-info"
-                            >
-                              <ImCopy /> Copy
-                            </button>
-                            <button
-                              onClick={() => deleteHanle(product._id)}
-                              className="btn btn-danger"
-                            >
-                              <MdDelete /> Delete
-                            </button>
+                            {loading ? (
+                              <div className="btn btn-info px-4">
+                                {/* style={{ width: "100px" }} */}
+                                <div
+                                  className="spinner-border text-light"
+                                  style={{ height: "20px", width: "20px" }}
+                                  role="status"
+                                >
+                                  <span className="visually-hidden">
+                                    Loading...
+                                  </span>
+                                </div>
+                              </div>
+                            ) : (
+                              <button
+                                onClick={() => copyHanle(product._id)}
+                                className="btn btn-info"
+                                style={{ width: "100px" }}
+                              >
+                                <ImCopy /> Copy
+                              </button>
+                            )}
+                            {loading ? (
+                              <div
+                                style={{ width: "100px" }}
+                                className="btn btn-danger px-4"
+                              >
+                                <div
+                                  className="spinner-border text-light"
+                                  style={{ height: "20px", width: "20px" }}
+                                  role="status"
+                                >
+                                  <span className="visually-hidden">
+                                    Loading...
+                                  </span>
+                                </div>
+                              </div>
+                            ) : (
+                              <button
+                                onClick={() => deleteHanle(product._id)}
+                                className="btn btn-danger"
+                                style={{ width: "100px" }}
+                              >
+                                <MdDelete /> Delete
+                              </button>
+                            )}
                           </div>
                         </li>
                       )}
