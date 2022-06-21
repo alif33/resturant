@@ -119,18 +119,21 @@ const ProductPage = ({ shopId }) => {
                               load={load}
                             />
                             {loading ? (
-                              <div className="btn btn-info px-4">
+                              <button
+                                type="button"
+                                className="btn btn-info px-4"
+                              >
                                 {/* style={{ width: "100px" }} */}
                                 <div
                                   className="spinner-border text-light"
-                                  style={{ height: "20px", width: "20px" }}
+                                  style={{ height: "18px", width: "18px" }}
                                   role="status"
                                 >
                                   <span className="visually-hidden">
                                     Loading...
                                   </span>
                                 </div>
-                              </div>
+                              </button>
                             ) : (
                               <button
                                 onClick={() => copyHanle(product._id)}
@@ -141,20 +144,21 @@ const ProductPage = ({ shopId }) => {
                               </button>
                             )}
                             {loading ? (
-                              <div
+                              <button
+                                type="button"
                                 style={{ width: "100px" }}
                                 className="btn btn-danger px-4"
                               >
                                 <div
                                   className="spinner-border text-light"
-                                  style={{ height: "20px", width: "20px" }}
+                                  style={{ height: "18px", width: "18px" }}
                                   role="status"
                                 >
                                   <span className="visually-hidden">
                                     Loading...
                                   </span>
                                 </div>
-                              </div>
+                              </button>
                             ) : (
                               <button
                                 onClick={() => deleteHanle(product._id)}
