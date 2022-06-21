@@ -6,6 +6,7 @@ import { getData, shopUpdate } from "../../../__lib__/helpers/HttpService";
 
 const OrderingFrom = () => {
   const [shop, setShop] = useState({});
+  const [load, setLoad] = useState(false);
   const router = useRouter();
   const { shopId } = router?.query;
   const cookies = new Cookies();
@@ -17,20 +18,14 @@ const OrderingFrom = () => {
     reset,
     formState: { errors },
   } = useForm();
-  
-  // console.log(watch().minimum_pickUp_order);
 
   useEffect(() => {
     shopId && getData(`admin/shop/${shopId}`).then((res) => setShop(res));
-  }, [shopId]);
-
-  // console.log(shop);
-
+  }, [shopId, load]);
   const onSubmit = (data) => {
-    // console.log(data);
     const newData = { ...shop, ...data };
-    // console.log(newData);
-    shopUpdate(`/admin/shop/${shopId}`, newData, token);
+    shopUpdate(`/admin/shop/${shopId}`, newData, token, shop);
+    setLoad(!load);
   };
 
   return (
@@ -44,7 +39,7 @@ const OrderingFrom = () => {
                 <div className="banner-text">
                   <input
                     defaultValue={shop?.minimum_pickUp_order}
-                    {...register("minimum_pickUp_order", { required: true })}
+                    {...register("minimum_pickUp_order")}
                     type="text"
                   />
                   <p>
@@ -60,7 +55,7 @@ const OrderingFrom = () => {
                 <label htmlFor="">Pickup estimate </label>
                 <input
                   defaultValue={shop?.pickUp_estimate}
-                  {...register("pickUp_estimate", { required: true })}
+                  {...register("pickUp_estimate")}
                   type="text"
                   placeholder="15-30 min"
                 />
@@ -77,7 +72,7 @@ const OrderingFrom = () => {
                 <label htmlFor="">Delivery estimate </label>
                 <input
                   defaultValue={shop?.delivery_estimate}
-                  {...register("delivery_estimate", { required: true })}
+                  {...register("delivery_estimate")}
                   type="text"
                 />
               </div>
@@ -88,7 +83,7 @@ const OrderingFrom = () => {
                 <label htmlFor=""> Online Discount </label>
                 <input
                   defaultValue={shop?.online_discount}
-                  {...register("online_discount", { required: true })}
+                  {...register("online_discount")}
                   type="text"
                 />
               </div>
@@ -100,10 +95,20 @@ const OrderingFrom = () => {
                 <label htmlFor="">Pause Delivery Today</label>
                 <select
                   defaultValue={shop?.pause_delivery_today}
-                  {...register("pause_delivery_today", { required: true })}
+                  {...register("pause_delivery_today")}
                 >
-                  <option value="active">active</option>
-                  <option value="inactive">inactive</option>
+                  <option
+                    selected={shop?.pause_delivery_today === "active"}
+                    value="active"
+                  >
+                    active
+                  </option>
+                  <option
+                    selected={shop?.pause_delivery_today === "inactive"}
+                    value="inactive"
+                  >
+                    inactive
+                  </option>
                 </select>
               </div>
               {errors.pause_delivery_today && (
@@ -113,10 +118,20 @@ const OrderingFrom = () => {
                 <label htmlFor="">No Scheduled Order </label>
                 <select
                   defaultValue={shop?.no_scheduled_order}
-                  {...register("no_scheduled_order", { required: true })}
+                  {...register("no_scheduled_order")}
                 >
-                  <option value="active">active</option>
-                  <option value="inactive">inactive</option>
+                  <option
+                    selected={shop?.no_scheduled_order === "active"}
+                    value="active"
+                  >
+                    active
+                  </option>
+                  <option
+                    selected={shop?.no_scheduled_order === "inactive"}
+                    value="inactive"
+                  >
+                    inactive
+                  </option>
                 </select>
               </div>
               {errors.no_scheduled_order && (
@@ -124,12 +139,19 @@ const OrderingFrom = () => {
               )}
               <div className="form-group-two">
                 <label htmlFor="">Stop Order Today </label>
-                <select
-                  defaultValue={shop?.stop_order_today}
-                  {...register("stop_order_today", { required: true })}
-                >
-                  <option value="active">active</option>
-                  <option value="inactive">inactive</option>
+                <select {...register("stop_order_today")}>
+                  <option
+                    selected={shop?.stop_order_today === "active"}
+                    value="active"
+                  >
+                    active
+                  </option>
+                  <option
+                    selected={shop?.stop_order_today === "inactive"}
+                    value="inactive"
+                  >
+                    inactive
+                  </option>
                 </select>
               </div>
               {errors.stop_order_today && (

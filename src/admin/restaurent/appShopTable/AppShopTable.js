@@ -28,18 +28,18 @@ const AppShopTable = () => {
     }
   };
 
-  
   useEffect(() => {
-  getLocation();
+    getLocation();
   }, []);
 
   // console.log(location);
 
   const onSubmit = (data) => {
-   if(location){
-    const newDate = {...data, ...location }
-    addShopPost(newDate, token, reset);
-   }
+    setLoading(true);
+    if (location) {
+      const newDate = { ...data, ...location };
+      addShopPost(newDate, token, reset, setLoading);
+    }
   };
 
   return (
@@ -54,7 +54,6 @@ const AppShopTable = () => {
                 {...register("shop_status", { required: true })}
               >
                 <option value="Live">Live</option>
-                <option value="Temporarily">Temporarily</option>
                 <option value="Temporarily Paused">Temporarily Paused</option>
                 <option value="M2M">M2M</option>
                 <option value="Disabled">Disabled</option>
@@ -508,7 +507,19 @@ const AppShopTable = () => {
           <div className="border-bottom"></div>
 
           <div className="text-right">
-            <button className="btn btn-danger ml-auto">Add Shop</button>
+            {loading ? (
+              <div className="btn btn-danger ml-auto px-4">
+                <div
+                  className="spinner-border text-light"
+                  style={{ height: "20px", width: "20px" }}
+                  role="status"
+                >
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            ) : (
+              <button className="btn btn-danger ml-auto">Add Shop</button>
+            )}
           </div>
         </form>
       </div>

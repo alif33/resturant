@@ -22,12 +22,6 @@ const AddProduct = ({ shopId }) => {
   const [selected, setSelected] = useState([]);
   const [ProSelected, setProSelected] = useState([]);
 
-  // const seledtedOptions = selected.map((item) => item.value);
-  // const proSeledtedOptions = ProSelected.map((item) => item.value);
-
-  console.log(seledtedOptions);
-  console.log(proSeledtedOptions);
-
   const router = useRouter();
   const cookies = new Cookies();
   const token = cookies.get("_admin");

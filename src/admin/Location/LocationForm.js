@@ -6,6 +6,7 @@ import { getData, shopUpdate } from "../../../__lib__/helpers/HttpService";
 
 const LocationForm = () => {
   const [shop, setShop] = useState({});
+  const [load, setLoad] = useState(false);
   const router = useRouter();
   const { shopId } = router?.query;
   const cookies = new Cookies();
@@ -20,15 +21,12 @@ const LocationForm = () => {
 
   useEffect(() => {
     shopId && getData(`admin/shop/${shopId}`).then((res) => setShop(res));
-  }, [shopId]);
-
-  console.log(shop);
+  }, [shopId, load]);
 
   const onSubmit = (data) => {
-    console.log(data);
     const newData = { ...shop, ...data };
-    console.log(newData);
-    shopUpdate(`/admin/shop/${shopId}`, newData, token);
+    shopUpdate(`/admin/shop/${shopId}`, newData, token, shop);
+    setLoad(!load)
   };
 
   return (
@@ -41,7 +39,7 @@ const LocationForm = () => {
                 <label htmlFor="">*Address </label>
                 <input
                   defaultValue={shop?.address?.shop_address}
-                  {...register("shop_address", { required: true })}
+                  {...register("shop_address")}
                   type="text"
                 />
               </div>
@@ -53,7 +51,7 @@ const LocationForm = () => {
                 <input
                   type="text"
                   defaultValue={shop?.address?.city}
-                  {...register("city", { required: true })}
+                  {...register("city")}
                 />
               </div>
               {errors.city && (
@@ -64,7 +62,7 @@ const LocationForm = () => {
                 <input
                   type="text"
                   defaultValue={shop?.address?.state}
-                  {...register("state", { required: true })}
+                  {...register("state")}
                 />
               </div>
               {errors.state && (
@@ -75,7 +73,7 @@ const LocationForm = () => {
                 <input
                   type="text"
                   defaultValue={shop?.address?.zip_code}
-                  {...register("zip_code", { required: true })}
+                  {...register("zip_code")}
                 />
               </div>
               {errors.zip_code && (

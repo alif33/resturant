@@ -6,6 +6,7 @@ import { getData, shopUpdate } from "../../../__lib__/helpers/HttpService";
 
 const SettingForm = () => {
   const [shop, setShop] = useState({});
+  const [load, setLoad] = useState(false);
   const [shopLogo, setShopLogo] = useState();
   const [webHeader, setWebHeader] = useState();
   const [mobileHeader, setMobileHeader] = useState();
@@ -23,14 +24,12 @@ const SettingForm = () => {
 
   useEffect(() => {
     shopId && getData(`admin/shop/${shopId}`).then((res) => setShop(res));
-  }, [shopId]);
-
-  console.log(shop);
-
+  }, [shopId, load]);
+  
   const onSubmit = (data) => {
-    console.log(data);
     const newDate = { ...shop, shop_name: data.shop_name, ...data };
-    shopUpdate(`/admin/shop/${shopId}`, newDate, token);
+    shopUpdate(`/admin/shop/${shopId}`, newDate, token, shop);
+    setLoad(!load);
   };
 
   return (
@@ -41,24 +40,44 @@ const SettingForm = () => {
             <div className="col-md-5">
               <div className="form-group-two">
                 <label htmlFor="">Shop Status: </label>
-                <select value={shop?.shop_status} {...register("shop_status")}>
-                  <option value="Live">Live</option>
-                  <option value="Temporarily">Temporarily</option>
-                  <option value="Temporarily Paused">Temporarily Paused</option>
-                  <option value="M2M">M2M</option>
-                  <option value="Disabled">Disabled</option>
+                <select {...register("shop_status")}>
+                  <option selected={shop?.shop_status === "Live"} value="Live">
+                    Live
+                  </option>
+                  <option
+                    selected={shop?.shop_status === "Temporarily Paused"}
+                    value="Temporarily Paused"
+                  >
+                    Temporarily Paused
+                  </option>
+                  <option selected={shop?.shop_status === "M2M"} value="M2M">
+                    M2M
+                  </option>
+                  <option
+                    selected={shop?.shop_status === "Disabled"}
+                    value="Disabled"
+                  >
+                    Disabled
+                  </option>
                 </select>
               </div>
             </div>
             <div className="col-md-5">
               <div className="form-group-two">
                 <label htmlFor="">Shop Type: </label>
-                <select
-                  value={shop?.shop_pay_type}
-                  {...register("shop_pay_type")}
-                >
-                  <option value="Direct">Direct</option>
-                  <option value="Deposit">Deposit</option>
+                <select {...register("shop_pay_type")}>
+                  <option
+                    selected={`shop?.shop_pay_type` === "Direct"}
+                    value="Direct"
+                  >
+                    Direct
+                  </option>
+                  <option
+                    selected={shop?.shop_pay_type === "Deposit"}
+                    value="Deposit"
+                  >
+                    Deposit
+                  </option>
                 </select>
               </div>
             </div>

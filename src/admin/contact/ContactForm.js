@@ -6,6 +6,7 @@ import { getData, shopUpdate } from "../../../__lib__/helpers/HttpService";
 
 const ContactForm = () => {
   const [shop, setShop] = useState({});
+  const [load, setLoad] = useState(false);
   const router = useRouter();
   const { shopId } = router?.query;
   const cookies = new Cookies();
@@ -20,7 +21,7 @@ const ContactForm = () => {
 
   useEffect(() => {
     shopId && getData(`admin/shop/${shopId}`).then((res) => setShop(res));
-  }, [shopId]);
+  }, [shopId, load]);
 
   console.log(shop);
 
@@ -28,7 +29,8 @@ const ContactForm = () => {
     console.log(data);
     const newData = { ...shop, ...data };
     console.log(newData);
-    shopUpdate(`/admin/shop/${shopId}`, newData, token);
+    shopUpdate(`/admin/shop/${shopId}`, newData, token, shop);
+    setLoad(!load);
   };
 
   return (
@@ -41,7 +43,7 @@ const ContactForm = () => {
                 <label htmlFor="">Contact name </label>
                 <input
                   defaultValue={shop?.owners_name}
-                  {...register("owners_name", { required: true })}
+                  {...register("owners_name")}
                   type="text"
                   placeholder="4850 S Pulaski Rd"
                 />
@@ -55,7 +57,7 @@ const ContactForm = () => {
                   <input
                     type="text"
                     defaultValue={shop?.owners_phone}
-                    {...register("owners_phone", { required: true })}
+                    {...register("owners_phone")}
                   />
                   <p>Phone type : n/a</p>
                 </div>
@@ -67,7 +69,7 @@ const ContactForm = () => {
                 <label htmlFor="">Contact email </label>
                 <input
                   defaultValue={shop?.owners_name}
-                  {...register("owners_name", { required: true })}
+                  {...register("owners_name")}
                   type="text"
                 />
               </div>
@@ -83,7 +85,7 @@ const ContactForm = () => {
                 <label htmlFor="">Secondary contact name </label>
                 <input
                   defaultValue={shop?.se_contact_name}
-                  {...register("se_contact_name", { required: true })}
+                  {...register("se_contact_name")}
                   type="text"
                 />
               </div>
@@ -96,7 +98,7 @@ const ContactForm = () => {
                   <input
                     type="text"
                     defaultValue={shop?.se_contact_phone}
-                    {...register("se_contact_phone", { required: true })}
+                    {...register("se_contact_phone")}
                   />
                   <p>Phone type : n/a</p>
                 </div>
@@ -108,7 +110,7 @@ const ContactForm = () => {
                 <label htmlFor="">Secondary contact email </label>
                 <input
                   defaultValue={shop?.se_contact_email}
-                  {...register("se_contact_email", { required: true })}
+                  {...register("se_contact_email")}
                   type="text"
                 />
               </div>
@@ -125,7 +127,7 @@ const ContactForm = () => {
                 <div className="banner-text">
                   <input
                     defaultValue={shop?.res_phone}
-                    {...register("res_phone", { required: true })}
+                    {...register("res_phone")}
                     type="text"
                     placeholder="Chicago"
                   />

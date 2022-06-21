@@ -6,8 +6,9 @@ import { getData, shopUpdate } from "../../../__lib__/helpers/HttpService";
 
 const SeoSettingForm = () => {
   const [googlePasswordShow, setGooglePasswordShow] = useState(true);
-  const [applePasswordShow, setApplePasswordShow] = useState(true);
+
   const [shop, setShop] = useState({});
+  const [load, setLoad] = useState(false);
   const router = useRouter();
   const { shopId } = router?.query;
   const cookies = new Cookies();
@@ -22,15 +23,12 @@ const SeoSettingForm = () => {
 
   useEffect(() => {
     shopId && getData(`admin/shop/${shopId}`).then((res) => setShop(res));
-  }, [shopId]);
-
-  console.log(shop);
+  }, [shopId, load]);
 
   const onSubmit = (data) => {
-    console.log(data);
     const newData = { ...shop, ...data };
-    console.log(newData);
-    shopUpdate(`/admin/shop/${shopId}`, newData, token);
+    shopUpdate(`/admin/shop/${shopId}`, newData, token, shop);
+    setLoad(!load);
   };
 
   return (

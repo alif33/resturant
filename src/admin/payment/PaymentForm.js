@@ -6,6 +6,7 @@ import { getData, shopUpdate } from "../../../__lib__/helpers/HttpService";
 
 const PaymentForm = () => {
   const [shop, setShop] = useState({});
+  const [load, setLoad] = useState(false);
   const router = useRouter();
   const { shopId } = router?.query;
   const cookies = new Cookies();
@@ -20,15 +21,16 @@ const PaymentForm = () => {
 
   useEffect(() => {
     shopId && getData(`admin/shop/${shopId}`).then((res) => setShop(res));
-  }, [shopId]);
+  }, [shopId, load]);
 
   console.log(shop);
 
   const onSubmit = (data) => {
     console.log(data);
     const newData = { ...shop, ...data };
-    console.log(newData)
-    shopUpdate(`/admin/shop/${shopId}`, newData, token);
+    console.log(newData);
+    shopUpdate(`/admin/shop/${shopId}`, newData, token, shop);
+    setLoad(!load)
   };
 
   return (
@@ -116,14 +118,28 @@ const PaymentForm = () => {
             <div className="col-md-8">
               <div className="form-group-two">
                 <label htmlFor="">contact_method</label>
-                <select
-                  defaultValue={shop?.contact_method}
-                  {...register("contact_method", { required: true })}
-                >
-                  <option value="Phone">Phone</option>
-                  <option value="Sms">Sms</option>
-                  <option value="Email">Email</option>
-                  <option value="Tablet">Tablet</option>
+                <select {...register("contact_method", { required: true })}>
+                  <option
+                    selected={shop?.contact_method === "Phone"}
+                    value="Phone"
+                  >
+                    Phone
+                  </option>
+                  <option selected={shop?.contact_method === "Sms"} value="Sms">
+                    Sms
+                  </option>
+                  <option
+                    selected={shop?.contact_method === "Email"}
+                    value="Email"
+                  >
+                    Email
+                  </option>
+                  <option
+                    selected={shop?.contact_method === "Tablet"}
+                    value="Tablet"
+                  >
+                    Tablet
+                  </option>
                 </select>
               </div>
               {errors.contact_method && (
