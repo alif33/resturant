@@ -22,10 +22,10 @@ const ProductPage = ({ shopId }) => {
   const [loading, setLoading] = useState(false);
   const cookies = new Cookies();
   const token = cookies.get("_admin");
-  var noProduct = <li>there is no product</li>;
+  let noProduct = <li>There Is No Product</li>;
 
   useEffect(() => {
-    setInterval(() => {
+    setTimeout(() => {
       noProduct = <li>Loading...</li>;
     }, 300);
   }, []);

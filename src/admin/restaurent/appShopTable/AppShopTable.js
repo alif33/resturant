@@ -46,6 +46,39 @@ const AppShopTable = () => {
     <div className="card">
       <div className="card-body">
         <form onSubmit={handleSubmit(onSubmit)}>
+          {/* <p className="mb-0">
+            <a
+              className="btn btn-primary mb-1 collapsed"
+              data-toggle="collapse"
+              href="#multiCollapseExample1"
+              role="button"
+              aria-expanded="false"
+              aria-controls="multiCollapseExample1"
+            >
+              Toggle first element
+            </a>
+            <button
+              className="btn btn-primary mb-1"
+              type="button"
+              data-toggle="collapse"
+              data-target="#multiCollapseExample2"
+              aria-expanded="false"
+              aria-controls="multiCollapseExample2"
+            >
+              Toggle second element
+            </button>
+            <button
+              className="btn btn-primary mb-1 collapsed"
+              type="button"
+              data-toggle="collapse"
+              data-target=".multi-collapse"
+              aria-expanded="false"
+              aria-controls="multiCollapseExample1 multiCollapseExample2"
+            >
+              Toggle both elements
+            </button>
+          </p> */}
+
           <div className="row">
             <div className="form-group col-md-6 mt-3">
               <label htmlFor="">Shop Status: </label>

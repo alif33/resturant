@@ -7,6 +7,7 @@ import { adminLogin } from "../../../../store/admins/actions";
 import { postData } from "../../../../__lib__/helpers/HttpService";
 import Cookies from "universal-cookie";
 import toast from "react-hot-toast";
+import { regEmail, regPass } from "../../../../__lib__/helpers/regex";
 
 const LoginFrom = () => {
   const [disable, setDisable] = useState(false);
@@ -24,11 +25,10 @@ const LoginFrom = () => {
   const onSubmit = (data) => {
     setDisable(true);
     postData(`admin/login`, data, setDisable).then((res) => {
-      console.log(res);
       if (res.success) {
         dispatch(adminLogin(res.admin));
         cookies.set("_admin", res.token, { path: "/" });
-        toast.success(res.message);
+        toast.success("Login Success");
         router.push("/admin/restaurants");
       }
     });
@@ -51,7 +51,10 @@ const LoginFrom = () => {
               id="dashboardEmail"
               aria-describedby="emailHelp"
               placeholder="Enter email"
-              {...register("email", { required: true })}
+              {...register("email", {
+                required: true,
+                pattern: regEmail,
+              })}
             />
             {errors.email && (
               <span className="text-danger">This field is required</span>
@@ -68,7 +71,7 @@ const LoginFrom = () => {
               className="form-control"
               id="dashboardPassword"
               placeholder="Password"
-              {...register("password", { required: true })}
+              {...register("password", { required: true})}
             />
             {errors.password && (
               <span className="text-danger">This field is required</span>

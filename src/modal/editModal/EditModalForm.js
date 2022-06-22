@@ -55,14 +55,16 @@ const EditModalForm = ({ productId, close, load, setLoad }) => {
       getUserData(`admin/product/${productId}`, token).then((res) => {
         console.log(res?.options);
         setProduct(res);
-        // const newSelect = res?.options[0]
-        //   .split(",")
-        //   .map((item) => ({ label: item, value: item }));
-        // const newProSelect = res?.property?.options[0]
-        //   .split(",")
-        //   .map((item) => ({ label: item, value: item }));
-        // setSelected(newSelect);
-        // setProSelected(newProSelect);
+        const newSelect = res?.options.map((item) => ({
+          label: item,
+          value: item,
+        }));
+        const newProSelect = res?.property?.options.map((item) => ({
+          label: item,
+          value: item,
+        }));
+        setSelected(newSelect);
+        setProSelected(newProSelect);
       });
   }, [productId, token]);
 
@@ -215,7 +217,7 @@ const EditModalForm = ({ productId, close, load, setLoad }) => {
       </div>
 
       <div className="form-row mt-3">
-        <div className="form-group col-md-5">
+        <div className="form-group col-md-6">
           <label htmlFor="">property_name</label>
           <input
             defaultValue={product?.property?.property_name}
@@ -224,7 +226,7 @@ const EditModalForm = ({ productId, close, load, setLoad }) => {
             className="form-control"
           />
         </div>
-        <div className="form-group col-md-3">
+        <div className="form-group col-md-6">
           <label htmlFor="">limit</label>
           <input
             defaultValue={product?.property?.limit}
@@ -233,7 +235,7 @@ const EditModalForm = ({ productId, close, load, setLoad }) => {
             className="form-control"
           />
         </div>
-        <div className="form-group col-md-4">
+        <div className="form-group mt-3 col-md-12">
           <label htmlFor="">options</label>
           <MultiSelect
             options={options}
