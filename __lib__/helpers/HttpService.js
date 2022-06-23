@@ -106,7 +106,7 @@ export const getFormData = async (key, data) => {
 
 const appendFormData = (data, shop) => {
   var formdata = new FormData();
-  formdata.append("shop_status", data.shop_status || shop.shop_status);
+  formdata.append("shop_status", data.shop_status || shop?.shop_status);
   formdata.append("shop_pay_type", data.shop_pay_type || shop?.shop_pay_type);
   formdata.append("shop_name", data.shop_name || shop?.shop_name);
   formdata.append("shop_logo", data.shop_logo[0] || shop?.shop_logo);
@@ -226,9 +226,11 @@ export const addShopPost = (data, token, reset, setLoading) => {
 export const shopUpdate = (url, data, token, shop, setLoading) => {
   const formdata = appendFormData(data, shop);
   updateData(url, formdata, token).then((res) => {
+
     if (res.success) {
       toast.success(res.message);
     }
+
     setLoading(false);
     return res;
   });
