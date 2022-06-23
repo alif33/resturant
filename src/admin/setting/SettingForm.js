@@ -7,6 +7,7 @@ import { getData, shopUpdate } from "../../../__lib__/helpers/HttpService";
 const SettingForm = () => {
   const [shop, setShop] = useState({});
   const [load, setLoad] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [shopLogo, setShopLogo] = useState();
   const [webHeader, setWebHeader] = useState();
   const [mobileHeader, setMobileHeader] = useState();
@@ -25,10 +26,10 @@ const SettingForm = () => {
   useEffect(() => {
     shopId && getData(`admin/shop/${shopId}`).then((res) => setShop(res));
   }, [shopId, load]);
-  
+
   const onSubmit = (data) => {
     const newDate = { ...shop, shop_name: data.shop_name, ...data };
-    shopUpdate(`/admin/shop/${shopId}`, newDate, token, shop);
+    shopUpdate(`/admin/shop/${shopId}`, newDate, token, shop, setLoading);
     setLoad(!load);
   };
 
@@ -212,7 +213,19 @@ const SettingForm = () => {
             </div>
           </div>
           <div className="text-right">
-            <button className="btn btn-danger ml-auto">Update Shop</button>
+            {loading ? (
+              <div className="btn btn-danger ml-auto px-4">
+                <div
+                  className="spinner-border text-light"
+                  style={{ height: "20px", width: "20px" }}
+                  role="status"
+                >
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            ) : (
+              <button className="btn btn-danger ml-auto">Update Shop</button>
+            )}
           </div>
         </form>
       </div>

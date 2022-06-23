@@ -7,6 +7,7 @@ import { getData, shopUpdate } from "../../../__lib__/helpers/HttpService";
 const LocationForm = () => {
   const [shop, setShop] = useState({});
   const [load, setLoad] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { shopId } = router?.query;
   const cookies = new Cookies();
@@ -25,8 +26,8 @@ const LocationForm = () => {
 
   const onSubmit = (data) => {
     const newData = { ...shop, ...data };
-    shopUpdate(`/admin/shop/${shopId}`, newData, token, shop);
-    setLoad(!load)
+    shopUpdate(`/admin/shop/${shopId}`, newData, token, shop, setLoading);
+    setLoad(!load);
   };
 
   return (
@@ -84,7 +85,7 @@ const LocationForm = () => {
                 <input
                   type="text"
                   defaultValue={shop?.address?.time_zone}
-                  {...register("time_zone",)}
+                  {...register("time_zone")}
                   aria-label="Disabled input example"
                   disabled
                 />
@@ -99,7 +100,7 @@ const LocationForm = () => {
                 <input
                   type="text"
                   defaultValue={shop?.address?.lat}
-                  {...register("lat",)}
+                  {...register("lat")}
                   aria-label="Disabled input example"
                   disabled
                 />
@@ -109,7 +110,7 @@ const LocationForm = () => {
                 <input
                   type="text"
                   defaultValue={shop?.address?.long}
-                  {...register("long",)}
+                  {...register("long")}
                   aria-label="Disabled input example"
                   disabled
                 />
@@ -119,9 +120,19 @@ const LocationForm = () => {
           <div className="border-bottom"></div>
 
           <div className="text-right">
-            <button type="submit" className="btn btn-danger ml-auto">
-              Update Shop
-            </button>
+            {loading ? (
+              <div className="btn btn-danger ml-auto px-4">
+                <div
+                  className="spinner-border text-light"
+                  style={{ height: "20px", width: "20px" }}
+                  role="status"
+                >
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            ) : (
+              <button className="btn btn-danger ml-auto">Update Shop</button>
+            )}
           </div>
         </form>
       </div>

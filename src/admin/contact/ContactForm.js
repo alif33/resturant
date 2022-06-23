@@ -7,6 +7,7 @@ import { getData, shopUpdate } from "../../../__lib__/helpers/HttpService";
 const ContactForm = () => {
   const [shop, setShop] = useState({});
   const [load, setLoad] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { shopId } = router?.query;
   const cookies = new Cookies();
@@ -29,7 +30,7 @@ const ContactForm = () => {
     console.log(data);
     const newData = { ...shop, ...data };
     console.log(newData);
-    shopUpdate(`/admin/shop/${shopId}`, newData, token, shop);
+    shopUpdate(`/admin/shop/${shopId}`, newData, token, shop, setLoading);
     setLoad(!load);
   };
 
@@ -142,7 +143,19 @@ const ContactForm = () => {
           <div className="border-bottom"></div>
 
           <div className="text-right">
-            <button className="btn btn-danger ml-auto">Update Shop</button>
+            {loading ? (
+              <div className="btn btn-danger ml-auto px-4">
+                <div
+                  className="spinner-border text-light"
+                  style={{ height: "20px", width: "20px" }}
+                  role="status"
+                >
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            ) : (
+              <button className="btn btn-danger ml-auto">Update Shop</button>
+            )}
           </div>
         </form>
       </div>

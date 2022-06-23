@@ -9,6 +9,7 @@ const SeoSettingForm = () => {
 
   const [shop, setShop] = useState({});
   const [load, setLoad] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { shopId } = router?.query;
   const cookies = new Cookies();
@@ -27,7 +28,7 @@ const SeoSettingForm = () => {
 
   const onSubmit = (data) => {
     const newData = { ...shop, ...data };
-    shopUpdate(`/admin/shop/${shopId}`, newData, token, shop);
+    shopUpdate(`/admin/shop/${shopId}`, newData, token, shop, setLoading);
     setLoad(!load);
   };
 
@@ -142,7 +143,7 @@ const SeoSettingForm = () => {
               {errors.gmb_owner && (
                 <span className="text-danger">This field is required</span>
               )}
-               <div className="form-group-two">
+              <div className="form-group-two">
                 <label htmlFor="">Meal Now Domain </label>
                 <input
                   defaultValue={shop?.meal_now_domain}
@@ -157,7 +158,19 @@ const SeoSettingForm = () => {
           </div>
           <div className="border-bottom"></div>
           <div className="text-right">
-            <button type="submit"className="btn btn-danger ml-auto">Update Shop</button>
+            {loading ? (
+              <div className="btn btn-danger ml-auto px-4">
+                <div
+                  className="spinner-border text-light"
+                  style={{ height: "20px", width: "20px" }}
+                  role="status"
+                >
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            ) : (
+              <button className="btn btn-danger ml-auto">Update Shop</button>
+            )}
           </div>
         </form>
       </div>
