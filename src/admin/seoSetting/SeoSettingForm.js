@@ -44,6 +44,7 @@ const SeoSettingForm = () => {
                   defaultValue={shop?.gmb_domain}
                   {...register("gmb_domain", { required: true })}
                   type="text"
+                  disabled
                 />
               </div>
               {errors.gmb_domain && (
@@ -55,6 +56,7 @@ const SeoSettingForm = () => {
                   defaultValue={shop?.own_website}
                   {...register("own_website", { required: true })}
                   type="text"
+                  disabled
                 />
               </div>
               {errors.own_website && (
@@ -66,6 +68,7 @@ const SeoSettingForm = () => {
                 <select
                   defaultValue={shop?.gmb_status}
                   {...register("gmb_status", { required: true })}
+                  disabled
                 >
                   <option value="Verified">Verified</option>
                   <option value="Not Verified">Not Verified</option>
@@ -76,10 +79,11 @@ const SeoSettingForm = () => {
                 <span className="text-danger">This field is required</span>
               )}
               <div className="form-group-two">
-                <label htmlFor="">gmb_status </label>
+                <label htmlFor="">GMB Role </label>
                 <select
                   defaultValue={shop?.gmb_role}
                   {...register("gmb_role", { required: true })}
+                  disabled
                 >
                   <option value="Primary Owner">Primary Owner</option>
                   <option value="Manager">Manager</option>
@@ -96,6 +100,7 @@ const SeoSettingForm = () => {
                   defaultValue={shop?.gmb_email}
                   {...register("gmb_email", { required: true })}
                   type="text"
+                  disabled
                 />
               </div>
               {errors.gmb_email && (
@@ -112,6 +117,8 @@ const SeoSettingForm = () => {
                   type={googlePasswordShow ? "password" : "text"}
                   defaultValue={shop?.gmb_password}
                   {...register("gmb_password", { required: true })}
+                  disabled
+
                 />
                 {googlePasswordShow ? (
                   <span
@@ -135,6 +142,7 @@ const SeoSettingForm = () => {
                 <select
                   defaultValue={shop?.gmb_owner}
                   {...register("gmb_owner", { required: true })}
+                  disabled
                 >
                   <option value="Competitor">Competitor</option>
                   <option value="Meal Now">Meal Now</option>
@@ -143,22 +151,23 @@ const SeoSettingForm = () => {
               {errors.gmb_owner && (
                 <span className="text-danger">This field is required</span>
               )}
-              <div className="form-group-two">
+              {/* <div className="form-group-two">
                 <label htmlFor="">Meal Now Domain </label>
                 <input
                   defaultValue={shop?.meal_now_domain}
                   {...register("meal_now_domain", { required: true })}
                   type="text"
+                  disabled
                 />
               </div>
               {errors.meal_now_domain && (
                 <span className="text-danger">This field is required</span>
-              )}
+              )} */}
             </div>
           </div>
           <div className="border-bottom"></div>
           <div className="text-right">
-            {loading ? (
+            {/* {loading ? (
               <div className="btn btn-danger ml-auto px-4">
                 <div
                   className="spinner-border text-light"
@@ -170,7 +179,7 @@ const SeoSettingForm = () => {
               </div>
             ) : (
               <button className="btn btn-danger ml-auto">Update Shop</button>
-            )}
+            )} */}
           </div>
         </form>
       </div>

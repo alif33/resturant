@@ -1,11 +1,20 @@
 import { FaEye } from "react-icons/fa";
 import { BsTools, BsCircleFill } from "react-icons/bs";
 import Link from "next/link";
+import SearchShop from "../searchShop/SearchShop";
 
-const RestaurentTable = ({ shops }) => {
+const RestaurentTable = ({ shops, searchInput, setSearchInput }) => {
   return (
     <div className="card">
       <div className="card-body">
+        <div className="row mb-4">
+          <div className="col-6">
+            <SearchShop
+              searchInput={searchInput}
+              setSearchInput={setSearchInput}
+            />
+          </div>
+        </div>
         <table className="table table-striped">
           <thead>
             <tr>
@@ -32,7 +41,7 @@ const RestaurentTable = ({ shops }) => {
           <tbody>
             {shops?.map((shop, i) => (
               <tr key={i}>
-                <th scope="row">99</th>
+                <th scope="row">{shop._id?.slice(-4, shop._id.length)}</th>
                 <td>{shop.shop_name}</td>
                 <td>{shop.address.city}</td>
                 <td>{shop.owners_phone}</td>

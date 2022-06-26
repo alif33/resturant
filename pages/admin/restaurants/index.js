@@ -41,14 +41,14 @@ const Restaurants = () => {
 
   return (
     <Layout>
-      <RestaurentNavbar
-        status="allshop"
-        searchInput={searchInput}
-        setSearchInput={setSearchInput}
-      />
+      <RestaurentNavbar status="allshop" />
       <div className="row">
         <div className="col-12 mt-4">
-          <RestaurentTable shops={shopList} />
+          <RestaurentTable
+            shops={shopList}
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
+          />
         </div>
       </div>
     </Layout>

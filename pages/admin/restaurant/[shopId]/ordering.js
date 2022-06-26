@@ -11,7 +11,7 @@ const OrderingPage = () => {
   const { shopId } = router?.query;
   return (
     <Layout2 shopId={shopId} >
-      <Navbar status="Ordering" shopId={shopId} />
+      <Navbar status="Ordering"  shopId={shopId} />
       <div className="row mt-4">
         <div className="col-12">
           <OrderingFrom />

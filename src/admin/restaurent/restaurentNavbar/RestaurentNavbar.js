@@ -23,7 +23,6 @@ const RestaurentNavbar = ({ status, searchInput, setSearchInput }) => {
 
   return (
     <nav className="navbar">
-      <SearchShop searchInput={searchInput} setSearchInput={setSearchInput} />
       <ul className="navbar-nav">
         {newData.map((listItem, i) => (
           <li className="nav-item" key={i}>

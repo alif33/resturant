@@ -44,12 +44,12 @@ const DisablesShopPage = () => {
     <Layout>
       <RestaurentNavbar
         status="disabledshop"
-        searchInput={searchInput}
-        setSearchInput={setSearchInput}
+       
       />
       <div className="row">
         <div className="col-12 mt-4">
-          <RestaurentTable shops={shopList} />
+          <RestaurentTable shops={shopList}  searchInput={searchInput}
+        setSearchInput={setSearchInput}/>
         </div>
       </div>
     </Layout>

@@ -3,16 +3,15 @@ import { useForm } from "react-hook-form";
 import { getData } from "../../../../__lib__/helpers/HttpService";
 
 const SearchShop = ({ searchInput, setSearchInput }) => {
-
   return (
     <form
       // onSubmit={handleSubmit(onSubmit)}
-      className="d-flex align-items-center"
+      className="d-flex align-items-center  w-100"
     >
-      <div className="form-group ml-4">
+      <div className="form-group ml-4 w-100">
         <input
           type="text"
-          className="form-control"
+          className="form-control w-100"
           placeholder="search with shop name"
           // {...register("search")}
           value={searchInput}

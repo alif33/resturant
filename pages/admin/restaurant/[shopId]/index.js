@@ -25,15 +25,16 @@ const ShopPage = () => {
     getData(`admin/shop/${shopId}`).then((res) => setShop(res));
   }, [shopId]);
 
-
-
   return (
-    <Layout2 shopId={shopId} >
-      <Navbar status="Dashboard" shopId={shopId}  />
+    <Layout2 shopId={shopId}>
+      <Navbar status="Dashboard"  shopId={shopId} />
       <div className="row">
         <div className="col-12">
           <div className="mt-4">
-            <h2>#57669 Angelo&apos;s Stuffed Pizza</h2>
+            <h2>
+              {" "}
+              {shop?._id?.slice(-5, shop?._id.length)} {shop?.shop_name}
+            </h2>
             <p className="mb-0">4850 S Pulaski Rd. Chicago IL, 60632</p>
             <p className="mb-2">County: Cook County</p>
           </div>
@@ -53,7 +54,7 @@ const ShopPage = () => {
           <Menu />
         </div>
         <div className="col-sm-4">
-          <Delivery shop={shop}/>
+          <Delivery shop={shop} />
         </div>
         <div className="col-sm-4">
           <Storefront />
@@ -61,10 +62,10 @@ const ShopPage = () => {
       </div>
       <div className="row mt-5">
         <div className="col-sm-6">
-          <Payout shop={shop}/>
+          <Payout shop={shop} />
         </div>
         <div className="col-sm-6">
-          <Marketing shop={shop}/>
+          <Marketing shop={shop} />
         </div>
       </div>
       <div className="row mt-5">
@@ -77,7 +78,6 @@ const ShopPage = () => {
 };
 
 export default ShopPage;
-
 
 export const getServerSideProps = adminAuth((context) => {
   return {

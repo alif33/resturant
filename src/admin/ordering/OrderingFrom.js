@@ -23,6 +23,7 @@ const OrderingFrom = () => {
   useEffect(() => {
     shopId && getData(`admin/shop/${shopId}`).then((res) => setShop(res));
   }, [shopId, load]);
+
   const onSubmit = (data) => {
     const newData = { ...shop, ...data };
     shopUpdate(`/admin/shop/${shopId}`, newData, token, shop, setLoading);
@@ -41,7 +42,7 @@ const OrderingFrom = () => {
                   <input
                     defaultValue={shop?.minimum_pickUp_order}
                     {...register("minimum_pickUp_order")}
-                    type="text"
+                    type="number"
                   />
                   <p>
                     Order subtotal for pickup orders must meet this limit for
@@ -85,14 +86,14 @@ const OrderingFrom = () => {
                 <input
                   defaultValue={shop?.online_discount}
                   {...register("online_discount")}
-                  type="text"
+                  type="tell"
                 />
               </div>
               {errors.online_discount && (
                 <span className="text-danger">This field is required</span>
               )}
 
-              <div className="form-group-two">
+              {/* <div className="form-group-two">
                 <label htmlFor="">Pause Delivery Today</label>
                 <select
                   defaultValue={shop?.pause_delivery_today}
@@ -114,8 +115,9 @@ const OrderingFrom = () => {
               </div>
               {errors.pause_delivery_today && (
                 <span className="text-danger">This field is required</span>
-              )}
-              <div className="form-group-two">
+              )} */}
+
+              {/* <div className="form-group-two">
                 <label htmlFor="">No Scheduled Order </label>
                 <select
                   defaultValue={shop?.no_scheduled_order}
@@ -157,7 +159,39 @@ const OrderingFrom = () => {
               </div>
               {errors.stop_order_today && (
                 <span className="text-danger">This field is required</span>
-              )}
+              )} */}
+
+              <div className="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  id="pause_delivery_today"
+                  {...register("pause_delivery_today")}
+                  checked={shop?.pause_delivery_today === "active"}
+                />
+                <label
+                  className="custom-control-label"
+                  htmlFor="pause_delivery_today"
+                >
+                  Pause delivery for today
+                </label>
+              </div>
+
+              <div className="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  id="no_scheduled_order"
+                  {...register("no_scheduled_order")}
+                  checked={shop?.no_scheduled_order === "active"}
+                />
+                <label
+                  className="custom-control-label"
+                  htmlFor="no_scheduled_order"
+                >
+                  No scheduled orders
+                </label>
+              </div>
             </div>
           </div>
           <div className="border-bottom"></div>

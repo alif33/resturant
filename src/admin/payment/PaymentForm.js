@@ -56,6 +56,17 @@ const PaymentForm = () => {
 
             <div className="col-md-8">
               <div className="form-group-two">
+                <label htmlFor="">Flat Amount</label>
+                <input
+                  defaultValue={shop?.flat_fee}
+                  {...register("flat_fee", { required: true })}
+                  type="text"
+                />
+              </div>
+              {errors.flat_fee && (
+                <span className="text-danger">This field is required</span>
+              )}
+              <div className="form-group-two">
                 <label htmlFor="">Payout frequency </label>
                 <select
                   defaultValue={shop?.payment_frequency}
@@ -70,35 +81,19 @@ const PaymentForm = () => {
                 <span className="text-danger">This field is required</span>
               )}
             </div>
-
-            <div className="col-md-12">
-              <div className="border-bottom mb-3"></div>
-              <h4>MealNow Fees</h4>
-            </div>
             <div className="col-md-8">
               <div className="form-group-two">
-                <label htmlFor="">flat_fee</label>
-                <input
-                  defaultValue={shop?.flat_fee}
-                  {...register("flat_fee", { required: true })}
-                  type="text"
-                />
-              </div>
-              {errors.flat_fee && (
-                <span className="text-danger">This field is required</span>
-              )}
-
-              <div className="form-group-two">
-                <label htmlFor="">Trial end </label>
+                <label htmlFor="">Free Trial Ends </label>
                 <input
                   defaultValue={shop?.trial_end}
                   {...register("trial_end", { required: true })}
-                  type="text"
+                  type="date"
                 />
               </div>
               {errors.trial_end && (
                 <span className="text-danger">This field is required</span>
               )}
+
               <div className="form-group-two">
                 <label htmlFor="">Processing fee </label>
                 <input
@@ -112,13 +107,9 @@ const PaymentForm = () => {
               )}
             </div>
 
-            <div className="col-md-12">
-              <div className="border-bottom mb-3"></div>
-              <h4>Transmission Method</h4>
-            </div>
             <div className="col-md-8">
               <div className="form-group-two">
-                <label htmlFor="">contact_method</label>
+                <label htmlFor="">Contact Method</label>
                 <select {...register("contact_method", { required: true })}>
                   <option
                     selected={shop?.contact_method === "Phone"}

@@ -41,7 +41,7 @@ const ContactForm = () => {
           <div className="row mt-4">
             <div className="col-md-8">
               <div className="form-group-two">
-                <label htmlFor="">Contact name </label>
+                <label htmlFor="">Owners Name </label>
                 <input
                   defaultValue={shop?.owners_name}
                   {...register("owners_name")}
@@ -53,21 +53,20 @@ const ContactForm = () => {
                 <span className="text-danger">This field is required</span>
               )}
               <div className="form-group-two">
-                <label htmlFor="">Contact phone</label>
+                <label htmlFor="">Owners phone</label>
                 <div className="banner-text">
                   <input
                     type="text"
                     defaultValue={shop?.owners_phone}
                     {...register("owners_phone")}
                   />
-                  <p>Phone type : n/a</p>
                 </div>
                 {errors.owners_phone && (
                   <span className="text-danger">This field is required</span>
                 )}
               </div>
               <div className="form-group-two">
-                <label htmlFor="">Contact email </label>
+                <label htmlFor="">Owners email </label>
                 <input
                   defaultValue={shop?.owners_name}
                   {...register("owners_name")}
@@ -101,7 +100,6 @@ const ContactForm = () => {
                     defaultValue={shop?.se_contact_phone}
                     {...register("se_contact_phone")}
                   />
-                  <p>Phone type : n/a</p>
                 </div>
                 {errors.se_contact_phone && (
                   <span className="text-danger">This field is required</span>
@@ -132,7 +130,6 @@ const ContactForm = () => {
                     type="text"
                     placeholder="Chicago"
                   />
-                  <p>Phone type: landline</p>
                 </div>
                 {errors.res_phone && (
                   <span className="text-danger">This field is required</span>

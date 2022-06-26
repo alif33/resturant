@@ -290,11 +290,11 @@ const AppShopTable = () => {
                 )}
               </div>
               <div className="form-group col-md-6 mt-3">
-                <label htmlFor="">End Trial</label>
+                <label htmlFor="">Free Trial Ends</label>
                 <input
                   className="form-control"
                   {...register("trial_end", { required: true })}
-                  type="text"
+                  type="date"
                 />
                 {errors.trial_end && (
                   <span className="text-danger">This field is required</span>
@@ -719,7 +719,7 @@ const AppShopTable = () => {
               <input
                 className="form-control"
                 {...register("minimum_pickUp_order", { required: true })}
-                type="tel"
+                type="number"
               />
               {errors.minimum_pickUp_order && (
                 <span className="text-danger">This field is required</span>
@@ -763,12 +763,13 @@ const AppShopTable = () => {
               <input
                 className="form-control"
                 {...register("online_discount", { required: true })}
-                type="tel"
+                type="number"
               />
               {errors.online_discount && (
                 <span className="text-danger">This field is required</span>
               )}
             </div>
+
             <div className="form-group col-md-6 mt-3">
               <label htmlFor="">Pause Delivery Today </label>
               <select
@@ -782,7 +783,8 @@ const AppShopTable = () => {
                 <span className="text-danger">This field is required</span>
               )}
             </div>
-            <div className="form-group col-md-6 mt-3">
+
+            {/* <div className="form-group col-md-6 mt-3">
               <label htmlFor="">No Scheduled Order </label>
               <select
                 className="form-control"
@@ -807,6 +809,35 @@ const AppShopTable = () => {
               {errors.stop_orders_today && (
                 <span className="text-danger">This field is required</span>
               )}
+            </div> */}
+
+            <div className="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                className="custom-control-input"
+                id="no_scheduled_order"
+                {...register("no_scheduled_order")}
+              />
+              <label
+                className="custom-control-label"
+                htmlFor="no_scheduled_order"
+              >
+                No Scheduled Order
+              </label>
+            </div>
+            <div className="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                className="custom-control-input"
+                id="stop_order_today"
+                {...register("stop_order_today")}
+              />
+              <label
+                className="custom-control-label"
+                htmlFor="stop_order_today"
+              >
+                Stop Order Today
+              </label>
             </div>
           </div>
           <div className="border-bottom"></div>

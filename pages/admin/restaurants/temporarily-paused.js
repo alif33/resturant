@@ -41,14 +41,14 @@ const TemporarilyShopPage = () => {
 
   return (
     <Layout>
-      <RestaurentNavbar
-        status="pausedshops"
-        searchInput={searchInput}
-        setSearchInput={setSearchInput}
-      />
+      <RestaurentNavbar status="pausedshops" />
       <div className="row">
         <div className="col-12 mt-4">
-          <RestaurentTable shops={shopList} />
+          <RestaurentTable
+            shops={shopList}
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
+          />
         </div>
       </div>
     </Layout>

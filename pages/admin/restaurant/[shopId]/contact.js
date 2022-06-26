@@ -10,7 +10,7 @@ const ContactPage = () => {
   const { shopId } = router?.query;
   return (
     <Layout2 shopId={shopId}>
-      <Navbar status="Contact" shopId={shopId} />
+      <Navbar status="Contact"  shopId={shopId} />
       <div className="row mt-4">
         <div className="col-12">
           <ContactForm />

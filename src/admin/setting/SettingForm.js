@@ -112,7 +112,7 @@ const SettingForm = () => {
             </div>
             <div className="col-md-4">
               <div>
-                <label htmlFor="">Update Logo:</label>
+                <label htmlFor="">Shop Logo:</label>
               </div>
               <input
                 defaultValue={shop?.shop_logo}
@@ -139,7 +139,7 @@ const SettingForm = () => {
             </div>
             <div className="col-md-4">
               <div>
-                <label htmlFor="">Update Logo:</label>
+                <label htmlFor="">Web Header:</label>
               </div>
               <input
                 {...register("web_header")}
@@ -169,7 +169,7 @@ const SettingForm = () => {
             </div>
             <div className="col-md-4">
               <div>
-                <label htmlFor="">Update Logo:</label>
+                <label htmlFor="">Mobile Header:</label>
               </div>
               <input
                 {...register("mobile_header")}

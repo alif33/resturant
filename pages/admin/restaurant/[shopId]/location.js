@@ -10,7 +10,7 @@ const LocationPage = () => {
   const { shopId } = router?.query;
   return (
     <Layout2 shopId={shopId}>
-      <Navbar status="Location" shopId={shopId} />
+      <Navbar status="Location"  shopId={shopId} />
       <div className="row mt-4">
         <div className="col-12">
           <LocationForm />
