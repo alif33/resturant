@@ -1,15 +1,11 @@
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
+// export const ROOT_URL = `https://resturant-gray.vercel.app/`;
+// export const APP_URL = `https://resturant-gray.vercel.app/`;
 
-
-export const ROOT_URL = `https://resturant-gray.vercel.app/`;
-export const APP_URL = `https://resturant-gray.vercel.app/`;
-
-// export const ROOT_URL = `http://localhost:3000/`;
-// export const APP_URL = `http://localhost:3000/`;
-
-
+export const ROOT_URL = `http://localhost:3000/`;
+export const APP_URL = `http://localhost:3000/`;
 
 export const IMAGE_URL = `${APP_URL}storage`;
 export const API_URL = `${APP_URL}api/`;
@@ -234,7 +230,6 @@ export const addShopPost = (data, token, reset, setLoading) => {
 export const shopUpdate = (url, data, token, shop, setLoading) => {
   const formdata = appendFormData(data, shop);
   updateData(url, formdata, token).then((res) => {
-
     if (res.success) {
       toast.success(res.message);
     }

@@ -90,7 +90,7 @@ const LocationForm = () => {
                   disabled
                 /> */}
 
-                <select name="" id="">
+                <select {...register("time_zone")}>
                   <option value="-12">[UTC - 12] Baker Island Time</option>
                   <option value="-11">
                     [UTC - 11] Niue Time, Samoa Standard Time

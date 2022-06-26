@@ -185,30 +185,34 @@ const SettingForm = () => {
             <div className="col-md-6 ml-142px">
               <div className="form-group-two">
                 <label htmlFor="">Account Manager: </label>
-                <input
+                <select
                   className="form-control"
                   {...register("account_manager")}
-                  type="text"
                   defaultValue={shop?.account_manager}
-                />
+                >
+                  <option value="admin">admin</option>
+                </select>
               </div>
               <div className="form-group-two">
                 <label htmlFor="">Sales Representive: </label>
-                <input
+                <select
                   className="form-control"
                   {...register("sales_rep")}
-                  type="text"
                   defaultValue={shop?.sales_rep}
-                />
+                >
+                  <option value="admin">admin</option>
+                </select>
               </div>
               <div className="form-group-two">
                 <label htmlFor="">Menu Representive: </label>
-                <input
+                <select
                   className="form-control"
                   {...register("menu_rep")}
-                  type="text"
                   defaultValue={shop?.menu_rep}
-                />
+                >
+                  {" "}
+                  <option value="admin">admin</option>
+                </select>
               </div>
             </div>
           </div>
