@@ -50,7 +50,7 @@ const shopSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    desctop_bg: {
+    desktop_bg: {
       type: String,
       required: true,
       trim: true,
@@ -225,10 +225,7 @@ const shopSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    minimum_delivery_order: {
-      type: Number,
-      required: true,
-    },
+ 
     pickUp_estimate: {
       type: String,
       required: true,
@@ -245,13 +242,13 @@ const shopSchema = new mongoose.Schema(
       type: String,
       required: true,
       enum: ["active", "inactive"],
-      default: "active",
+      default: "inactive",
     },
     no_scheduled_order: {
       type: String,
       required: true,
       enum: ["active", "inactive"],
-      default: "active",
+      default: "inactive",
     },
   },
 
