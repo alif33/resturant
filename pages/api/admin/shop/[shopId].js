@@ -163,7 +163,7 @@ handler
         shop.owners_email = owners_email || shop.owners_email;
         shop.owners_name = owners_name || shop.owners_name;
         shop.owners_phone = owners_phone || shop.owners_phone;
-        shop.se_contact_name = contact_name || shop.se_contact_name
+        shop.se_contact_name = se_contact_name || shop.se_contact_name
         shop.se_contact_phone = se_contact_phone || shop.se_contact_phone;
         shop.se_contact_email = se_contact_email || shop.se_contact_email;
         shop.res_phone = res_phone || shop.res_phone;
@@ -195,38 +195,19 @@ handler
     }
   });
 
+
+  handler.use(isAdmin).delete(async (req, res) => {
+    await db.connect();
+    const shop = await Shop.findById(req.query.shopId);
+    if (shop) {
+      await shop.remove();
+      await db.disconnect();
+      res.send({success: true, message: 'Shop Deleted' });
+    } else {
+      await db.disconnect();
+      res.send({ error: 'Shop Not Found' });
+    }
+  });
+
 export default handler;
 
-// shop_status: shop_status,
-//         shop_pay_type: shop_pay_type,
-//         shop_name: shop_name,
-//         account_manager: account_manager,
-//         sales_rep: sales_rep,
-//         menu_rep: menu_rep,
-//         email_statement: email_statement,
-//         payment_frequency: payment_frequency,
-//         flat_fee: flat_fee,
-//         trial_end: trial_end,
-//         processing_fee: processing_fee,
-//         contact_method: contact_method,
-//         gmb_domain: gmb_domain,
-//         own_website: own_website,
-//         gmb_status: gmb_status,
-//         gmb_role: gmb_role,
-//         meal_now_domain: meal_now_domain,
-//         gmb_email: gmb_email,
-//         gmb_password: gmb_password,
-//         gmb_owner: gmb_owner,
-//         address: address,
-//         owners_email: owners_email,
-//         owners_name: owners_name,
-//         owners_phone: owners_phone,
-//         se_contact_name: se_contact_name,
-//         se_contact_phone: se_contact_phone,
-//         se_contact_email: se_contact_email,
-//         res_phone: res_phone,
-//         minimum_pickUp_order: minimum_pickUp_order,
-//         pickUp_estimate: pickUp_estimate,
-//         minimum_delivery_order: minimum_delivery_order,
-//         delivery_estimate: delivery_estimate,
-//         online_discount: online_discount,
