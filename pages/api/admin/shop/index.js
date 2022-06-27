@@ -22,12 +22,11 @@ const handler = nc();
 const upload = multer();
 
 handler
-  .use(isAdmin,upload.fields([{ name: "shop_logo", maxCount: 1 },
-    
-    
-      
-      { name: "web_header", maxCount: 1 },
-      { name: "mobile_header", maxCount: 1 },
+  .use(isAdmin,upload.fields(
+    [{ name: "shop_logo", maxCount: 1 },
+      { name: "landing_page_image", maxCount: 1 },
+      { name: "mobile_bg", maxCount: 1 },
+      { name: "desktop_bg", maxCount: 1 },
     ])
   )
   .post(async (req, res) => {
@@ -47,13 +46,18 @@ handler
     };
 
     const shop_logo = await streamUpload(req.files.shop_logo[0].buffer);
-    const web_header = await streamUpload(req.files.web_header[0].buffer);
-    const mobile_header = await streamUpload(req.files.mobile_header[0].buffer);
+    const landing_page_image = await streamUpload(req.files.landing_page_image[0].buffer);
+    const mobile_bg = await streamUpload(req.files.mobile_bg[0].buffer);
+    const desktop_bg = await streamUpload(req.files.desktop_bg[0].buffer);
 
     const {
       shop_status,
       shop_pay_type,
       shop_name,
+      chain,
+      shop_description,
+      agreement_date,
+      banner_text,
       account_manager,
       sales_rep,
       menu_rep,
@@ -65,19 +69,16 @@ handler
       contact_method,
       gmb_domain,
       own_website,
+      price_range,
       gmb_status,
       gmb_role,
-      meal_now_domain,
       gmb_email,
       gmb_password,
       gmb_owner,
-      shop_address,
-      city,
-      state,
-      zip_code,
-      lat,
-      long,
-      time_zone,
+      apple_map_email,
+      apple_map_pass,
+      apple_map_status,
+      apple_map_owner,
       owners_email,
       owners_name,
       owners_phone,
@@ -87,9 +88,15 @@ handler
       res_phone,
       minimum_pickUp_order,
       pickUp_estimate,
-      minimum_delivery_order,
       delivery_estimate,
       online_discount,
+      shop_address,
+      city,
+      state,
+      zip_code,
+      long,
+      lat,
+      time_zone
     } = req.body;
     const address = {
       shop_address: shop_address,
@@ -101,15 +108,20 @@ handler
       time_zone: time_zone,
     };
 
-    if (shop_logo && web_header && mobile_header) {
+    if (shop_logo && landing_page_image && mobile_bg && desktop_bg) {
       await db.connect();
       const shop = new Shop({
         shop_status,
         shop_pay_type,
         shop_name,
+        chain,
+        shop_description,
+        agreement_date,
         shop_logo: shop_logo.url,
-        web_header: web_header.url,
-        mobile_header: mobile_header.url,
+        landing_page_image: landing_page_image.url,
+        mobile_bg: mobile_bg.url,
+        desktop_bg: desktop_bg.url,
+        banner_text,
         account_manager,
         sales_rep,
         menu_rep,
@@ -121,12 +133,17 @@ handler
         contact_method,
         gmb_domain,
         own_website,
+        price_range,
         gmb_status,
         gmb_role,
-        meal_now_domain,
         gmb_email,
         gmb_password,
         gmb_owner,
+        apple_map_email,
+        apple_map_pass,
+        apple_map_status,
+        apple_map_owner,
+        address: address,
         owners_email,
         owners_name,
         owners_phone,
@@ -136,10 +153,8 @@ handler
         res_phone,
         minimum_pickUp_order,
         pickUp_estimate,
-        minimum_delivery_order,
         delivery_estimate,
         online_discount,
-        address: address,
       });
       if (await shop.save()) {
         await db.disconnect();
