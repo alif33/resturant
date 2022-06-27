@@ -196,20 +196,15 @@ const shopSchema = new mongoose.Schema(
       type: String,
       required: true,
       enum: ["active", "inactive"],
-      default: "active",
+      default: "inactive",
     },
     no_scheduled_order: {
       type: String,
       required: true,
       enum: ["active", "inactive"],
-      default: "active",
+      default: "inactive",
     },
-    stop_order_today: {
-      type: String,
-      required: true,
-      enum: ["active", "inactive"],
-      default: "active",
-    },
+   
   },
 
   {
