@@ -28,6 +28,11 @@ const LiveShopPage = () => {
         (item) =>
           item.shop_name
             .toLowerCase()
+            .search(searchInput.toLowerCase().trim()) !== -1 ||
+          item._id.toLowerCase().search(searchInput.toLowerCase().trim()) !==
+            -1 ||
+          item.owners_phone
+            .toLowerCase()
             .search(searchInput.toLowerCase().trim()) !== -1
       );
       setShopList(listForSearch);
@@ -41,14 +46,14 @@ const LiveShopPage = () => {
 
   return (
     <Layout>
-      <RestaurentNavbar
-        status="liveshop"
-        searchInput={searchInput}
-        setSearchInput={setSearchInput}
-      />
+      <RestaurentNavbar status="liveshop" />
       <div className="row">
         <div className="col-12 mt-4">
-          <RestaurentTable shops={shopList} />
+          <RestaurentTable
+            shops={shopList}
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
+          />
         </div>
       </div>
     </Layout>

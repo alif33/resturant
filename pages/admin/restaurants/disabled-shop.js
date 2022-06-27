@@ -27,9 +27,14 @@ const DisablesShopPage = () => {
     if (searchInput) {
       listForSearch = listForSearch.filter(
         (item) =>
-          item.shop_name
-            .toLowerCase()
-            .search(searchInput.toLowerCase().trim()) !== -1
+        item.shop_name
+        .toLowerCase()
+        .search(searchInput.toLowerCase().trim()) !== -1 ||
+      item._id.toLowerCase().search(searchInput.toLowerCase().trim()) !==
+        -1 ||
+      item.owners_phone
+        .toLowerCase()
+        .search(searchInput.toLowerCase().trim()) !== -1
       );
       setShopList(listForSearch);
     } else {

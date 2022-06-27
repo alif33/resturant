@@ -1,6 +1,6 @@
 import Layout from "../../../src/admin/layout/Layout";
 import RestaurentNavbar from "../../../src/admin/restaurent/restaurentNavbar/RestaurentNavbar";
-import AppShopTable from "../../../src/admin/restaurent/appShopTable/AppShopTable";
+import AddShopTable from "../../../src/admin/restaurent/addShopTable/AddShopTable";
 import { adminAuth } from "../../../__lib__/helpers/requireAuthentication";
 
 const AddShopPage = () => {
@@ -9,7 +9,7 @@ const AddShopPage = () => {
       <RestaurentNavbar status="addshop" />
       <div className="row">
         <div className="col-12 mt-4">
-          <AppShopTable />
+          <AddShopTable />
         </div>
       </div>
     </Layout>

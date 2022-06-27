@@ -86,7 +86,7 @@ const OrderingFrom = () => {
                 <input
                   defaultValue={shop?.online_discount}
                   {...register("online_discount")}
-                  type="tell"
+                  type="number"
                 />
               </div>
               {errors.online_discount && (

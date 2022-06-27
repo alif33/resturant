@@ -4,7 +4,7 @@ import Cookies from "universal-cookie";
 import { addShopPost } from "../../../../__lib__/helpers/HttpService";
 import { GoChevronDown, GoChevronUp } from "react-icons/go";
 
-const AppShopTable = () => {
+const AddShopTable = () => {
   const [loading, setLoading] = useState(false);
   const [location, setLocation] = useState({});
   // for dropdown
@@ -385,13 +385,20 @@ const AppShopTable = () => {
                   <span className="text-danger">This field is required</span>
                 )}
               </div>
-            </div>
-
-            <div className="row mt-3">
-              {/* <div className="form-group col-md-6 mt-3">
+              <div className="form-group col-md-6 mt-3">
                 <label htmlFor="">Price Range</label>
-                <input {...register("priceRange")} type="text" />
-              </div> */}
+                <input
+                  className="form-control"
+                  {...register("price_range", { required: true })}
+                  type="text"
+                />
+                {errors.price_range && (
+                  <span className="text-danger">This field is required</span>
+                )}
+              </div>
+
+              {/* </div>
+            <div className="row mt-3"> */}
 
               <div className="form-group col-md-6 mt-3">
                 <label htmlFor="">Gmb Status </label>
@@ -467,6 +474,45 @@ const AppShopTable = () => {
                   <span className="text-danger">This field is required</span>
                 )}
               </div>
+
+              <div className="form-group col-md-6 mt-3">
+                <label htmlFor="">Apple Map Email</label>
+                <input
+                  className="form-control"
+                  {...register("apple_map_email", { required: true })}
+                  type="email"
+                />
+                {errors.gmb_email && (
+                  <span className="text-danger">This field is required</span>
+                )}
+              </div>
+              <div className="form-group col-md-6 mt-3">
+                <label htmlFor="">Apple Map Password</label>
+                <input
+                  className="form-control"
+                  {...register("apple_map_password", { required: true })}
+                  type="text"
+                />
+                {errors.gmb_password && (
+                  <span className="text-danger">This field is required</span>
+                )}
+              </div>
+              <div className="form-group col-md-6 mt-3">
+                <label htmlFor="">Apple Map Status</label>
+                <select
+                  className="form-control"
+                  {...register("apple_map_status", { required: true })}
+                >
+                  <option value="Verified">Verified</option>
+                  <option value="Not Verified">Not Verified</option>
+                  <option value="Suspended">Suspended</option>
+                </select>
+                {errors.gmb_status && (
+                  <span className="text-danger">This field is required</span>
+                )}
+              </div>
+
+              
             </div>
           </div>
           {((errors.shop_address && errors.city) ||
@@ -542,23 +588,27 @@ const AppShopTable = () => {
                 )}
               </div>
 
-              {/* <div className="form-group col-md-6 mt-3">
-              <label htmlFor="">lat</label>
-              <input
-                className="form-control"
-                {...register("lat")}
-                type="text"
-              />
-            </div>
+              <div className="form-group col-md-6 mt-3">
+                <label htmlFor="">Latitude</label>
+                <input
+                  className="form-control"
+                  // {...register("lat")}
+                  type="text"
+                  defaultValue={location?.lat}
+                  disabled
+                />
+              </div>
 
-            <div className="form-group col-md-6 mt-3">
-              <label htmlFor="">long</label>
-              <input
-                className="form-control"
-                {...register("long")}
-                type="text"
-              />
-            </div> */}
+              <div className="form-group col-md-6 mt-3">
+                <label htmlFor="">Longitude</label>
+                <input
+                  className="form-control"
+                  // {...register("long")}
+                  type="text"
+                  defaultValue={location?.long}
+                  disabled
+                />
+              </div>
 
               <div className="form-group col-md-6 mt-3">
                 <label htmlFor="">Time Zone</label>
@@ -979,6 +1029,6 @@ const AppShopTable = () => {
   );
 };
 
-export default AppShopTable;
+export default AddShopTable;
 
 // "Shop validation failed: payment_type: `Direct` is not a valid enum value for path `payment_type`."

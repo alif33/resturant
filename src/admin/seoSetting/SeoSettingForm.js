@@ -6,6 +6,7 @@ import { getData, shopUpdate } from "../../../__lib__/helpers/HttpService";
 
 const SeoSettingForm = () => {
   const [googlePasswordShow, setGooglePasswordShow] = useState(true);
+  const [appPasswordShow, setAppPasswordShow] = useState(true);
 
   const [shop, setShop] = useState({});
   const [load, setLoad] = useState(false);
@@ -50,6 +51,20 @@ const SeoSettingForm = () => {
               {errors.gmb_domain && (
                 <span className="text-danger">This field is required</span>
               )}
+
+              <div className="form-group-two">
+                <label htmlFor="">Own website </label>
+                <input
+                  defaultValue={shop?.own_website}
+                  {...register("own_website", { required: true })}
+                  type="text"
+                  disabled
+                />
+              </div>
+              {errors.own_website && (
+                <span className="text-danger">This field is required</span>
+              )}
+
               <div className="form-group-two">
                 <label htmlFor="">Own website </label>
                 <input
@@ -108,7 +123,6 @@ const SeoSettingForm = () => {
               )}
             </div>
           </div>
-          <div className="border-bottom"></div>
           <div className="row mt-4">
             <div className="col-md-8">
               <div className="form-group-two">
@@ -118,7 +132,6 @@ const SeoSettingForm = () => {
                   defaultValue={shop?.gmb_password}
                   {...register("gmb_password", { required: true })}
                   disabled
-
                 />
                 {googlePasswordShow ? (
                   <span
@@ -163,6 +176,71 @@ const SeoSettingForm = () => {
               {errors.meal_now_domain && (
                 <span className="text-danger">This field is required</span>
               )} */}
+
+              <div className="form-group-two">
+                <label htmlFor="">Apple Map Email </label>
+                <input
+                  defaultValue={shop?.gmb_email}
+                  {...register("apple_map_email", { required: true })}
+                  type="text"
+                  disabled
+                />
+              </div>
+              {errors.apple_map_email && (
+                <span className="text-danger">This field is required</span>
+              )}
+
+              <div className="form-group-two">
+                <label htmlFor="">Apple Map Password</label>
+                <input
+                  type={appPasswordShow ? "password" : "text"}
+                  defaultValue={shop?.gmb_password}
+                  {...register("apple_map_password", { required: true })}
+                  disabled
+                />
+                {appPasswordShow ? (
+                  <span onClick={() => setAppPasswordShow(!appPasswordShow)}>
+                    show
+                  </span>
+                ) : (
+                  <span onClick={() => setAppPasswordShow(!appPasswordShow)}>
+                    hide
+                  </span>
+                )}
+              </div>
+              {errors.apple_map_password && (
+                <span className="text-danger">This field is required</span>
+              )}
+              <div className="form-group-two">
+                <label htmlFor="">Apple Map Status </label>
+                <select
+                  defaultValue={shop?.gmb_status}
+                  {...register("apple_map_status", { required: true })}
+                  disabled
+                >
+                  <option
+                    selected={shop?.gmb_status === "Verified"}
+                    value="Verified"
+                  >
+                    Verified
+                  </option>
+                  <option
+                    value="Not Verified"
+                    selected={shop?.gmb_status === "Not Verified"}
+                  >
+                    Not Verified
+                  </option>
+                  <option
+                    value="Suspended"
+                    selected={shop?.gmb_status === "Suspended"}
+                  >
+                    Suspended
+                  </option>
+                </select>
+              </div>
+              {errors.apple_map_status && (
+                <span className="text-danger">This field is required</span>
+              )}
             </div>
           </div>
           <div className="border-bottom"></div>
