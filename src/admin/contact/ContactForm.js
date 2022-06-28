@@ -46,7 +46,6 @@ const ContactForm = () => {
                   defaultValue={shop?.owners_name}
                   {...register("owners_name")}
                   type="text"
-                  placeholder="4850 S Pulaski Rd"
                 />
               </div>
               {errors.owners_name && (
@@ -58,22 +57,25 @@ const ContactForm = () => {
                   <input
                     type="text"
                     defaultValue={shop?.owners_phone}
-                    {...register("owners_phone")}
+                    {...register("owners_phone", {
+                      pattern:
+                        /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d+)\)?)[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?)+)(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/i,
+                    })}
                   />
                 </div>
                 {errors.owners_phone && (
-                  <span className="text-danger">This field is required</span>
+                  <span className="text-danger">This field for number</span>
                 )}
               </div>
               <div className="form-group-two">
                 <label htmlFor="">Owners email </label>
                 <input
-                  defaultValue={shop?.owners_name}
-                  {...register("owners_name")}
-                  type="text"
+                  defaultValue={shop?.owners_email}
+                  {...register("owners_email")}
+                  type="email"
                 />
               </div>
-              {errors.owners_name && (
+              {errors.owners_email && (
                 <span className="text-danger">This field is required</span>
               )}
             </div>

@@ -113,12 +113,23 @@ const appendFormData = (data, shop) => {
   formdata.append("shop_status", data.shop_status || shop?.shop_status);
   formdata.append("shop_pay_type", data.shop_pay_type || shop?.shop_pay_type);
   formdata.append("shop_name", data.shop_name || shop?.shop_name);
-  formdata.append("shop_logo", data.shop_logo[0] || shop?.shop_logo);
-  formdata.append("web_header", data.web_header[0] || shop?.web_header);
+  formdata.append("chain", data.chain || shop?.chain);
   formdata.append(
-    "mobile_header",
-    data.mobile_header[0] || shop?.mobile_header
+    "shop_description",
+    data.shop_description || shop?.shop_description
   );
+  formdata.append(
+    "agreement_date",
+    data.agreement_date || shop?.agreement_date
+  );
+  formdata.append("shop_logo", data.shop_logo[0] || shop?.shop_logo);
+  formdata.append(
+    "landing_page_image",
+    data.landing_page_image[0] || shop?.landing_page_image
+  );
+  formdata.append("mobile_bg", data.mobile_bg[0] || shop?.mobile_bg);
+  formdata.append("desktop_bg", data.desktop_bg[0] || shop?.desktop_bg);
+  formdata.append("banner_text", data.banner_text || shop?.banner_text);
   formdata.append(
     "account_manager",
     data.account_manager || shop?.account_manager
@@ -145,6 +156,7 @@ const appendFormData = (data, shop) => {
   );
   formdata.append("gmb_domain", data.gmb_domain || shop?.gmb_domain);
   formdata.append("own_website", data.own_website || shop?.own_website);
+  formdata.append("price_range", data.price_range || shop?.price_range);
   formdata.append("gmb_status", data.gmb_status || shop?.gmb_status);
   formdata.append("gmb_role", data.gmb_role || shop?.gmb_role);
   formdata.append("gmb_email", data.gmb_email || shop?.gmb_email);
@@ -153,6 +165,22 @@ const appendFormData = (data, shop) => {
   formdata.append(
     "meal_now_domain",
     data.meal_now_domain || shop?.meal_now_domain
+  );
+  formdata.append(
+    "apple_map_email",
+    data.apple_map_email || shop?.apple_map_email
+  );
+  formdata.append(
+    "apple_map_pass",
+    data.apple_map_pass || shop?.apple_map_pass
+  );
+  formdata.append(
+    "apple_map_status",
+    data.apple_map_status || shop?.apple_map_status
+  );
+  formdata.append(
+    "apple_map_owner",
+    data.apple_map_owner || shop?.apple_map_owner
   );
   formdata.append(
     "shop_address",
@@ -208,10 +236,10 @@ const appendFormData = (data, shop) => {
     "no_scheduled_order",
     data.no_scheduled_order || shop?.no_scheduled_order
   );
-  formdata.append(
-    "stop_order_today",
-    data.stop_order_today || shop?.stop_order_today
-  );
+  // formdata.append(
+  //   "stop_order_today",
+  //   data.stop_order_today || shop?.stop_order_today
+  // );
   return formdata;
 };
 

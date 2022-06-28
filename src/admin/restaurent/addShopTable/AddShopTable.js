@@ -25,7 +25,7 @@ const AddShopTable = () => {
     formState: { errors },
   } = useForm();
 
-  console.log(watch().shop_name);
+  // console.log(watch().shop_name);
 
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -112,8 +112,7 @@ const AddShopTable = () => {
                   className="form-control"
                   {...register("shop_pay_type", { required: true })}
                 >
-                  <option value="Direct">Direct</option>
-                  <option value="Deposit">Deposit</option>
+                  <option value="Direct Deposit">Direct Deposit</option>
                 </select>
                 {errors.shop_pay_type && (
                   <span className="text-danger">This field is required</span>
@@ -208,7 +207,7 @@ const AddShopTable = () => {
 
             <div className="row mt-3">
               <div className="form-group col-md-6 mt-3">
-                <label htmlFor="">Mobile Bg </label>
+                <label htmlFor="">Mobile Background </label>
                 <input
                   className="form-control"
                   {...register("mobile_bg", { required: true })}
@@ -219,7 +218,7 @@ const AddShopTable = () => {
                 )}
               </div>
               <div className="form-group col-md-6 mt-3">
-                <label htmlFor="">Desktop Bg </label>
+                <label htmlFor="">Desktop Background </label>
                 <input
                   className="form-control"
                   {...register("desktop_bg", { required: true })}
@@ -971,7 +970,7 @@ const AddShopTable = () => {
                 <span className="text-danger">This field is required</span>
               )}
             </div>
-            <div className="form-group col-md-6 mt-3">
+            {/* <div className="form-group col-md-6 mt-3">
               <label htmlFor="">Minimum Delivery Order</label>
               <input
                 className="form-control"
@@ -981,7 +980,7 @@ const AddShopTable = () => {
               {errors.minimum_delivery_order && (
                 <span className="text-danger">This field is required</span>
               )}
-            </div>
+            </div> */}
             <div className="form-group col-md-6 mt-3">
               <label htmlFor="">Delivery Estimate</label>
               <input
@@ -1032,7 +1031,7 @@ const AddShopTable = () => {
                 <span className="text-danger">This field is required</span>
               )}
             </div>
-            <div className="form-group col-md-6 mt-3">
+            {/* <div className="form-group col-md-6 mt-3">
               <label htmlFor="">Stop Orders Today </label>
               <select
                 className="form-control"
@@ -1044,7 +1043,7 @@ const AddShopTable = () => {
               {errors.stop_orders_today && (
                 <span className="text-danger">This field is required</span>
               )}
-            </div>
+            </div> */}
 
             {/* <div className="custom-control custom-checkbox">
               <input

@@ -44,10 +44,6 @@ const OrderingFrom = () => {
                     {...register("minimum_pickUp_order")}
                     type="number"
                   />
-                  <p>
-                    Order subtotal for pickup orders must meet this limit for
-                    the order to be accepted
-                  </p>
                 </div>
               </div>
               {errors.minimum_pickUp_order && (
@@ -67,7 +63,6 @@ const OrderingFrom = () => {
               )}
             </div>
           </div>
-          <div className="border-bottom"></div>
           <div className="row mt-4">
             <div className="col-md-8">
               <div className="form-group-two">
