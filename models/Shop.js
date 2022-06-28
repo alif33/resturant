@@ -84,17 +84,17 @@ const shopSchema = new mongoose.Schema(
     flat_fee: {
       type: Number,
       reuired: true,
-      trim: true
+      trim: true,
     },
     trial_end: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
     processing_fee: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
     contact_method: {
       type: String,
@@ -112,7 +112,7 @@ const shopSchema = new mongoose.Schema(
     price_range: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
 
     gmb_status: {
@@ -149,7 +149,7 @@ const shopSchema = new mongoose.Schema(
     },
     apple_map_status: {
       type: String,
-      enum: ['Verified', 'Not Verified', "Suspended"],
+      enum: ["Verified", "Not Verified", "Suspended"],
       required: true,
     },
     apple_map_owner: {
@@ -225,7 +225,7 @@ const shopSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
- 
+
     pickUp_estimate: {
       type: String,
       required: true,
@@ -249,8 +249,6 @@ const shopSchema = new mongoose.Schema(
       required: true,
       enum: ["active", "inactive"],
       default: "inactive",
-    },
-   
     },
   },
 

@@ -66,15 +66,15 @@ const SeoSettingForm = () => {
               )}
 
               <div className="form-group-two">
-                <label htmlFor="">Own website </label>
+                <label htmlFor="">Price Range </label>
                 <input
-                  defaultValue={shop?.own_website}
-                  {...register("own_website", { required: true })}
+                  defaultValue={shop?.price_range}
+                  {...register("price_range", { required: true })}
                   type="text"
                   disabled
                 />
               </div>
-              {errors.own_website && (
+              {errors.price_range && (
                 <span className="text-danger">This field is required</span>
               )}
 
@@ -180,7 +180,7 @@ const SeoSettingForm = () => {
               <div className="form-group-two">
                 <label htmlFor="">Apple Map Email </label>
                 <input
-                  defaultValue={shop?.gmb_email}
+                  defaultValue={shop?.apple_map_email}
                   {...register("apple_map_email", { required: true })}
                   type="text"
                   disabled
@@ -194,8 +194,8 @@ const SeoSettingForm = () => {
                 <label htmlFor="">Apple Map Password</label>
                 <input
                   type={appPasswordShow ? "password" : "text"}
-                  defaultValue={shop?.gmb_password}
-                  {...register("apple_map_password", { required: true })}
+                  defaultValue={shop?.apple_map_pass}
+                  {...register("apple_map_pass", { required: true })}
                   disabled
                 />
                 {appPasswordShow ? (
@@ -208,37 +208,61 @@ const SeoSettingForm = () => {
                   </span>
                 )}
               </div>
-              {errors.apple_map_password && (
+              {errors.apple_map_pass && (
                 <span className="text-danger">This field is required</span>
               )}
               <div className="form-group-two">
                 <label htmlFor="">Apple Map Status </label>
                 <select
-                  defaultValue={shop?.gmb_status}
+                  defaultValue={shop?.apple_map_status}
                   {...register("apple_map_status", { required: true })}
                   disabled
                 >
                   <option
-                    selected={shop?.gmb_status === "Verified"}
+                    selected={shop?.apple_map_status === "Verified"}
                     value="Verified"
                   >
                     Verified
                   </option>
                   <option
                     value="Not Verified"
-                    selected={shop?.gmb_status === "Not Verified"}
+                    selected={shop?.apple_map_status === "Not Verified"}
                   >
                     Not Verified
                   </option>
                   <option
                     value="Suspended"
-                    selected={shop?.gmb_status === "Suspended"}
+                    selected={shop?.apple_map_status === "Suspended"}
                   >
                     Suspended
                   </option>
                 </select>
               </div>
               {errors.apple_map_status && (
+                <span className="text-danger">This field is required</span>
+              )}
+              <div className="form-group-two">
+                <label htmlFor="">Apple Map Owner </label>
+                <select
+                  defaultValue={shop?.apple_map_owner}
+                  {...register("apple_map_owner", { required: true })}
+                  disabled
+                >
+                  <option
+                    selected={shop?.apple_map_owner === "Competitor"}
+                    value="Competitor"
+                  >
+                    Competitor
+                  </option>
+                  <option
+                    value="Meal Now"
+                    selected={shop?.apple_map_owner === "Meal Now"}
+                  >
+                    Meal Now
+                  </option>
+                </select>
+              </div>
+              {errors.apple_map_owner && (
                 <span className="text-danger">This field is required</span>
               )}
             </div>

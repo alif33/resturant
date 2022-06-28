@@ -92,7 +92,30 @@ const SettingForm = () => {
                   defaultValue={shop?.shop_name}
                   {...register("shop_name")}
                   type="text"
-                  placeholder="Agnelo's Stuffed Pizza"
+                />
+              </div>
+              <div className="form-group-two">
+                <label htmlFor="">chain </label>
+                <input
+                  defaultValue={shop?.chain}
+                  {...register("chain")}
+                  type="text"
+                />
+              </div>
+              <div className="form-group-two">
+                <label htmlFor="">Shop Description </label>
+                <textarea
+                  defaultValue={shop?.shop_description}
+                  {...register("shop_description")}
+                  type="text"
+                />
+              </div>
+              <div className="form-group-two">
+                <label htmlFor="">Agreement Date </label>
+                <input
+                  defaultValue={shop?.agreement_date}
+                  {...register("agreement_date")}
+                  type="date"
                 />
               </div>
             </div>
@@ -183,6 +206,14 @@ const SettingForm = () => {
           <div className="border-bottom"></div>
           <div className="row mt-4">
             <div className="col-md-6 ml-142px">
+              <div className="form-group-two">
+                <label htmlFor="">Banner Text </label>
+                <textarea
+                  defaultValue={shop?.banner_text}
+                  {...register("banner_text")}
+                  type="text"
+                />
+              </div>
               <div className="form-group-two">
                 <label htmlFor="">Account Manager: </label>
                 <select

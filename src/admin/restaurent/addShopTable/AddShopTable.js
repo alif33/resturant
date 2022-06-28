@@ -144,7 +144,42 @@ const AddShopTable = () => {
                   <span className="text-danger">This field is required</span>
                 )}
               </div>
+
+              <div className="form-group col-md-6 mt-3">
+                <label htmlFor="">Chain </label>
+                <input
+                  className="form-control"
+                  {...register("chain", { required: true })}
+                  type="text"
+                />
+                {errors.chain && (
+                  <span className="text-danger">This field is required</span>
+                )}
+              </div>
+              <div className="form-group col-md-6 mt-3">
+                <label htmlFor="">Shop Description </label>
+                <textarea
+                  className="form-control"
+                  {...register("shop_description", { required: true })}
+                  type="text"
+                />
+                {errors.shop_description && (
+                  <span className="text-danger">This field is required</span>
+                )}
+              </div>
+              <div className="form-group col-md-6 mt-3">
+                <label htmlFor="">Agreement Date </label>
+                <input
+                  className="form-control"
+                  {...register("agreement_date", { required: true })}
+                  type="date"
+                />
+                {errors.agreement_date && (
+                  <span className="text-danger">This field is required</span>
+                )}
+              </div>
             </div>
+
             <div className="row mt-3">
               <div className="form-group col-md-6 mt-3">
                 <label htmlFor="">Shop Logo: </label>
@@ -157,14 +192,15 @@ const AddShopTable = () => {
                   <span className="text-danger">This field is required</span>
                 )}
               </div>
+
               <div className="form-group col-md-6 mt-3">
-                <label htmlFor="">Web Header </label>
+                <label htmlFor="">Landing Page Image </label>
                 <input
                   className="form-control"
-                  {...register("web_header", { required: true })}
+                  {...register("landing_page_image", { required: true })}
                   type="file"
                 />
-                {errors.web_header && (
+                {errors.landing_page_image && (
                   <span className="text-danger">This field is required</span>
                 )}
               </div>
@@ -172,13 +208,35 @@ const AddShopTable = () => {
 
             <div className="row mt-3">
               <div className="form-group col-md-6 mt-3">
-                <label htmlFor="">Mobile Header </label>
+                <label htmlFor="">Mobile Bg </label>
                 <input
                   className="form-control"
-                  {...register("mobile_header", { required: true })}
+                  {...register("mobile_bg", { required: true })}
                   type="file"
                 />
-                {errors.mobile_header && (
+                {errors.mobile_bg && (
+                  <span className="text-danger">This field is required</span>
+                )}
+              </div>
+              <div className="form-group col-md-6 mt-3">
+                <label htmlFor="">Desktop Bg </label>
+                <input
+                  className="form-control"
+                  {...register("desktop_bg", { required: true })}
+                  type="file"
+                />
+                {errors.desktop_bg && (
+                  <span className="text-danger">This field is required</span>
+                )}
+              </div>
+
+              <div className="form-group col-md-6 mt-3">
+                <label htmlFor="">Banner Text </label>
+                <textarea
+                  className="form-control"
+                  {...register("banner_text", { required: true })}
+                />
+                {errors.banner_text && (
                   <span className="text-danger">This field is required</span>
                 )}
               </div>
@@ -281,11 +339,11 @@ const AddShopTable = () => {
 
             <div className="row mt-3">
               <div className="form-group col-md-6 mt-3">
-                <label htmlFor="">Flat Fee </label>
+                <label htmlFor="">Flat Amount </label>
                 <input
                   className="form-control"
                   {...register("flat_fee", { required: true })}
-                  type="tel"
+                  type="number"
                   aria-label="Disabled input example"
                 />
                 {errors.flat_fee && (
@@ -311,7 +369,7 @@ const AddShopTable = () => {
                 <input
                   className="form-control"
                   {...register("processing_fee", { required: true })}
-                  type="text"
+                  type="number"
                 />
                 {errors.processing_fee && (
                   <span className="text-danger">This field is required</span>
@@ -482,7 +540,7 @@ const AddShopTable = () => {
                   {...register("apple_map_email", { required: true })}
                   type="email"
                 />
-                {errors.gmb_email && (
+                {errors.apple_map_email && (
                   <span className="text-danger">This field is required</span>
                 )}
               </div>
@@ -490,10 +548,10 @@ const AddShopTable = () => {
                 <label htmlFor="">Apple Map Password</label>
                 <input
                   className="form-control"
-                  {...register("apple_map_password", { required: true })}
+                  {...register("apple_map_pass", { required: true })}
                   type="text"
                 />
-                {errors.gmb_password && (
+                {errors.apple_map_pass && (
                   <span className="text-danger">This field is required</span>
                 )}
               </div>
@@ -507,12 +565,23 @@ const AddShopTable = () => {
                   <option value="Not Verified">Not Verified</option>
                   <option value="Suspended">Suspended</option>
                 </select>
-                {errors.gmb_status && (
+                {errors.apple_map_status && (
                   <span className="text-danger">This field is required</span>
                 )}
               </div>
-
-              
+              <div className="form-group col-md-6 mt-3">
+                <label htmlFor="">Apple Map Owner</label>
+                <select
+                  className="form-control"
+                  {...register("apple_map_owner", { required: true })}
+                >
+                  <option value="Competitor">Competitor</option>
+                  <option value="Meal Now">Meal Now</option>
+                </select>
+                {errors.apple_map_owner && (
+                  <span className="text-danger">This field is required</span>
+                )}
+              </div>
             </div>
           </div>
           {((errors.shop_address && errors.city) ||
@@ -950,7 +1019,7 @@ const AddShopTable = () => {
               )}
             </div>
 
-            {/* <div className="form-group col-md-6 mt-3">
+            <div className="form-group col-md-6 mt-3">
               <label htmlFor="">No Scheduled Order </label>
               <select
                 className="form-control"
@@ -975,9 +1044,9 @@ const AddShopTable = () => {
               {errors.stop_orders_today && (
                 <span className="text-danger">This field is required</span>
               )}
-            </div> */}
+            </div>
 
-            <div className="custom-control custom-checkbox">
+            {/* <div className="custom-control custom-checkbox">
               <input
                 type="checkbox"
                 className="custom-control-input"
@@ -1005,7 +1074,7 @@ const AddShopTable = () => {
               >
                 No scheduled orders
               </label>
-            </div>
+            </div> */}
           </div>
           <div className="border-bottom"></div>
           <div className="text-right">

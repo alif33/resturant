@@ -12,7 +12,7 @@ const SearchShop = ({ searchInput, setSearchInput }) => {
         <input
           type="text"
           className="form-control w-100"
-          placeholder="search with shop name"
+          placeholder="search with shop name, id and number"
           // {...register("search")}
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
