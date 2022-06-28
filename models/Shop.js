@@ -253,7 +253,7 @@ const shopSchema = new mongoose.Schema(
   },
 
   {
-    timestamps: true,
+    timestamps: true
   }
 );
 
