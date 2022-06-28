@@ -8,6 +8,12 @@ const OrderingFrom = () => {
   const [shop, setShop] = useState({});
   const [load, setLoad] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [pauseDeliveryToday, setPauseDeliveryToday] = useState(
+    shop?.pause_delivery_today
+  );
+  const [noScheduledOrder, setNoScheduledOrder] = useState(
+    shop?.no_scheduled_order
+  );
   const router = useRouter();
   const { shopId } = router?.query;
   const cookies = new Cookies();
@@ -156,36 +162,41 @@ const OrderingFrom = () => {
                 <span className="text-danger">This field is required</span>
               )} */}
 
-              <div className="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  className="custom-control-input"
-                  id="pause_delivery_today"
-                  {...register("pause_delivery_today")}
-                  checked={shop?.pause_delivery_today === "active"}
-                />
-                <label
-                  className="custom-control-label"
-                  htmlFor="pause_delivery_today"
-                >
-                  Pause delivery for today
-                </label>
-              </div>
+              <div className="row">
+                <div className="col-6 m-auto">
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="pause_delivery_today"
+                      {...register("pause_delivery_today")}
+                      checked={pauseDeliveryToday === "active" ? true : false}
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="pause_delivery_today"
+                      // onClick={() => }
+                    >
+                      Pause delivery for today
+                    </label>
+                  </div>
 
-              <div className="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  className="custom-control-input"
-                  id="no_scheduled_order"
-                  {...register("no_scheduled_order")}
-                  checked={shop?.no_scheduled_order === "active"}
-                />
-                <label
-                  className="custom-control-label"
-                  htmlFor="no_scheduled_order"
-                >
-                  No scheduled orders
-                </label>
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="no_scheduled_order"
+                      {...register("no_scheduled_order")}
+                      checked={noScheduledOrder === "active" ? true : false}
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="no_scheduled_order"
+                    >
+                      No scheduled orders
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
