@@ -250,12 +250,10 @@ const shopSchema = new mongoose.Schema(
       enum: ["active", "inactive"],
       default: "inactive",
     },
-   
-    },
   },
 
   {
-    timestamps: true,
+    timestamps: true
   }
 );
 
