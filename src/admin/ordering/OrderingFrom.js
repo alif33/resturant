@@ -28,13 +28,23 @@ const OrderingFrom = () => {
 
   useEffect(() => {
     shopId && getData(`admin/shop/${shopId}`).then((res) => setShop(res));
+    setPauseDeliveryToday(shop?.pause_delivery_today);
+    setNoScheduledOrder(shop?.no_scheduled_order);
   }, [shopId, load]);
 
   const onSubmit = (data) => {
-    const newData = { ...shop, ...data };
+    const newData = {
+      ...shop,
+      ...data,
+      pause_delivery_today: pauseDeliveryToday,
+      no_scheduled_order: noScheduledOrder,
+    };
     shopUpdate(`/admin/shop/${shopId}`, newData, token, shop, setLoading);
     setLoad(!load);
   };
+
+  console.log(pauseDeliveryToday);
+  console.log(noScheduledOrder);
 
   return (
     <div className="card">
@@ -168,14 +178,21 @@ const OrderingFrom = () => {
                     <input
                       type="checkbox"
                       className="custom-control-input"
-                      id="pause_delivery_today"
-                      {...register("pause_delivery_today")}
+                      onClick={() =>
+                        pauseDeliveryToday === "active"
+                          ? setPauseDeliveryToday("inactive")
+                          : setPauseDeliveryToday("active")
+                      }
                       checked={pauseDeliveryToday === "active" ? true : false}
                     />
                     <label
                       className="custom-control-label"
-                      htmlFor="pause_delivery_today"
-                      // onClick={() => }
+                      // htmlFor="pause_delivery_today"
+                      onClick={() =>
+                        pauseDeliveryToday === "active"
+                          ? setPauseDeliveryToday("inactive")
+                          : setPauseDeliveryToday("active")
+                      }
                     >
                       Pause delivery for today
                     </label>
@@ -185,13 +202,20 @@ const OrderingFrom = () => {
                     <input
                       type="checkbox"
                       className="custom-control-input"
-                      id="no_scheduled_order"
-                      {...register("no_scheduled_order")}
+                      onClick={() =>
+                        noScheduledOrder === "active"
+                          ? setNoScheduledOrder("inactive")
+                          : setNoScheduledOrder("active")
+                      }
                       checked={noScheduledOrder === "active" ? true : false}
                     />
                     <label
                       className="custom-control-label"
-                      htmlFor="no_scheduled_order"
+                      onClick={() =>
+                        noScheduledOrder === "active"
+                          ? setNoScheduledOrder("inactive")
+                          : setNoScheduledOrder("active")
+                      }
                     >
                       No scheduled orders
                     </label>
