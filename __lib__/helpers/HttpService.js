@@ -1,8 +1,8 @@
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
-export const ROOT_URL = `https://resturant-gray.vercel.app/`;
-export const APP_URL = `https://resturant-gray.vercel.app/`;
+export const ROOT_URL = `https://resturant99.vercel.app`;
+export const APP_URL = `https://resturant99.vercel.app`;
 
 // export const ROOT_URL = `http://localhost:3000/`;
 // export const APP_URL = `http://localhost:3000/`;
